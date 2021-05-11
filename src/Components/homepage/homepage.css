@@ -1,0 +1,15 @@
+#intro{
+    width: 50vw;
+    height: auto;
+}
+
+.outer-circle{
+    position: absolute;
+    height: 90vw;
+    width: 170vw;
+    background-color: rgb(55, 75, 187);
+    border-radius: 50%;
+    top: -40vw;
+    margin-left: -40vw;
+    z-index: -1;
+}

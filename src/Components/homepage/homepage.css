@@ -1,15 +1,34 @@
-#intro{
-    width: 50vw;
-    height: auto;
+
+.circle{
+    width: 2000px;
+    height: 2000px;
+    background-color: rgb(252, 252, 252);
+    border-radius: 50%;
+    top: -70rem;
+    left: 30vw;
+    position: absolute;
+   z-index: 0;
+
 }
 
-.outer-circle{
-    position: absolute;
-    height: 90vw;
-    width: 170vw;
-    background-color: rgb(55, 75, 187);
+.border-circle{
+    width: 200px;
+    height: 200px;
+    background-color: aliceblue;
     border-radius: 50%;
-    top: -40vw;
-    margin-left: -40vw;
-    z-index: -1;
+    stroke: #0F1C3F;
+  stroke-width: 0.1875em;
+    top: 5vh;
+    left: 0vw;
+    position: absolute;
+}
+
+.str{
+    width: 200px;
+    height: 200px;
+    top: 50vh;
+    left: 0vw;
+    fill: #b8580a;
+  stroke: #0F1C3F;
+  stroke-width: 0.1875em;
 }

@@ -8,6 +8,8 @@ import {
 } from "react-router-dom";
 import Dashboard from './Components/Admin Dashboard/adminDashboard'
 import Milestones from './Components/Milestones/milestones'
+import Team from './Components/team/Team'
+import About from './Components/about/AboutUs'
 
 function App() {
   return (
@@ -20,6 +22,12 @@ function App() {
           </Route>
           <Route exact path="/milestones">
             <Milestones />
+          </Route>
+          <Route exact path="/team">
+            <Team />
+          </Route>
+          <Route exact path="/about-us">
+            <About />
           </Route>
           <Route exact path="/dashboard">
             <Dashboard />

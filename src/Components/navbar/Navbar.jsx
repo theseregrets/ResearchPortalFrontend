@@ -7,9 +7,9 @@ export default function Navbar() {
 
   useEffect(()=>{
     window.addEventListener('resize',()=>{
-    changeView(window.innerWidth<=1700)
+      changeView(window.innerWidth<=1700)
     })
-  })
+  },)
 
   return (
     <div>

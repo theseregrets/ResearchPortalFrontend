@@ -1,34 +1,34 @@
 
 .circle{
-    width: 2000px;
-    height: 2000px;
-    background-color: rgb(252, 252, 252);
-    border-radius: 50%;
-    top: -70rem;
-    left: 30vw;
-    position: absolute;
-   z-index: 0;
+  width: 2000px;
+  height: 2000px;
+  background-color: rgb(252, 252, 252);
+  border-radius: 50%;
+  top: -70rem;
+  left: 30vw;
+  position: absolute;
+  z-index: 0;
 
 }
 
 .border-circle{
-    width: 200px;
-    height: 200px;
-    background-color: aliceblue;
-    border-radius: 50%;
-    stroke: #0F1C3F;
+  width: 200px;
+  height: 200px;
+  background-color: aliceblue;
+  border-radius: 50%;
+  stroke: #0F1C3F;
   stroke-width: 0.1875em;
-    top: 5vh;
-    left: 0vw;
-    position: absolute;
+  top: 5vh;
+  left: 0vw;
+  position: absolute;
 }
 
 .str{
-    width: 200px;
-    height: 200px;
-    top: 50vh;
-    left: 0vw;
-    fill: #b8580a;
+  width: 200px;
+  height: 200px;
+  top: 50vh;
+  left: 0vw;
+  fill: #b8580a;
   stroke: #0F1C3F;
   stroke-width: 0.1875em;
 }

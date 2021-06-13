@@ -5,7 +5,7 @@ export default function Team() {
     return (
         <div>
             <div className="container" >
-            <h1 class="display-4 text-center " style={{color:'white'}}>The Team</h1>
+            <h1 class="display-4 text-center " >The Team</h1>
                 <div className="row">
                     <div className="col-3">
                         <div class="card" style={{width: "15rem"}}>

@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 export default function Nav() {
     return (
         <div>
-            <div className="navbar navbar-expand-lg " style={{position:"absolute"}}>
+            <div className="navbar navbar-expand-lg ">
                 <div className="container-fluid">
                     <div className="navbar-item w-25">
                         <Link to='/'><img src={RP} alt="" className="img-fluid w-50 navbar-brand" style={{}} /></Link>

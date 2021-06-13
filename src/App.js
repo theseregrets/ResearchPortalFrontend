@@ -10,6 +10,8 @@ import Dashboard from './Components/Admin Dashboard/adminDashboard'
 import Milestones from './Components/Milestones/milestones'
 import Team from './Components/team/Team'
 import About from './Components/about/AboutUs'
+import Login from './Components/login/Login'
+import Projects from './Components/projects/Projects'
 
 function App() {
   return (
@@ -28,6 +30,12 @@ function App() {
           </Route>
           <Route exact path="/about-us">
             <About />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/projects">
+            <Projects />
           </Route>
           <Route exact path="/dashboard">
             <Dashboard />

@@ -10,7 +10,7 @@ import TimelineDot from '@material-ui/lab/TimelineDot';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Carousel from './Carousel'
-
+import Car from './car'
 const useStyles = makeStyles((theme) => ({
   paper: {
     padding: '6px 16px',
@@ -25,8 +25,9 @@ export default function Milestones() {
 
   return (
       <div>
+          <h1 class="display-5 text-center " >Milestones</h1>
         <div className="container" >
-            <Carousel />
+            <Car/>
         </div>
         <div className="container" style={{marginTop:'5vh'}} >
         <Timeline align="alternate">

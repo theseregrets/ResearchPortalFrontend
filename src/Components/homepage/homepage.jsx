@@ -2,6 +2,7 @@ import intro_svg from '../../Assets/illustration.svg'
 import './homepage.css'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import {Link} from 'react-router-dom'
 
 const useStyles = makeStyles(() => ({
     btnSet:{
@@ -40,12 +41,12 @@ export default function Homepage() {
                          <p style={{marginTop:"20vh", marginLeft:"2vw", fontSize:"4rem"}}><span style={{color:"blue"}}>R</span>esearch <span style={{color:"blue"}}>P</span>ortal</p>
                        </div>
                        <div className="row justify-content-center" className={classes.btnSet}>
-                            <Button variant="outlined" className="col-2" className={classes.buttons} color="primary" >Projects</Button>
-                            <Button variant="outlined" className="col-2" className={classes.buttons} color="primary">Login</Button>
+                            <Button component={Link} to={'/projects'}  variant="outlined" className="col-2" className={classes.buttons} color="primary" >Projects</Button>
+                            <Button component={Link} to={'/login'} variant="outlined" className="col-2" className={classes.buttons} color="primary">Login</Button>
                         </div>
                    </div>
-                    <div className="col">
-                        <img src={intro_svg} alt="" className="w-75 mr-4 d-flex" style={{marginTop:"10vh"}} />
+                    <div className="col ">
+                        <img src={intro_svg} alt="" className="w-75 mr-4 d-flex " style={{marginTop:"10vh"}} />
                     </div>
                     
                     

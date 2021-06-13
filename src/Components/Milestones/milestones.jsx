@@ -25,7 +25,7 @@ export default function Milestones() {
 
   return (
       <div>
-        <div className="container">
+        <div className="container" >
             <Carousel />
         </div>
         <div className="container" style={{marginTop:'5vh'}} >

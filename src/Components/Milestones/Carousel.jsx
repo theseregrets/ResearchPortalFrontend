@@ -2,10 +2,11 @@ import React from 'react'
 import pic from './la.jpg'
 import pic1 from './chicago.jpg'
 import pic2 from './ny.jpg'
+import './carousel.css'
 
 export default function Carousel() {
     return (
-        <div className='container' style={{marginTop:'7vh'}}>
+        <div className='container my-carousel' >
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>

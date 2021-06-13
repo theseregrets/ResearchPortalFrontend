@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import NavDesk from './NavDesk'
 import NavMob from './NavMob'
+import Nav from './nav'
 
 export default function Navbar() {
   const [isMob,changeView]=useState(false)
@@ -13,8 +14,9 @@ export default function Navbar() {
 
   return (
     <div>
-      {isMob && <NavMob />}
-      {!isMob && <NavDesk/>}
+      {/* {isMob && <NavMob />}
+      {!isMob && <Nav/>} */}
+      <Nav />
     </div>
   )
 }

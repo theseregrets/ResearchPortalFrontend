@@ -4,7 +4,7 @@ import Profile from './profile.png'
 export default function Team() {
     return (
         <div>
-            <div className="container" style={{marginTop:'10vh'}}>
+            <div className="container" >
             <h1 class="display-4 text-center " style={{color:'white'}}>The Team</h1>
                 <div className="row">
                     <div className="col-3">

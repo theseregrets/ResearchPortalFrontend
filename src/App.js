@@ -12,6 +12,7 @@ import Team from './Components/team/Team'
 import About from './Components/about/AboutUs'
 import Login from './Components/login/Login'
 import Projects from './Components/projects/Projects'
+import Signup from './Components/signup/Signup'
 
 function App() {
   return (
@@ -39,6 +40,9 @@ function App() {
           </Route>
           <Route exact path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route exact path="/signup">
+            <Signup />
           </Route>
         </Switch>
       </Router>

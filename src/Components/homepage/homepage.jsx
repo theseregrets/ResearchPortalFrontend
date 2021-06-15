@@ -34,7 +34,7 @@ export default function Homepage() {
                     <div className="inner-ring3"></div>
                 </div>
             </section>
-           <div className="container-fluid" style={{position:'absolute',marginTop:"10vh"}}>
+           <div className="container-fluid" >
                <div className="row">
                    <div className="col">
                        <div className="row">
@@ -48,12 +48,16 @@ export default function Homepage() {
                     <div className="col ">
                         <img src={intro_svg} alt="" className="w-75 mr-4 d-flex " style={{marginTop:"10vh"}} />
                     </div>
-                    
-                    
                </div>
+               <div className="row">
+                   <div className="col-12">
+                        
+                   </div>
+               </div>
+           </div>
+           <div className="container">
                
            </div>
-            
         </div>
     )
 }

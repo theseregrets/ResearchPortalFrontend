@@ -5,6 +5,7 @@
   width: 100%;
   height: 100vh;
   clip-path: circle(70% at 90% 0%);
+  top:0;
   z-index: -2;
 }
 .rings1{

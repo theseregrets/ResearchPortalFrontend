@@ -8,11 +8,6 @@ import Drawer from '@material-ui/core/Drawer';
 export default function Nav() {
     const [isOpen,toggle]=useState(false)
 
-    const burger=()=>{
-        toggle(true)
-        console.log("burger clicked")
-    }
-
     return (
         <div>
             <div className="navbar navbar-expand-lg navbar-light ">

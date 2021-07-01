@@ -6,13 +6,14 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Dashboard from './Components/Admin Dashboard/adminDashboard'
+
 import Milestones from './Components/Milestones/milestones'
 import Team from './Components/team/Team'
 import About from './Components/about/AboutUs'
 import Login from './Components/login/Login'
 import Projects from './Components/projects/Projects'
 import Signup from './Components/signup/Signup'
+import UserDashboard from './Components/userDasboard/Dashboard';
 
 function App() {
   return (
@@ -38,11 +39,11 @@ function App() {
           <Route exact path="/projects">
             <Projects />
           </Route>
-          <Route exact path="/dashboard">
-            <Dashboard />
-          </Route>
           <Route exact path="/signup">
             <Signup />
+          </Route>
+          <Route exact path="/dashboard">
+            <UserDashboard />
           </Route>
         </Switch>
       </Router>

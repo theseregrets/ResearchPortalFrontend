@@ -22,9 +22,10 @@ export default function Nav() {
                     </div>
                     
                     <div className="navbar-item ml-lg-auto mb-2 mb-lg-0">
-                        <Button component={Link} to={'/milestones'} className="nav-item mr-lg-5" style={{color:'black',zIndex:2}}> Milestones</Button>
-                        <Button component={Link} to={'/team'}  className="nav-item mr-lg-5" style={{color:'black',zIndex:2}}>Team</Button>
-                        <Button component={Link} to={'/about-us'}  className="nav-item mr-lg-5" style={{color:'black',zIndex:2}}>About Us</Button>
+                        <Button component={Link} to={'/milestones'} className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}> Milestones</Button>
+                        <Button component={Link} to={'/team'}  className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}>Team</Button>
+                        <Button component={Link} to={'/dashboard'}  className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}>Dashboard</Button>
+                        <Button component={Link} to={'/about-us'}  className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}>About Us</Button>
                     </div>
                     <div className="navbar-item w-25" style={{zIndex:2}} >
                         <a href="https://www.ieeesbnitdgp.com/" ><img src={Logo} alt="" className="img-fluid w-25 ml-auto d-block" /></a>

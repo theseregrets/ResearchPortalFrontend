@@ -1,26 +1,94 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import firebase from 'firebase'
+import fire from '../../Firebase/Firebase'
+import clsx from 'clsx';
+import GoogleButton from 'react-google-button'
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+
+
+const useStyles = makeStyles((theme) => ({
+    avatar:{
+        marginTop:'10px',
+        backgroundColor:'green'
+    },
+    paper:{
+        width:'50vw',
+        margin:'auto',
+        height:'70vh',
+        display:'flex',
+        flexDirection:'column',
+        [theme.breakpoints.down('sm')]:{
+            width:'90vw',
+            margin:'auto',
+            height:'90vh',
+        }
+    },
+    align:{
+        marginLeft:'auto',
+        marginRight:'auto',
+    },
+    field:{
+        width:'40vw',
+        marginLeft:'auto',
+        marginRight:'auto',
+        marginTop:'15px',
+        [theme.breakpoints.down('sm')]:{
+            width:'80vw',
+            marginLeft:'auto',
+            marginRight:'auto',
+            marginTop:'40px'
+        }
+    }
+}))
 
 export default function Login() {
+
+    var history=useHistory();
+    var provider = new firebase.auth.GoogleAuthProvider();
+    var classes=useStyles()
+
+    const onLogin=()=>{
+        firebase.auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+           
+            var credential = result.credential;
+            alert('user logged in')
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            var token = credential.accessToken;
+            // The signed-in user info.
+            var user = result.user;
+            history.push('/')
+        }).catch((error) => {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // The email of the user's account used.
+            var email = error.email;
+            // The firebase.auth.AuthCredential type that was used.
+            var credential = error.credential;
+            // ...
+            alert('Invalid')
+        });
+    }
+
     return (
-        <div>
-            <h1 class="display-6 text-center" style={{color:'black'}}>Login</h1>
-            <form className='w-50 ml-auto mr-auto'>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button component={Link} to={'/signup'} class="btn btn-primary ml-3">Sign Up</button>
-            </form>
-        </div>
+        <Paper className={classes.paper} elevation={2}>
+            <Avatar className={clsx(classes.align,classes.avatar)}>
+                <LockOpenIcon />
+            </Avatar>
+            <Typography variant="h3" align='center'>Login</Typography>
+            <TextField required className={classes.field} id="outlined-required" label="Email" variant="outlined"/>
+            <TextField required className={classes.field} id="outlined-required" label="Password" variant="outlined"/>
+            <Button className={classes.field} color="primary" variant="contained" component={Link} to={'/signup'}>Sign Up</Button>
+            <GoogleButton className={classes.field} onClick={() => onLogin()} />
+        </Paper>
     )
 }

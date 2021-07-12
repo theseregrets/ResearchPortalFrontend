@@ -1,36 +1,73 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useHistory} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import firebase from 'firebase'
+import fire from '../../Firebase/Firebase'
+import clsx from 'clsx';
+import GoogleButton from 'react-google-button'
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import Avatar from '@material-ui/core/Avatar';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+
+
+const useStyles = makeStyles((theme) => ({
+    avatar:{
+        marginTop:'10px',
+        backgroundColor:'green'
+    },
+    paper:{
+        width:'50vw',
+        margin:'auto',
+        height:'80vh',
+        display:'flex',
+        flexDirection:'column',
+        [theme.breakpoints.down('sm')]:{
+            width:'90vw',
+            margin:'auto',
+            height:'90vh',
+        }
+    },
+    align:{
+        marginLeft:'auto',
+        marginRight:'auto',
+    },
+    field:{
+        width:'40vw',
+        marginLeft:'auto',
+        marginRight:'auto',
+        marginTop:'15px',
+        [theme.breakpoints.down('sm')]:{
+            width:'80vw',
+            marginLeft:'auto',
+            marginRight:'auto',
+            marginTop:'40px'
+        }
+    }
+}))
 
 export default function Signup() {
+
+    var history=useHistory();
+    var classes=useStyles()
+
+    const onSignup=()=>{
+        alert('Signed In')
+    }
+
     return (
-        <div>
-            <h1 class="display-6 text-center" style={{color:'black'}}>Sign Up</h1>
-             <form className='w-50 ml-auto mr-auto'>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Full Name</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                </div>
-                <div class="mb-3">
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected>Year of Study</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                </select>
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
-                </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                    <label class="form-check-label" for="exampleCheck1">Remember Me</label>
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
-                <button type="submit" class="btn btn-primary ml-3">Submit</button>
-            </form>
-        </div>
+        <Paper className={classes.paper} elevation={2}>
+            <Avatar className={clsx(classes.align,classes.avatar)}>
+                <LockOpenIcon />
+            </Avatar>
+            <Typography variant="h3" align='center'>Sign Up</Typography>
+            <TextField required className={classes.field} id="outlined-required" label="Full Name" variant="outlined"/>
+            <TextField required className={classes.field} id="outlined-required" label="Email" variant="outlined"/>
+            <TextField required className={classes.field} id="outlined-required" label="Password" variant="outlined"/>
+            <Button className={classes.field} color="primary" variant="contained" component={Link} to={'/signup'}>Sign Up</Button>
+            <GoogleButton className={classes.field} onClick={() => onSignup()} />
+        </Paper>
     )
 }

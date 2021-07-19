@@ -18,6 +18,7 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import MainDashboard from './MainDashboard';
+import Statement from './ResearchStatement'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -209,7 +210,7 @@ export default function Dashboard() {
           <MainDashboard />
         </Route>
         <Route path={`${path}/research-statement`}>
-          <h1>Research statement</h1>
+          <Statement />
         </Route>
         <Route path={`${path}/announcements`}>
           <h1>Announcements</h1>

@@ -1,15 +1,49 @@
 import {
 	Grid,
+	makeStyles,
 	TextField,
 	Button,
-	Card,
-	CardContent,
+	Paper,
 	Typography,
 	Box,
 } from "@material-ui/core";
 import AnimatedNumber from "react-animated-number";
 
+const useStyles = makeStyles((theme) => ({
+	heading: {
+		textDecoration: "underline",
+	},
+	paragraph: {
+		padding: "20px 5px",
+		margin: "auto 2rem",
+	},
+	animatedNumber: {
+		transition: "0.8s ease-out",
+		color: "#4499fe",
+		fontSize: "3rem",
+		textAlign: "center",
+		alignItems: "center",
+	},
+	paper: {
+		padding: "20px 1rem",
+		margin: "4rem auto",
+		background: "radial-gradient(at right 0%, #80b7ff 55% ,white 40%) ",
+		width: "50vw",
+		display: "flex",
+		flexDirection: "column",
+		[theme.breakpoints.down("sm")]: {
+			width: "90vw",
+			margin: "4 rem auto",
+		},
+	},
+	align: {
+		marginLeft: "auto",
+		marginRight: "auto",
+	},
+}));
+
 export default function AboutUs() {
+	var classes = useStyles();
 	return (
 		<Grid container>
 			<Grid
@@ -21,16 +55,16 @@ export default function AboutUs() {
 			>
 				<Grid item xs={12}>
 					<Typography
+						className={classes.heading}
 						gutterBottom
 						variant="h2"
 						align="center"
-						style={{ textDecoration: "underline" }}
 					>
 						About Us
 					</Typography>
 				</Grid>
 
-				<Grid item xs={12} style={{ padding: "20px 5px", margin: "auto 2rem" }}>
+				<Grid item xs={12} className={classes.paragraph}>
 					<Typography paragraph variant="body">
 						The IEEE Student Branch , NIT Durgapur is a society of enthusiasts
 						aimed at promoting research-related activities in the campus. We are
@@ -42,15 +76,10 @@ export default function AboutUs() {
 					</Typography>
 				</Grid>
 
-				<Grid item xs={12} sm={4} spacing={1} style={{ textAlign: "center" }}>
+				<Grid item xs={12} sm={4} spacing={1} align="center">
 					<Box borderRight={0.1}>
 						<AnimatedNumber
-							style={{
-								transition: "0.8s ease-out",
-								color: "#4499fe",
-								fontSize: "3rem",
-								alignItems: "center",
-							}}
+							className={classes.animatedNumber}
 							stepPrecision={0}
 							duration={1000}
 							value={50}
@@ -61,16 +90,10 @@ export default function AboutUs() {
 						</Typography>
 					</Box>
 				</Grid>
-				<Grid item xs={12} sm={4} spacing={1} style={{ textAlign: "center" }}>
+				<Grid item xs={12} sm={4} spacing={1} align="center">
 					<Box borderRight={0.1}>
 						<AnimatedNumber
-							style={{
-								transition: "0.8s ease-out",
-								color: "#4499fe",
-								fontSize: "3rem",
-
-								alignItems: "center",
-							}}
+							className={classes.animatedNumber}
 							stepPrecision={0}
 							duration={1000}
 							value={30}
@@ -82,16 +105,10 @@ export default function AboutUs() {
 						</Typography>
 					</Box>
 				</Grid>
-				<Grid item xs={12} sm={4} spacing={1} style={{ textAlign: "center" }}>
+				<Grid item xs={12} sm={4} spacing={1} align="center">
 					<Box>
 						<AnimatedNumber
-							style={{
-								transition: "0.8s ease-out",
-								color: "#4499fe",
-								fontSize: "3rem",
-
-								alignItems: "center",
-							}}
+							className={classes.animatedNumber}
 							stepPrecision={0}
 							duration={1000}
 							value={500}
@@ -106,90 +123,83 @@ export default function AboutUs() {
 			</Grid>
 
 			<Grid container>
-				<Card
-					style={{
-						padding: "20px 5px",
-						margin: "4rem auto",
-						background: "linear-gradient(65deg, #e6f9ff 10%, #b3ecff 45%)",
-					}}
-				>
-					<CardContent>
-						<Typography gutterBottom variant="h5">
-							Contact Us
-						</Typography>
-						<Typography
-							variant="body2"
-							color="textSecondary"
-							component="p"
-							gutterBottom
-						>
-							Fill up the form and our team will get back to you...
-						</Typography>
-						<form>
-							<Grid container spacing={1} justify="center" alignItems="center">
-								<Grid xs={12} sm={6} item>
-									<TextField
-										placeholder="Enter first name"
-										label="First Name"
-										variant="outlined"
-										fullWidth
-										required
-									/>
-								</Grid>
-								<Grid xs={12} sm={6} item>
-									<TextField
-										placeholder="Enter last name"
-										label="Last Name"
-										variant="outlined"
-										fullWidth
-										required
-									/>
-								</Grid>
-								<Grid item xs={12}>
-									<TextField
-										type="email"
-										placeholder="Enter email"
-										label="Email"
-										variant="outlined"
-										fullWidth
-										required
-									/>
-								</Grid>
-								<Grid item xs={12}>
-									<TextField
-										type="number"
-										placeholder="Enter phone number"
-										label="Phone"
-										variant="outlined"
-										fullWidth
-										required
-									/>
-								</Grid>
-								<Grid item xs={12}>
-									<TextField
-										label="Message"
-										multiline
-										rows={4}
-										placeholder="Type your message here"
-										variant="outlined"
-										fullWidth
-										required
-									/>
-								</Grid>
-								<Grid item xs={12}>
-									<Button
-										type="submit"
-										variant="contained"
-										color="primary"
-										fullWidth
-									>
-										Submit
-									</Button>
-								</Grid>
+				<Paper className={classes.paper} elevation={4}>
+					<Typography gutterBottom variant="h5" align="center">
+						Contact Us
+					</Typography>
+					<Typography
+						variant="body2"
+						color="textSecondary"
+						component="p"
+						align="center"
+						gutterBottom
+					>
+						Fill up the form and our team will get back to you...
+					</Typography>
+					<form>
+						<Grid container spacing={1} className={classes.align}>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									fullWidth
+									placeholder="Enter first name"
+									label="First Name"
+									variant="outlined"
+									required
+								/>
 							</Grid>
-						</form>
-					</CardContent>
-				</Card>
+							<Grid item xs={12} sm={6}>
+								<TextField
+									fullWidth
+									placeholder="Enter last name"
+									label="Last Name"
+									variant="outlined"
+									required
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									fullWidth
+									type="email"
+									placeholder="Enter email"
+									label="Email"
+									variant="outlined"
+									required
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									fullWidth
+									type="number"
+									placeholder="Enter phone number"
+									label="Phone"
+									variant="outlined"
+									required
+								/>
+							</Grid>
+							<Grid item xs={12}>
+								<TextField
+									label="Message"
+									fullWidth
+									multiline
+									rows={4}
+									placeholder="Type your message here"
+									variant="outlined"
+									required
+								/>
+							</Grid>
+							<Grid item xs={12} sm={8} className={classes.align}>
+								<Button
+									type="submit"
+									fullWidth
+									variant="contained"
+									color="primary"
+								>
+									Submit
+								</Button>
+							</Grid>
+						</Grid>
+					</form>
+				</Paper>
 			</Grid>
 		</Grid>
 	);

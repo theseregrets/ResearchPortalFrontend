@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
+import Statement from './Statement'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,35 +26,10 @@ const useStyles = makeStyles((theme) => ({
         width: '200px',
         marginLeft: 'auto' 
     },
-    txt:{
-        fontSize: '20px',
-        margin: '20px auto',
-        width: '65%',
-        minHeight: '90vh',
-        fontFamily: 'sans-serif',
-        backgroundColor: 'white',
-        padding: '10px',
-        borderRadius: '10px',
-        boxShadow: '0 0 10px rgba(0,0,0,0.1)'
-    },
-    txtArea: {
-        display: 'block',
-        margin: '20px auto',
-        width: '65%',
-        minHeight: '90vh',
-        fontSize: '20px',
-        padding: '10px',
-    },
     [theme.breakpoints.down('sm')]: {
         btnContainer: {
             width: '90%'
         },
-        txt:{
-            width: '90%'
-        },
-        txtArea: {
-            width: '90%'
-        }
     }
 }));
 
@@ -97,21 +73,5 @@ export default function ResearchStatement(){
             <Statement ie={isEditing} text={text} />
             
         </div>
-    );
-}
-
-function Statement(props) {
-    const classes = useStyles();
-
-    let [text, setText] = useState(localStorage.getItem('statement')||props.text);
-
-    function handleChange(e){
-        setText(e.target.value)
-    }
-
-    return(
-        props.ie?
-        <textarea value={text} maxLength={1500} onChange={handleChange} className={classes.txtArea} />:
-        <pre className={classes.txt}>{props.text}</pre>
     );
 }

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         minHeight: '100vh',
         flex: '1',
@@ -44,7 +44,7 @@ const useStyles = makeStyles(() => ({
         fontSize: '20px',
         padding: '10px',
     },
-    '@media screen and (max-width: 992px)': {
+    [theme.breakpoints.down('sm')]: {
         btnContainer: {
             width: '90%'
         },

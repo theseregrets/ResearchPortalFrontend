@@ -58,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
     cardText: {
         marginLeft: '40px',
     },
-    '@media screen and (max-width: 700px)': {
+    [theme.breakpoints.down('sm')]: {
         msg: {
             width: '90%'
         },

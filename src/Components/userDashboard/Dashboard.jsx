@@ -45,7 +45,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    position: 'relative',
+    // position: 'relative',
+    position: 'sticky',
+    top: '0',
+    height: '100vh',
     whiteSpace: 'nowrap',
     width: '240px',
     transition: theme.transitions.create('width', {

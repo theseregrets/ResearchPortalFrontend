@@ -1,18 +1,14 @@
-import Navbar from './Components/navbar/Navbar'
-import Homepage from './Components/homepage/homepage'
-import './general.css'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-
-import Milestones from './Components/Milestones/milestones'
-import Team from './Components/team/Team'
-import About from './Components/about/AboutUs'
-import Login from './Components/login/Login'
-import Projects from './Components/projects/Projects'
-import Signup from './Components/signup/Signup'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Navbar from './Components/navbar/Navbar';
+import Homepage from './Components/homepage/homepage';
+import './general.css';
+import Milestones from './Components/Milestones/milestones';
+import Team from './Components/team/Team';
+import About from './Components/about/AboutUs';
+import Login from './Components/login/Login';
+import Projects from './Components/projects/Projects';
+import Signup from './Components/signup/Signup';
 import UserDashboard from './Components/userDasboard/Dashboard';
 
 function App() {

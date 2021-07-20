@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, useRouteMatch, Link } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  useRouteMatch,
+  Link,
+} from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -18,9 +24,8 @@ import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import MainDashboard from './MainDashboard';
-import Statement from './ResearchStatement'
-import Announcements from './Announcements'
-
+import Statement from './ResearchStatement';
+import Announcements from './Announcements';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,26 +92,27 @@ const useStyles = makeStyles((theme) => ({
   fixedHeight: {
     height: 240,
   },
-  drawerListText:{
+  drawerListText: {
     color: 'initial',
     textDecoration: 'none',
     '&:hover': {
-      textDecoration: 'none'
-    }
+      textDecoration: 'none',
+    },
   },
 }));
-
 
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {
     width,
-    height
+    height,
   };
 }
 
 function useWindowDimensions() {
-  const [windowDimensions, setWindowDimensions] = React.useState(getWindowDimensions());
+  const [windowDimensions, setWindowDimensions] = React.useState(
+    getWindowDimensions()
+  );
 
   React.useEffect(() => {
     function handleResize() {
@@ -120,11 +126,10 @@ function useWindowDimensions() {
   return windowDimensions;
 }
 
-
 export default function Dashboard() {
   const classes = useStyles();
   const { width } = useWindowDimensions();
-  const [open, setOpen] = React.useState(width>900?true:false);
+  const [open, setOpen] = React.useState(width > 900 ? true : false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -136,100 +141,109 @@ export default function Dashboard() {
 
   return (
     <BrowserRouter>
-    <div className={classes.root}>
-      <CssBaseline />
-      <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={open?handleDrawerClose:handleDrawerOpen}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
+      <div className={classes.root}>
+        <CssBaseline />
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
 
-        <List>
-          <Link to={`${url}`} className={classes.drawerListText}>
-            <ListItem button>
-              <ListItemIcon>
-                <DashboardIcon />
-              </ListItemIcon>
-              <ListItemText primary="Dashboard" />
-            </ListItem>
-          </Link>
+          <List>
+            <Link to={`${url}`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <DashboardIcon />
+                </ListItemIcon>
+                <ListItemText primary="Dashboard" />
+              </ListItem>
+            </Link>
 
-          <Link to={`${url}/research-statement`} className={classes.drawerListText}>
-            <ListItem button>
-              <ListItemIcon>
-                <SubjectIcon />
-              </ListItemIcon>
-              <ListItemText primary="Research statement" />
-            </ListItem>
-          </Link>
+            <Link
+              to={`${url}/research-statement`}
+              className={classes.drawerListText}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <SubjectIcon />
+                </ListItemIcon>
+                <ListItemText primary="Research statement" />
+              </ListItem>
+            </Link>
 
-          <Link to={`${url}/announcements`} className={classes.drawerListText}>
-            <ListItem button>
-              <ListItemIcon>
-                <LayersIcon />
-              </ListItemIcon>
-              <ListItemText primary="Announcements" />
-            </ListItem>
-          </Link>
+            <Link
+              to={`${url}/announcements`}
+              className={classes.drawerListText}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <LayersIcon />
+                </ListItemIcon>
+                <ListItemText primary="Announcements" />
+              </ListItem>
+            </Link>
 
-          <Link to={`${url}/new-applications`} className={classes.drawerListText}>
-            <ListItem button>
-              <ListItemIcon>
-                <BarChartIcon />
-              </ListItemIcon>
-              <ListItemText primary="New applications" />
-            </ListItem>
-          </Link>
+            <Link
+              to={`${url}/new-applications`}
+              className={classes.drawerListText}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <BarChartIcon />
+                </ListItemIcon>
+                <ListItemText primary="New applications" />
+              </ListItem>
+            </Link>
 
-          <Link to={`${url}/profile`} className={classes.drawerListText}>
-            <ListItem button>
-              <ListItemIcon>
-                <PeopleIcon />
-              </ListItemIcon>
-              <ListItemText primary="Profile" />
-            </ListItem>
-          </Link>
+            <Link to={`${url}/profile`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItem>
+            </Link>
 
-          <Link to={`${url}/resume`} className={classes.drawerListText}>
-            <ListItem button>
-              <ListItemIcon>
-                <AssignmentIcon />
-              </ListItemIcon>
-              <ListItemText primary="Resume" />
-            </ListItem>
-          </Link>
-        </List>
-      </Drawer>
+            <Link to={`${url}/resume`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Resume" />
+              </ListItem>
+            </Link>
+          </List>
+        </Drawer>
 
-      <Switch>
-        <Route exact path={path}>
-          <MainDashboard />
-        </Route>
-        <Route path={`${path}/research-statement`}>
-          <Statement />
-        </Route>
-        <Route path={`${path}/announcements`}>
-          <Announcements />
-        </Route>
-        <Route path={`${path}/new-applications`}>
-          <h1>New applications</h1>
-        </Route>
-        <Route path={`${path}/profile`}>
-          <h1>Profile</h1>
-        </Route>
-        <Route path={`${path}/resume`}>
-          <h1>Resume</h1>
-        </Route>
-      </Switch>
-    </div>
+        <Switch>
+          <Route exact path={path}>
+            <MainDashboard />
+          </Route>
+          <Route path={`${path}/research-statement`}>
+            <Statement />
+          </Route>
+          <Route path={`${path}/announcements`}>
+            <Announcements />
+          </Route>
+          <Route path={`${path}/new-applications`}>
+            <h1>New applications</h1>
+          </Route>
+          <Route path={`${path}/profile`}>
+            <h1>Profile</h1>
+          </Route>
+          <Route path={`${path}/resume`}>
+            <h1>Resume</h1>
+          </Route>
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

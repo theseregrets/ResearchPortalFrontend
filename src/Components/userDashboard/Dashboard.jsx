@@ -19,6 +19,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import MainDashboard from './MainDashboard';
 import Statement from './ResearchStatement'
+import Announcements from './Announcements'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -216,7 +217,7 @@ export default function Dashboard() {
           <Statement />
         </Route>
         <Route path={`${path}/announcements`}>
-          <h1>Announcements</h1>
+          <Announcements />
         </Route>
         <Route path={`${path}/new-applications`}>
           <h1>New applications</h1>

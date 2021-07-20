@@ -39,7 +39,7 @@ function App() {
             <Signup />
           </Route>
           <Route exact path="/dasboard">
-            <UserDasboard />
+            <UserDashboard />
           </Route>
           <Route path="/dashboard">
             <UserDashboard />

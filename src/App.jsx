@@ -9,7 +9,7 @@ import About from './Components/about/AboutUs';
 import Login from './Components/login/Login';
 import Projects from './Components/projects/Projects';
 import Signup from './Components/signup/Signup';
-import UserDashboard from './Components/userDasboard/Dashboard';
+import UserDashboard from './Components/userDashboard/Dashboard';
 
 function App() {
   return (

@@ -16,8 +16,6 @@ import InfoIcon from '@material-ui/icons/Info';
 import { useHistory } from 'react-router-dom';
 
 
-
-
 const useStyle=makeStyles((theme)=>{
     
     return (
@@ -197,6 +195,9 @@ export default function Nav() {
                </ListItem>
            </List>
             </Drawer>
+
+
         </div>
-    )
+      
+  );
 }

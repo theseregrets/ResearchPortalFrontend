@@ -58,6 +58,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const data = {
+  img: 'https://miro.medium.com/max/1838/1*MI686k5sDQrISBM6L8pf5A.jpeg',
+  project:
+    'Development of experimental rover and investigation of mobility and approaches for local and global motion planning on uneven terrain',
+  desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  faculty: 'Dr. K. Kurien Issac',
+  dept: 'Aerospace engineering',
+};
+
 export default function MainDashboard() {
   const classes = useStyles();
 
@@ -72,9 +81,27 @@ export default function MainDashboard() {
         <AddIcon />
         Apply for more
       </Button>
-      <ProjectCard />
-      <ProjectCard />
-      <ProjectCard />
+      <ProjectCard
+        img={data.img}
+        project={data.project}
+        desc={data.desc}
+        faculty={data.faculty}
+        dept={data.dept}
+      />
+      <ProjectCard
+        img={data.img}
+        project={data.project}
+        desc={data.desc}
+        faculty={data.faculty}
+        dept={data.dept}
+      />
+      <ProjectCard
+        img={data.img}
+        project={data.project}
+        desc={data.desc}
+        faculty={data.faculty}
+        dept={data.dept}
+      />
     </div>
   );
 }

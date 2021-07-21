@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -14,9 +16,23 @@ const useStyles = makeStyles((theme) => ({
   img: {
     maxHeight: '200px',
     maxWidth: '200px',
+    borderRadius: '10px',
   },
   cardText: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     marginLeft: '40px',
+  },
+  // cardTextTitle: {
+  //   color: '#482ff7',
+  // },
+  cardTextContent: {
+    padding: '5px 0',
+
+    '& + p': {
+      marginBottom: '0',
+    },
   },
   [theme.breakpoints.down('sm')]: {
     card: {
@@ -32,26 +48,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectCard() {
+export default function ProjectCard({ img, project, desc, faculty, dept }) {
   const classes = useStyles();
 
   return (
     <div className={classes.card}>
-      <img
-        src="https://miro.medium.com/max/1838/1*MI686k5sDQrISBM6L8pf5A.jpeg"
-        alt="img"
-        className={classes.img}
-      />
+      <img src={img} alt="img" className={classes.img} />
       <div className={classes.cardText}>
-        <h4 className={classes.cardTextTitle}>Project Title</h4>
-        <p className={classes.cardTextContent}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lorem
-          dui, cursus id enim eu, bibendum mollis quam. Nunc vel dignissim
-          sapien. Duis vitae mi ac odio tempus dapibus eget rutrum lacus. Fusce
-          eros sem, egestas porttitor rutrum aliquet, rutrum et erat. Donec vel
-          tempor ex.
-        </p>
+        <h4 className={classes.cardTextTitle}>{project}</h4>
+        <p className={classes.cardTextContent}>{desc}</p>
+        <p>{faculty}</p>
+        <p>{dept}</p>
       </div>
     </div>
   );
 }
+
+ProjectCard.propTypes = {
+  img: PropTypes.string.isRequired,
+  project: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  faculty: PropTypes.string.isRequired,
+  dept: PropTypes.string.isRequired,
+};

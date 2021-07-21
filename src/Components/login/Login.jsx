@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
@@ -11,7 +12,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import fire from '../../Firebase/Firebase';
+// import fire from '../../Firebase/Firebase';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {

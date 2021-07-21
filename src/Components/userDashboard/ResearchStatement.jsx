@@ -36,16 +36,18 @@ const useStyles = makeStyles((theme) => ({
 export default function ResearchStatement() {
   const classes = useStyles();
 
-  let [isEditing, setIsEditing] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
 
   function handleClick() {
-    setIsEditing(isEditing ? false : true);
+    setIsEditing(!isEditing);
   }
 
-  let [text, setText] = useState(localStorage.getItem('statement') || 'hello');
+  const [text, setText] = useState(
+    localStorage.getItem('statement') || 'hello'
+  );
 
   function update() {
-    let ta = document.querySelector('textarea');
+    const ta = document.querySelector('textarea');
     localStorage.setItem('statement', ta.value);
     setText(ta.value);
     setIsEditing(false);
@@ -81,7 +83,7 @@ export default function ResearchStatement() {
             </Button>
           </div>
         ) : (
-          <div></div>
+          <div />
         )}
       </div>
       <Statement ie={isEditing} text={text} />

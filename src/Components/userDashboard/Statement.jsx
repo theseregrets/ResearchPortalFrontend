@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   txt: {
@@ -31,25 +33,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Statement(props) {
+export default function Statement({ ie, text }) {
   const classes = useStyles();
 
-  let [text, setText] = useState(
-    localStorage.getItem('statement') || props.text
-  );
+  const [txt, setTxt] = useState(localStorage.getItem('statement') || text);
 
   function handleChange(e) {
-    setText(e.target.value);
+    setTxt(e.target.value);
   }
 
-  return props.ie ? (
+  return ie ? (
     <textarea
-      value={text}
+      value={txt}
       maxLength={1500}
       onChange={handleChange}
       className={classes.txtArea}
     />
   ) : (
-    <pre className={classes.txt}>{props.text}</pre>
+    <pre className={classes.txt}>{text}</pre>
   );
 }
+
+Statement.propTypes = {
+  ie: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+};

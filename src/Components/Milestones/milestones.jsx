@@ -9,10 +9,10 @@ import TimelineOppositeContent from '@material-ui/lab/TimelineOppositeContent';
 import TimelineDot from '@material-ui/lab/TimelineDot';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Carousel from './Carousel';
+// import Carousel from './Carousel';
 import Car from './car';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   paper: {
     padding: '6px 16px',
   },

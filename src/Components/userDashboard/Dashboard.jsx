@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import {
   BrowserRouter,
@@ -129,7 +130,7 @@ function useWindowDimensions() {
 export default function Dashboard() {
   const classes = useStyles();
   const { width } = useWindowDimensions();
-  const [open, setOpen] = React.useState(width > 900 ? true : false);
+  const [open, setOpen] = React.useState(width > 900);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -137,7 +138,7 @@ export default function Dashboard() {
     setOpen(false);
   };
 
-  let { path, url } = useRouteMatch();
+  const { path, url } = useRouteMatch();
 
   return (
     <BrowserRouter>

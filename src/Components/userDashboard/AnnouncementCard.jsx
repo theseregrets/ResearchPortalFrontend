@@ -1,5 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,23 +71,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AnnouncementCard(props) {
+export default function AnnouncementCard({
+  img,
+  title,
+  project,
+  faculty,
+  dept,
+  time,
+}) {
   const classes = useStyles();
 
   return (
     <div className={classes.card}>
-      <img src={props.img} alt="project" className={classes.img} />
+      <img src={img} alt="project" className={classes.img} />
       <div className={classes.details}>
-        <h4>{props.title}</h4>
-        <h6>{props.project}</h6>
+        <h4>{title}</h4>
+        <h6>{project}</h6>
         <div className={classes.txt}>
           <div>
-            <p>{props.faculty}</p>
-            <p>{props.dept}</p>
+            <p>{faculty}</p>
+            <p>{dept}</p>
           </div>
-          <p>{props.time}</p>
+          <p>{time}</p>
         </div>
       </div>
     </div>
   );
 }
+
+AnnouncementCard.propTypes = {
+  img: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  project: PropTypes.string.isRequired,
+  faculty: PropTypes.string.isRequired,
+  dept: PropTypes.string.isRequired,
+  time: PropTypes.string.isRequired,
+};

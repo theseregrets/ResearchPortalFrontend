@@ -2,7 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AnnouncementCard from './AnnouncementCard';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     minHeight: '100vh',
     flex: '1',

@@ -64,6 +64,6 @@
     "prettier": "^2.3.2"
   },
   "lint-staged": {
-    "*.jsx": ["prettier --write","eslint --cache --fix"]
+    "*.jsx": ["npx prettier --write","npx eslint --cache --fix"]
   }
 }

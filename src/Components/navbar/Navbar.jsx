@@ -123,7 +123,7 @@ const useStyle=makeStyles((theme)=>{
 })
 
 
-export default function Nav() {
+export default function Navbar() {
     const [isOpen,toggle]=useState(false);
     const [ishome,setishome]=useState(true);
      

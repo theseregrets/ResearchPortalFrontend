@@ -15,13 +15,13 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SubjectIcon from '@material-ui/icons/Subject';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import MainDashboard from './MainDashboard';
@@ -153,7 +153,7 @@ export default function Dashboard() {
         >
           <div className={classes.toolbarIcon}>
             <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-              <ChevronLeftIcon />
+              {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
             </IconButton>
           </div>
           <Divider />
@@ -192,18 +192,6 @@ export default function Dashboard() {
               </ListItem>
             </Link>
 
-            <Link
-              to={`${url}/new-applications`}
-              className={classes.drawerListText}
-            >
-              <ListItem button>
-                <ListItemIcon>
-                  <BarChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="New applications" />
-              </ListItem>
-            </Link>
-
             <Link to={`${url}/profile`} className={classes.drawerListText}>
               <ListItem button>
                 <ListItemIcon>
@@ -233,9 +221,6 @@ export default function Dashboard() {
           </Route>
           <Route path={`${path}/announcements`}>
             <Announcements />
-          </Route>
-          <Route path={`${path}/new-applications`}>
-            <h1>New applications</h1>
           </Route>
           <Route path={`${path}/profile`}>
             <h1>Profile</h1>

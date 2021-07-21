@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
   btn: {
     display: 'block',
     margin: '20px auto',
+    width: 'max-content',
   },
   [theme.breakpoints.down('sm')]: {
     msg: {
@@ -76,8 +78,14 @@ export default function MainDashboard() {
         <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
         <h4 className={classes.txt}>Welcome back Nitin!</h4>
       </div>
-      <h2 className={classes.title}>Ongoing Projects</h2>
-      <Button variant="contained" color="primary" className={classes.btn}>
+      <h2 className={classes.title}>Projects Applied</h2>
+      <Button
+        component={Link}
+        to="/projects"
+        variant="contained"
+        color="primary"
+        className={classes.btn}
+      >
         <AddIcon />
         Apply for more
       </Button>

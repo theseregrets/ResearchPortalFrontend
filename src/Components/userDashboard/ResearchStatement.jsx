@@ -58,7 +58,7 @@ export default function ResearchStatement() {
 
   return (
     <div className={classes.root}>
-      <h2 className={classes.title}>Research statement</h2>
+      <h2 className={classes.title}>Research Statement</h2>
       <div className={classes.btnContainer}>
         {!isEditing ? (
           <Button

@@ -23,7 +23,6 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import SubjectIcon from '@material-ui/icons/Subject';
 import PeopleIcon from '@material-ui/icons/People';
 import LayersIcon from '@material-ui/icons/Layers';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import MainDashboard from './MainDashboard';
 import Statement from './ResearchStatement';
 import Announcements from './Announcements';
@@ -200,15 +199,6 @@ export default function Dashboard() {
                 <ListItemText primary="Profile" />
               </ListItem>
             </Link>
-
-            <Link to={`${url}/resume`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Resume" />
-              </ListItem>
-            </Link>
           </List>
         </Drawer>
 
@@ -224,9 +214,6 @@ export default function Dashboard() {
           </Route>
           <Route path={`${path}/profile`}>
             <h1>Profile</h1>
-          </Route>
-          <Route path={`${path}/resume`}>
-            <h1>Resume</h1>
           </Route>
         </Switch>
       </div>

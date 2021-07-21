@@ -2,6 +2,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import Button from '@material-ui/core/Button';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -24,15 +26,32 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     marginLeft: '40px',
   },
-  // cardTextTitle: {
-  //   color: '#482ff7',
-  // },
+  cardTextTitle: {
+    color: '#1414b0',
+  },
   cardTextContent: {
     padding: '5px 0',
 
     '& + p': {
       marginBottom: '0',
     },
+  },
+  txt: {
+    display: 'flex',
+    justifyContent: 'space-between',
+
+    '& > Button': {
+      alignSelf: 'flex-end',
+      margin: '0',
+    },
+
+    '& > div > p': {
+      margin: '0',
+      color: '#606060',
+    },
+  },
+  delButton: {
+    margin: theme.spacing(1),
   },
   [theme.breakpoints.down('sm')]: {
     card: {
@@ -57,8 +76,20 @@ export default function ProjectCard({ img, project, desc, faculty, dept }) {
       <div className={classes.cardText}>
         <h4 className={classes.cardTextTitle}>{project}</h4>
         <p className={classes.cardTextContent}>{desc}</p>
-        <p>{faculty}</p>
-        <p>{dept}</p>
+        <div className={classes.txt}>
+          <div>
+            <p>{faculty}</p>
+            <p>{dept}</p>
+          </div>
+          <Button
+            variant="contained"
+            color="secondary"
+            className={classes.delButton}
+            startIcon={<DeleteIcon />}
+          >
+            delete
+          </Button>
+        </div>
       </div>
     </div>
   );

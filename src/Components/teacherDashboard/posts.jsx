@@ -1,5 +1,3 @@
-const Posts = () => {
-  return <p>post</p>;
-};
+const Posts = () => <p>post</p>;
 
 export default Posts;

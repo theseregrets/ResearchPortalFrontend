@@ -1,5 +1,3 @@
-const Profile = () => {
-  return <p>profile</p>;
-};
+const Profile = () => <p>profile</p>;
 
 export default Profile;

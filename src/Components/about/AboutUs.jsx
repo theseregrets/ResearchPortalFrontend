@@ -173,7 +173,6 @@ export default function AboutUs() {
 									placeholder="Enter phone number"
 									label="Phone"
 									variant="outlined"
-									required
 								/>
 							</Grid>
 							<Grid item xs={12}>

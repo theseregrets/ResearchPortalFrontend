@@ -24,7 +24,7 @@ export default function CarouselSlider(props) {
 	const classes = useStyles();
 
 	return (
-		<Grid align="center">
+		<Grid align="center" >
 			<Card className={classes.card}>
 				<div>
 					<CardMedia

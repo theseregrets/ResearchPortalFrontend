@@ -77,12 +77,18 @@ export default function Carousel() {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			document.querySelector("#rightArrow").firstChild.click();
-		}, 3000);
+		}, 5000);
 		return () => clearInterval(interval);
 	}, []);
 
 	return (
-		<Grid container justify="center" align="center" spacing={2}>
+		<Grid
+			container
+			justify="center"
+			
+			align="center"
+			spacing={2}
+		>
 			<Grid item className={classes.arrows}>
 				<Arrow direction="left" clickFunction={() => onArrowClick("left")} />
 			</Grid>

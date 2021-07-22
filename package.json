@@ -30,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "precommit": "npx lint-staged"
+    "precommit": "npx lint-staged, git rm .eslintcache"
   },
   "eslintConfig": {
     "extends": [

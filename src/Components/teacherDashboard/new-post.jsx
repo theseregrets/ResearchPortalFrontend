@@ -26,54 +26,56 @@ export default function NewPost() {
   const classes = useStyles();
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
-      <div>
-        <TextField
-          id="outline-basic"
-          label="Title"
-          placeholder="Add title to your project"
-          multiline
-        />
-
-        <TextField
-          id="outlined-multiline-static"
-          label="Description"
-          multiline
-          rows={6}
-          placeholder="add a brief description about your project"
-          variant="outlined"
-        />
-        <div className={classes.root}>
-          <input
-            accept="image/*"
-            className={classes.input}
-            id="icon-button-file"
-            type="file"
+    <>
+      <form className={classes.root} noValidate autoComplete="off">
+        <div>
+          <TextField
+            id="outline-basic"
+            label="Title"
+            placeholder="Add title to your project"
+            multiline
           />
-          <label htmlFor="contained-button-file">
+
+          <TextField
+            id="outlined-multiline-static"
+            label="Description"
+            multiline
+            rows={6}
+            placeholder="add a brief description about your project"
+            variant="outlined"
+          />
+          <div className={classes.root}>
+            <input
+              accept="image/*"
+              className={classes.input}
+              id="icon-button-file"
+              type="file"
+            />
+            <label htmlFor="contained-button-file">
+              <Button
+                variant="contained"
+                size="small"
+                color="primary"
+                component="span"
+                startIcon={<PhotoCamera />}
+              >
+                Upload Image
+              </Button>
+            </label>
+            <br />
+
             <Button
               variant="contained"
-              size="small"
               color="primary"
-              component="span"
-              startIcon={<PhotoCamera />}
+              size="large"
+              className={classes.button}
+              startIcon={<CloudUploadIcon />}
             >
-              Upload Image
+              Post
             </Button>
-          </label>
-          <br />
-
-          <Button
-            variant="contained"
-            color="primary"
-            size="large"
-            className={classes.button}
-            startIcon={<CloudUploadIcon />}
-          >
-            Post
-          </Button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
 }

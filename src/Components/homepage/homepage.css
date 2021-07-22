@@ -57,3 +57,19 @@
   height: 89vh;
   clip-path: circle(2.6% at 40% 80%);
 }
+
+.obj {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0px;
+  align-content: space-around;
+}
+
+.main-container {
+  width: 100%;
+  margin-bottom: 3rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+

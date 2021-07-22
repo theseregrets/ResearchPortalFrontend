@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import MilestonesTimeline from "./MilestonesTimeline";
 import Carousel from "./Carousel";
 import { Grid } from "@material-ui/core"
-import logo from "../../Assets/ieeelogo_circle.png";
+import { FaDotCircle } from "react-icons/fa";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -12,10 +12,9 @@ const useStyles = makeStyles((theme) => ({
 			"linear-gradient(to bottom, #fff 0%, #e9f0f5 25%,#e9f0f5 75% ,#fff 100%)",
 	},
 	logo: {
-		width: "0%",
 		borderRadius: "50%",
 		background: "#fff",
-		border: "solid 3px #4499fe",
+		border: "solid 2px #4499fe",
 		top: "10%",
 		left: "47.5%",
 		margin: "4% auto 0 auto",
@@ -36,7 +35,7 @@ export default function Milestones() {
 				<h1>Milestones</h1>
 			</Grid>
 			<Carousel />
-			<img src={logo} alt="logo" className={classes.logo} />
+			<FaDotCircle className={classes.logo} />
 			<MilestonesTimeline />
 		</Grid>
 	);

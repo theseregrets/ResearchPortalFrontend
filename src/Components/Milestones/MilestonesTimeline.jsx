@@ -1,9 +1,5 @@
 import React from "react";
-import {
-	makeStyles,
-	useTheme,
-	useMediaQuery,
-} from "@material-ui/core";
+import { makeStyles, useTheme, useMediaQuery } from "@material-ui/core";
 import { useEffect } from "react";
 import Timeline from "@material-ui/lab/Timeline";
 import TimelineItem from "@material-ui/lab/TimelineItem";
@@ -19,7 +15,7 @@ import aos from "aos";
 import "aos/dist/aos.css";
 
 const useStyles = makeStyles((theme) => ({
-	timeline: {
+	timeline:{
 		margin: "0 auto",
 		[theme.breakpoints.down("sm")]: {
 			margin: "4% 0",
@@ -62,6 +58,15 @@ const useStyles = makeStyles((theme) => ({
 		minHeight: "20rem",
 		margin: "auto 2rem",
 		padding: "6px 16px",
+		[theme.breakpoints.down("sm")]: {
+			backgroundColor: "linear-gradient",
+			borderRadius: "8px",
+			maxHeight: "10rem",
+			minHeight: "20rem",
+			margin: "auto 2rem",
+			padding: "6px 16px",
+			overflowY: "scroll",
+		},
 	},
 	secondaryTail: {
 		backgroundColor: theme.palette.secondary.main,
@@ -129,7 +134,7 @@ export default function MilestonesTimeline() {
 		return (
 			<Timeline className={classes.timeline}>
 				{SLIDE_INFO.map((slide, index) => (
-					<TimelineItem >
+					<TimelineItem>
 						<TimelineOppositeContent
 							className={
 								index % 2 == 0
@@ -146,8 +151,8 @@ export default function MilestonesTimeline() {
 							</Typography>
 						</TimelineOppositeContent>
 						<TimelineSeparator>
-							<TimelineDot color="primary" />
-							<TimelineConnector data-aos="fade-down"/>
+							<TimelineDot color="primary" data-aos="fade-in" />
+							<TimelineConnector data-aos="fade-down" />
 						</TimelineSeparator>
 						<TimelineContent data-aos="fade-left">
 							<Paper elevation={5} className={classes.paper}>
@@ -182,9 +187,9 @@ export default function MilestonesTimeline() {
 	return (
 		<Timeline align="alternate" className={classes.timeline}>
 			{SLIDE_INFO.map((slide, index) => (
-				<TimelineItem >
+				<TimelineItem>
 					<TimelineOppositeContent
-						data-aos={animationDirection(index+1)}
+						data-aos={animationDirection(index + 1)}
 						className={
 							index % 2 == 0
 								? classes.oppositeContentLeft

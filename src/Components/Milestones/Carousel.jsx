@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { Grid, Slide, makeStyles } from '@material-ui/core';
-import PropTypes from 'prop-types';
+import Arrow from './CarouselNavArrow';
 import CarouselSlide from './CarouselSlider';
+import { SLIDE_INFO } from '../../Data/carousel';
 
 const useStyles = makeStyles(() => ({
   arrows: {
@@ -37,42 +37,6 @@ const useStyles = makeStyles(() => ({
     border: '1px solid #636363',
   },
 }));
-
-const pic1 = require('../../Assets/chicago.jpg');
-const pic2 = require('../../Assets/ny.jpg');
-const pic3 = require('../../Assets/la.jpg');
-
-const SLIDE_INFO = [
-  { id: 1, title: 'chicago', image: pic1 },
-  { id: 2, title: 'la', image: pic2 },
-  { id: 3, title: 'ny', image: pic3 },
-];
-
-function Arrow(props) {
-  Arrow.propTypes = {
-    direction: PropTypes.string,
-    clickFunction: PropTypes.func,
-  };
-  Arrow.defaultProps = {
-    direction: 'left',
-    clickFunction: () => {
-      // do nothing
-    },
-  };
-  const { direction, clickFunction } = props;
-  const icon = direction === 'left' ? <FaChevronLeft /> : <FaChevronRight />;
-
-  return (
-    <div
-      onClick={clickFunction}
-      role="button"
-      tabIndex="0"
-      onKeyPress={clickFunction}
-    >
-      {icon}
-    </div>
-  );
-}
 
 export default function Carousel() {
   const classes = useStyles();

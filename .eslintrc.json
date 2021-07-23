@@ -17,7 +17,7 @@
     "prettier/prettier": [
       "error",
       {
-        "endOfLine": "auto",
+        "endOfLine": "auto"
       }
     ],
     "no-unused-vars": "warn",

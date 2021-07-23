@@ -7,9 +7,10 @@ import Carousel from './Carousel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // background gradient
     background:
       'linear-gradient(to bottom, #fff 0%, #e9f0f5 25%,#e9f0f5 75% ,#fff 100%)',
+    width: '100%',
+    overflowX: 'hidden',
   },
   logo: {
     borderRadius: '50%',

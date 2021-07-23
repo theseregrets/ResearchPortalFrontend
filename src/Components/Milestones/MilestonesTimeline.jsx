@@ -153,7 +153,7 @@ export default function MilestonesTimeline() {
               <TimelineDot color="primary" data-aos="fade-in" />
               <TimelineConnector data-aos="fade-down" />
             </TimelineSeparator>
-            <TimelineContent data-aos="fade-left">
+            <TimelineContent data-aos="fade-right">
               <Paper elevation={5} className={classes.paper}>
                 <img
                   src={chatHead}
@@ -188,7 +188,7 @@ export default function MilestonesTimeline() {
       {SLIDE_INFO.map((slide, index) => (
         <TimelineItem>
           <TimelineOppositeContent
-            data-aos={animationDirection(index + 1)}
+            data-aos={animationDirection(index)}
             className={
               index % 2 === 0
                 ? classes.oppositeContentLeft

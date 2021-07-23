@@ -6,55 +6,85 @@ import {
   Typography,
   makeStyles,
 } from '@material-ui/core';
+import { FaGithub, FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { TEAM_INFO } from '../../Data/team';
 
 const bg = require('../../Assets/teamBg.png').default;
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
+const useStyles = makeStyles(() => ({
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: '1em 1em',
   },
-  details: {
+  card: {
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
+    margin: '2rem',
+    width: '23rem',
+    height: '15rem',
   },
   content: {
-    flex: '1 0 auto',
+    width: '50%',
+    marginTop: '10%',
+  },
+  socials: {
+    display: 'flex',
+    alignItems: 'center',
+    margin: 'auto',
+    padding: '1rem',
+  },
+  icons: {
+    cursor: 'pointer',
+    color: '#4499fe',
+    margin: '8px',
+    '&:hover': {
+      color: 'black',
+      transform: 'scale(1.25)',
+    },
   },
   cover: {
-    width: '10rem',
-    height: '10rem',
+    width: '11rem',
+    height: '11rem',
+    marginTop: '16%',
+    padding: '0',
     backgroundSize: '90%',
     backgroundImage: `url(${bg})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '50% 80%',
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: theme.spacing(1),
-    paddingBottom: theme.spacing(1),
-  },
-  playIcon: {
-    height: 38,
-    width: 38,
   },
 }));
 
 export default function Team() {
   const classes = useStyles();
   return (
-    <Grid container>
+    <Grid container align="center " className={classes.container}>
+      <Grid item xs={12} align="center" spacing={1}>
+        <Typography variant="h3" gutterBottom>
+          Our Team
+        </Typography>
+      </Grid>
       {TEAM_INFO.map((team) => (
-        <Grid item xs={12} sm={4} spacing={3}>
-          <Card>
-            <CardContent>
+        <Grid item>
+          <Card elevation={5} className={classes.card}>
+            <CardContent className={classes.content}>
               <Typography component="h5" variant="h5">
                 {team.name}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
                 {team.contact}
               </Typography>
+              <div className={classes.socials}>
+                <a href={team.gh}>
+                  <FaGithub size="1.5em" className={classes.icons} />
+                </a>
+                <a href={team.fb}>
+                  <FaFacebook size="1.5em" className={classes.icons} />
+                </a>
+                <a href={team.li}>
+                  <FaLinkedin size="1.5em" className={classes.icons} />
+                </a>
+              </div>
             </CardContent>
             <img src={team.image} alt={team.name} className={classes.cover} />
           </Card>

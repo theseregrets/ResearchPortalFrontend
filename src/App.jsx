@@ -13,8 +13,6 @@ import Signup from './Components/signup/Signup';
 import UserDashboard from './Components/userDasboard/Dashboard';
 import DashboardTeacher from './Components/teacherDashboard/teacher-dashboard';
 
-import * as ROUTES from './constants/routes';
-
 function App() {
   return (
     <div className="App">
@@ -45,7 +43,7 @@ function App() {
           <Route exact path="/dashboard">
             <UserDashboard />
           </Route>
-          <Route exact path={ROUTES.DASHBOARD_TEACHER}>
+          <Route exact path="/teacher/dashboard">
             <DashboardTeacher />
           </Route>
         </Switch>

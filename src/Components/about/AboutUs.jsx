@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {
 	Grid,
 	makeStyles,
@@ -202,4 +203,10 @@ export default function AboutUs() {
 			</Grid>
 		</Grid>
 	);
+=======
+import React from 'react';
+
+export default function AboutUs() {
+  return <h1>About US</h1>;
+>>>>>>> upstream/master
 }

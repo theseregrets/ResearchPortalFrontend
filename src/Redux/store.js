@@ -1,6 +1,3 @@
 import redux from 'redux';
 
-
-
-var store=redux.createStore
-
+const store = redux.createStore;

@@ -1,43 +1,260 @@
-import React,{useState} from 'react'
-import RP from '../../Assets/research_portal_cropped.png'
-import Logo from '../../Assets/ieeesb_logoblue.png'
-import {Link} from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Drawer from '@material-ui/core/Drawer';
+import {
+  Toolbar,
+  AppBar,
+  IconButton,
+  ListItem,
+  makeStyles,
+  List,
+  ListItemText,
+  ListItemIcon,
+} from '@material-ui/core';
+import MenuIcon from '@material-ui/icons/Menu';
+import FlagIcon from '@material-ui/icons/Flag';
+import PeopleIcon from '@material-ui/icons/People';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import InfoIcon from '@material-ui/icons/Info';
+import RP from '../../Assets/research_portal_cropped.png';
+import Logow from '../../Assets/ieeesb_logowhite.png';
+import Logob from '../../Assets/ieeesb_logoblue.png';
 
-export default function Nav() {
-    const [isOpen,toggle]=useState(false)
+const useStyle = makeStyles((theme) => ({
+  root: {
+    marginBottom: '10px',
+    padding: '3px',
+  },
+  logo_container: {
+    width: '25%',
+    [theme.breakpoints.down('sm')]: {
+      width: '30%',
+    },
+    position: 'relative',
+  },
+  grow: {
+    flexGrow: '1',
+  },
+  button_container: {
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+    justifyContent: 'flex-end',
+    width: 'min-content',
+  },
+  block: {
+    display: 'block',
+  },
+  logo2: {
+    width: '40%',
+    position: 'absolute',
+    right: '0',
+    top: '-20px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  logo1: {
+    width: '50%',
+    [theme.breakpoints.down('xs')]: {
+      width: '60%',
+    },
+  },
+  button: (props) => ({
+    marginLeft: theme.spacing(4),
+    [theme.breakpoints.down('md')]: {
+      marginLeft: theme.spacing(2),
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(1),
+    },
+    color: props.ishome ? 'white' : 'blue',
+    fontSize: '15px',
 
-    return (
-        <div>
-            <div className="navbar navbar-expand-lg navbar-light ">
-                <div className="container-fluid">
-                <button class="navbar-toggler" onClick={()=>toggle(true)} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    '&:hover': {
+      color: props.ishome ? 'white' : 'blue',
+    },
+  }),
+  menu_container: {
+    display: 'none',
 
-                    <div className="navbar-item w-25">
-                        <Link to='/'><img src={RP} alt="" className="img-fluid w-50 navbar-brand" style={{}} /></Link>
-                    </div>
-                    
-                    <div className="navbar-item ml-lg-auto mb-2 mb-lg-0">
-                        <Button component={Link} to={'/milestones'} className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}> Milestones</Button>
-                        <Button component={Link} to={'/team'}  className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}>Team</Button>
-                        <Button component={Link} to={'/dashboard'}  className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}>Dashboard</Button>
-                        <Button component={Link} to={'/about-us'}  className="nav-item mr-lg-4" style={{color:'black',zIndex:2}}>About Us</Button>
-                    </div>
-                    <div className="navbar-item w-25" style={{zIndex:2}} >
-                        <a href="https://www.ieeesbnitdgp.com/" ><img src={Logo} alt="" className="img-fluid w-25 ml-auto d-block" /></a>
-                    </div>
-                    </div>
-                </div>
+    [theme.breakpoints.down('sm')]: {
+      display: 'flex',
+      flexGrow: '1',
+      justifyContent: 'flex-end',
+    },
+  },
+  menu_icon: (props) => ({
+    color: props.ishome ? 'white' : 'blue',
+    fontSize: '3rem',
+  }),
+  drawer_logo_container: {
+    positon: 'relative',
+    width: '100%',
+    padding: '10px',
+    marginBottom: '50px',
+  },
+  drawer_logo: {
+    width: '80%',
+    position: 'absolute',
+    left: '0',
+    top: '0',
+  },
+}));
+
+export default function Navbar() {
+  const [isOpen, toggle] = useState(false);
+  const [ishome, setishome] = useState(true);
+
+  const classes = useStyle({ ishome });
+
+  const history = useHistory();
+  function pushTo(path) {
+    history.push(path);
+    toggle(false);
+    setishome(false);
+  }
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="none" color="transparent" elevation="0">
+        <Toolbar>
+          <div className={classes.logo_container}>
+            <Link
+              to="/"
+              onClick={() => {
+                setishome(true);
+              }}
+            >
+              <img src={RP} alt="logo" className={classes.logo1} />
+            </Link>
+          </div>
+
+          <div style={{ flexGrow: '1' }} className={classes.button_container}>
+            <Button
+              component={Link}
+              to="/milestones"
+              className={classes.button}
+              onClick={() => {
+                setishome(false);
+              }}
+            >
+              Milestone
+            </Button>
+            <Button
+              component={Link}
+              to="/team"
+              className={classes.button}
+              onClick={() => {
+                setishome(false);
+              }}
+            >
+              Team
+            </Button>
+            <Button
+              component={Link}
+              to="/dashboard"
+              className={classes.button}
+              onClick={() => {
+                setishome(false);
+              }}
+            >
+              Dashborad
+            </Button>
+            <Button
+              component={Link}
+              to="/about-us"
+              className={classes.button}
+              onClick={() => {
+                setishome(false);
+              }}
+            >
+              About us
+            </Button>
+          </div>
+          <div className={classes.logo_container}>
+            <a href="https://www.ieeesbnitdgp.com/">
+              <img
+                src={ishome ? Logow : Logob}
+                alt="ieeelogo"
+                className={classes.logo2}
+              />
+            </a>
+          </div>
+          <div className={classes.menu_container}>
+            <IconButton
+              onClick={() => {
+                console.log('clicked');
+                toggle(true);
+              }}
+            >
+              <MenuIcon className={classes.menu_icon} />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+
+      <Drawer anchor="left" open={isOpen} onClose={() => toggle(false)}>
+        <List>
+          <ListItem>
+            <div className={classes.drawer_logo_container}>
+              <a href="https://www.ieeesbnitdgp.com/">
+                <img src={Logob} alt="logo" className={classes.drawer_logo} />
+              </a>
             </div>
-
-            <Drawer anchor='left' open={isOpen} onClose={()=>toggle(false)}>
-              <div>This is a list item</div>
-            </Drawer>
-
-        </div>
-    )
+          </ListItem>
+          <ListItem style={{ paddingTop: '10px' }} divider button>
+            <ListItemIcon>
+              <FlagIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              onClick={() => {
+                pushTo('/milestones');
+              }}
+            >
+              MileStones
+            </ListItemText>
+          </ListItem>
+          <ListItem style={{ paddingTop: '10px' }} divider button>
+            <ListItemIcon>
+              <PeopleIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              onClick={() => {
+                pushTo('/team');
+              }}
+            >
+              Team
+            </ListItemText>
+          </ListItem>
+          <ListItem style={{ paddingTop: '10px' }} divider button>
+            <ListItemIcon>
+              <DashboardIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              onClick={() => {
+                pushTo('/dashboard');
+              }}
+            >
+              Dashboard
+            </ListItemText>
+          </ListItem>
+          <ListItem style={{ paddingTop: '10px' }} divider button>
+            <ListItemIcon>
+              <InfoIcon color="primary" />
+            </ListItemIcon>
+            <ListItemText
+              onClick={() => {
+                pushTo('/about-us');
+              }}
+            >
+              About Us
+            </ListItemText>
+          </ListItem>
+        </List>
+      </Drawer>
+    </div>
+  );
 }

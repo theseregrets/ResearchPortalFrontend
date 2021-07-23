@@ -43,7 +43,7 @@ function App() {
           <Route exact path="/dashboard">
             <UserDashboard />
           </Route>
-          <Route exact path="/teacher-dashboard">
+          <Route exact path="/teacher">
             <DashboardTeacher />
           </Route>
         </Switch>

@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
 import TextField from '@material-ui/core/TextField';
+import FileDropzone from './Dropzone';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -275,6 +276,11 @@ export default function Profile() {
               variant="outlined"
             />
           </div>
+        </div>
+
+        <div className={classes.infoContainer}>
+          <h4>Resume</h4>
+          <FileDropzone />
         </div>
       </div>
     </div>

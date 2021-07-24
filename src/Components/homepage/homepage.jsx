@@ -2,18 +2,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import introsvg from '../../Assets/illustration.svg';
 import './homepage.css';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   btnSet: {
     marginLeft: '6rem',
   },
   buttons: {
-    border: '2px solid',
     borderRadius: '30px',
     marginLeft: '2rem',
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateRows: '70vw 20vw',
+    [theme.breakpoints.up('sm')]: {
+      display: 'grid',
+      gridTemplateColumns: '20vw 50vw',
+      columnGap: '27vw',
+      gridTemplateRows: '0vw',
+    },
+  },
+  firstbox: {
+    gridRow: '2 / 3',
+    [theme.breakpoints.up('sm')]: {
+      gridColumn: '1 / 2',
+      gridRow: '1 / 2',
+    },
+  },
+  secondbox: {
+    gridRow: '1 / 2',
+    width: '90vw',
+    marginLeft: '5vw',
+    [theme.breakpoints.up('sm')]: {
+      gridColumn: '2 / 3',
+      width: 'auto',
+      marginLeft: '0vw',
+    },
   },
 }));
 
@@ -34,61 +61,27 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <div className="container-fluid">
-        <div className="row">
-          <div className="col">
-            <div className="row">
-              <p
-                style={{
-                  marginTop: '20vh',
-                  marginLeft: '2vw',
-                  fontSize: '4rem',
-                }}
-              >
-                <span style={{ color: 'blue' }}>R</span>esearch{' '}
-                <span style={{ color: 'blue' }}>P</span>ortal
-              </p>
-            </div>
-            <div
-              className="row justify-content-center"
-              className={classes.btnSet}
-            >
-              <Button
-                component={Link}
-                to="/projects"
-                variant="outlined"
-                className="col-2"
-                className={classes.buttons}
-                color="primary"
-              >
-                Projects
-              </Button>
-              <Button
-                component={Link}
-                to="/login"
-                variant="outlined"
-                className="col-2"
-                className={classes.buttons}
-                color="primary"
-              >
-                Login
-              </Button>
-            </div>
-          </div>
-          <div className="col ">
-            <img
-              src={introsvg}
-              alt=""
-              className="w-75 mr-4 d-flex "
-              style={{ marginTop: '10vh' }}
-            />
-          </div>
+      <div className={classes.grid}>
+        <div className={classes.firstbox}>
+          <Button
+            className={classes.buttons}
+            color="primary"
+            variant="outlined"
+          >
+            Projects
+          </Button>
+          <Button
+            className={classes.buttons}
+            color="primary"
+            variant="outlined"
+          >
+            Login
+          </Button>
         </div>
-        <div className="row">
-          <div className="col-12" />
+        <div className={classes.secondbox}>
+          <img src={introsvg} alt="Intro" />
         </div>
       </div>
-      <div className="container" />
     </div>
   );
 }

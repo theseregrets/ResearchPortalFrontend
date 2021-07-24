@@ -8,7 +8,6 @@ const useStyles = makeStyles(() => ({
     flex: '1',
   },
   title: {
-    marginTop: '50px',
     textAlign: 'center',
     padding: '10px',
   },

@@ -26,6 +26,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import MainDashboard from './MainDashboard';
 import Statement from './ResearchStatement';
 import Announcements from './Announcements';
+import Profile from './Profile';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -213,7 +214,7 @@ export default function Dashboard() {
             <Announcements />
           </Route>
           <Route path={`${path}/profile`}>
-            <h1>Profile</h1>
+            <Profile />
           </Route>
         </Switch>
       </div>

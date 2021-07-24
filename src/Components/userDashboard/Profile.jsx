@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   profile: {
     width: '80%',
-    margin: 'auto',
+    margin: '20px auto',
     backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'column',

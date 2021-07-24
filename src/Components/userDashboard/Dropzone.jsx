@@ -61,7 +61,7 @@ export default function FileDropzone() {
     <div>
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <p>Drag n drop some files here, or click to select files</p>
+        <p>Drag n drop Resume here, or click to select files (pdf)</p>
       </div>
       <aside>
         <h5>Uploaded file-</h5>

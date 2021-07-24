@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   paper: {
+    height: '100%',
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
@@ -137,15 +138,15 @@ export default function Homepage() {
                   <img alt="" src={Profile} style={{ width: '100%' }} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Lizard-1
+                      #1
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      Lizards are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
+                      To encourage Research and Development and let them explore
+                      the vast field of their interst.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -157,15 +158,15 @@ export default function Homepage() {
                   <img alt="" src={Profile} style={{ width: '100%' }} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Lizard-2
+                      #2
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      Lizards are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
+                      To let students accross the country gain rich experience
+                      and exposure in research field.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -177,15 +178,15 @@ export default function Homepage() {
                   <img alt="" src={Profile} style={{ width: '100%' }} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Lizard-3
+                      #3
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      Lizards are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
+                      To enhance your Management Skills and interpretation of
+                      results accurately.
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -197,15 +198,15 @@ export default function Homepage() {
                   <img alt="" src={Profile} style={{ width: '100%' }} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Lizard-4
+                      #4
                     </Typography>
                     <Typography
                       variant="body2"
                       color="textSecondary"
                       component="p"
                     >
-                      Lizards are a widespread group of squamate reptiles, with
-                      over 6,000 species, ranging across all continents except
+                      Gives you an exposure and an oppurtunity to understand the
+                      research process, to integrate theory into practice.
                     </Typography>
                   </CardContent>
                 </CardActionArea>

@@ -8,10 +8,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import introsvg from '../../Assets/illustration.svg';
 import Profile from '../team/profile.png';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   btnSet: {
     marginLeft: '6rem',
   },
@@ -22,23 +24,29 @@ const useStyles = makeStyles(() => ({
   },
   main: {
     minHeight: '100%',
-  },
-  root: {
-    display: 'flex',
-    width: '100%',
+    alignContent: 'center',
+    minWidth: '200px',
   },
   details: {
     display: 'flex',
-    flexDirection: 'column',
   },
   content: {
     flex: '1 0 auto',
-    alignItems: 'center',
   },
   cover: {
     Width: '300px',
     height: '300px',
     padding: '20px',
+  },
+  root: {
+    flexGrow: 1,
+    width: '100%',
+    alignItems: 'center',
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
 }));
 
@@ -118,108 +126,103 @@ export default function Homepage() {
       </div>
       {/* objectives */}
       <div className="main-container">
-        <h1 className="text-center">Our Objectives</h1>
-        <div className="row ml-0 mr-0 text-center">
-          <div className="col-lg-3 col-md-3 col-sm-6 col-12 p-1 align-self-stretch">
-            <Card className={classes.main}>
-              <CardActionArea>
-                <img alt="" src={Profile} style={{ width: '100%' }} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Lizard-1
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
-          <div className="col-lg-3 col-md-3 col-sm-6 col-12 p-1 align-self-stretch">
-            <Card className={classes.main}>
-              <CardActionArea>
-                <img alt="" src={Profile} style={{ width: '100%' }} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Lizard-2
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
-          <div className="col-lg-3 col-md-3 col-sm-6 col-12 p-1 align-self-stretch">
-            <Card className={classes.main}>
-              <CardActionArea>
-                <img alt="" src={Profile} style={{ width: '100%' }} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Lizard-3
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
-          <div className="col-lg-3 col-md-3 col-sm-6 col-12 p-1 align-self-stretch">
-            <Card className={classes.main}>
-              <CardActionArea>
-                <img alt="" src={Profile} style={{ width: '100%' }} />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    Lizard-4
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    component="p"
-                  >
-                    Lizards are a widespread group of squamate reptiles, with
-                    over 6,000 species, ranging across all continents except
-                    Antarctica
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </div>
+        <h1 align="center" style={{ marginBottom: '50px' }}>
+          Our Objectives
+        </h1>
+        <div className={classes.root}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={6} md={3}>
+              <Paper className={classes.paper}>
+                <CardActionArea>
+                  <img alt="" src={Profile} style={{ width: '100%' }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Lizard-1
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Lizards are a widespread group of squamate reptiles, with
+                      over 6,000 species, ranging across all continents except
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Paper className={classes.paper}>
+                <CardActionArea>
+                  <img alt="" src={Profile} style={{ width: '100%' }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Lizard-2
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Lizards are a widespread group of squamate reptiles, with
+                      over 6,000 species, ranging across all continents except
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Paper className={classes.paper}>
+                <CardActionArea>
+                  <img alt="" src={Profile} style={{ width: '100%' }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Lizard-3
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Lizards are a widespread group of squamate reptiles, with
+                      over 6,000 species, ranging across all continents except
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} sm={6} md={3}>
+              <Paper className={classes.paper}>
+                <CardActionArea>
+                  <img alt="" src={Profile} style={{ width: '100%' }} />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      Lizard-4
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Lizards are a widespread group of squamate reptiles, with
+                      over 6,000 species, ranging across all continents except
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Paper>
+            </Grid>
+          </Grid>
         </div>
       </div>
-      <div className="row text-center">
-        <Card className={classes.root}>
-          <div className="row">
-            <div className="col-lg-3 col-md-4 col-sm-6 col-12 p-1 align-self-stretch">
-              <img
-                alt=""
-                className={classes.cover}
-                src={Profile}
-                title="Live from space album cover"
-              />
-            </div>
-            <div className={classes.details} className="col">
+      <div>
+        <div className={classes.root}>
+          <Grid container direction="row" alignItems="flex-start" spacing={3}>
+            <Grid item xs={12} md={4}>
+              <div align="center">
+                <img alt="" className={classes.cover} src={Profile} />
+              </div>
+            </Grid>
+            <Grid align="center" item xs={12} md={8}>
               <CardContent className={classes.content}>
                 <Typography component="h2" variant="h2">
                   Director&apos;s Message
@@ -235,9 +238,9 @@ export default function Homepage() {
                   quod aliquid?
                 </Typography>
               </CardContent>
-            </div>
-          </div>
-        </Card>
+            </Grid>
+          </Grid>
+        </div>
       </div>
     </div>
   );

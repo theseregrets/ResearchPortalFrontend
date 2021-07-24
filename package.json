@@ -8,15 +8,19 @@
     "@material-ui/lab": "^4.0.0-alpha.58",
     "@material-ui/styles": "^4.11.4",
     "@popperjs/core": "^2.9.2",
+    "aos": "^2.3.4",
     "bootstrap": "4.6.0",
     "firebase": "^8.7.0",
     "jquery": "^3.6.0",
     "optionator": "^0.9.1",
     "popper.js": "^1.16.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.2",
+    "react-animated-number": "^0.4.4",
     "react-dom": "^17.0.2",
     "react-feather": "^2.0.9",
     "react-google-button": "^0.7.2",
+    "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
@@ -30,7 +34,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "prepare": "husky install",
-    "precommit": "npx lint-staged"
+    "precommit": "npx lint-staged, git rm .eslintcache"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "chokidar": "^3.5.2",
     "eslint": "^7.31.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.3.0",

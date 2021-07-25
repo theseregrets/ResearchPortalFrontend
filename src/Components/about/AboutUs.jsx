@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: '20px 1rem',
     margin: '4rem auto',
-    background: 'radial-gradient(at right 0%, #80b7ff 55% ,white 40%) ',
+    background: 'linear-gradient(to top right , white 20%, whitesmoke)',
     width: '50vw',
     display: 'flex',
     flexDirection: 'column',
@@ -170,7 +170,7 @@ export default function AboutUs() {
               <Grid item xs={12}>
                 <TextField
                   fullWidth
-                  type="number"
+                  type="tel"
                   placeholder="Enter phone number"
                   label="Phone"
                   variant="outlined"

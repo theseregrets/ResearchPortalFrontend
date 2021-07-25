@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/navbar/Navbar';
+import Footer from './Components/footer/Footer';
 import Homepage from './Components/homepage/homepage';
 import './general.css';
 import Milestones from './Components/Milestones/milestones';
@@ -50,6 +51,7 @@ function App() {
             <ProjectDetail />
           </Route>
         </Switch>
+        <Footer />
       </Router>
     </div>
   );

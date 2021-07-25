@@ -170,15 +170,6 @@ export default function DashboardTeacher() {
               </ListItem>
             </Link>
 
-            <Link to={`${url}/new-post`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <SubjectIcon />
-                </ListItemIcon>
-                <ListItemText primary="New Post" />
-              </ListItem>
-            </Link>
-
             <Link to={`${url}/applications`} className={classes.drawerListText}>
               <ListItem button>
                 <ListItemIcon>
@@ -212,9 +203,7 @@ export default function DashboardTeacher() {
           <Route exact path={path}>
             <Overview />
           </Route>
-          <Route path={`${path}/new-post`}>
-            <NewPost />
-          </Route>
+
           <Route path={`${path}/posts`}>
             <Posts />
           </Route>

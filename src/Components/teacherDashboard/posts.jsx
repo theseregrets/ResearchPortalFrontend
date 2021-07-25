@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import ProjectCard from './cards';
+import ProjectDetail from './project-detail';
+
 import NewPost from './new-post';
 
 const useStyles = makeStyles((theme) => ({
@@ -57,11 +58,6 @@ const Posts = () => {
           </>
         ) : (
           <>
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
             <ProjectCard />
           </>
         )}

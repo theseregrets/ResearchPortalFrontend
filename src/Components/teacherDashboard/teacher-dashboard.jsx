@@ -28,6 +28,7 @@ import Applications from './applications';
 import Overview from './overview';
 import Posts from './posts';
 import Profile from './profile';
+import ProjectDetail from './project-detail';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -211,6 +212,9 @@ export default function DashboardTeacher() {
           </Route>
           <Route path={`${path}/profile`}>
             <Profile />
+          </Route>
+          <Route path={`${path}/project-detail`}>
+            <ProjectDetail />
           </Route>
         </Switch>
       </div>

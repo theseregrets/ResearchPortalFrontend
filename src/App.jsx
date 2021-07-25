@@ -9,9 +9,9 @@ import About from './Components/about/AboutUs';
 import Login from './Components/login/Login';
 import Projects from './Components/projects/Projects';
 import Signup from './Components/signup/Signup';
-
 import UserDashboard from './Components/userDashboard/Dashboard';
 import DashboardTeacher from './Components/teacherDashboard/teacher-dashboard';
+import ProjectDetail from './Components/teacherDashboard/project-detail';
 
 function App() {
   return (
@@ -45,6 +45,9 @@ function App() {
           </Route>
           <Route exact path="/teacher">
             <DashboardTeacher />
+          </Route>
+          <Route path="/project-detail">
+            <ProjectDetail />
           </Route>
         </Switch>
       </Router>

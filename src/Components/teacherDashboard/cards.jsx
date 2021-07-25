@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -43,13 +44,17 @@ const useStyles = makeStyles((theme) => ({
 export default function ProjectCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
+  const history = useHistory();
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   return (
-    <Card className={classes.root}>
+    <Card
+      className={classes.root}
+      onClick={() => window.location.reload(history.push('/project-detail'))}
+    >
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>

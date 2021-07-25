@@ -6,16 +6,16 @@ const useStyles = makeStyles(() => ({
   card: {
     borderRadius: 5,
     margin: '15px 25px',
-    height: '50vh',
-    width: '70vw',
+    height: '65vh',
+    width: '65vw',
     boxShadow: '20px 20px 20px black',
     display: 'flex',
     justifyContent: 'center',
   },
   media: {
     zIndex: '100',
-    height: '70vh',
-    width: '100vw',
+    height: '65vh',
+    width: '65vw',
   },
 }));
 

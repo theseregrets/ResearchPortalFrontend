@@ -106,7 +106,10 @@ export default function Overview() {
         </>
       ) : (
         <div className={classes.btn}>
-          <h1>check new applications</h1>
+          <h3>check new applications</h3>
+          <ProjectCard />
+          <ProjectCard />
+          <ProjectCard />
           <ProjectCard />
         </div>
       )}

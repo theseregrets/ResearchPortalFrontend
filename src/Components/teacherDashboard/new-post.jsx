@@ -35,6 +35,19 @@ export default function NewPost() {
             placeholder="Add title to your project"
             multiline
           />
+          <TextField
+            id="outline-basic"
+            label="Skills"
+            placeholder="Add the skills required"
+            multiline
+          />
+
+          <TextField
+            id="outline-basic"
+            label="Eligibility"
+            placeholder="Add eligibility for your project"
+            multiline
+          />
 
           <TextField
             id="outlined-multiline-static"

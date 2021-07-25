@@ -99,6 +99,8 @@ export default function Profile() {
   const [p, sp] = useState(localStorage.getItem('phno') || '');
   const [e, se] = useState(localStorage.getItem('email') || '');
   const [d, sd] = useState(localStorage.getItem('dept') || '');
+  const [a, sa] = useState(localStorage.getItem('affl') || '');
+  const [q, sq] = useState(localStorage.getItem('qual') || '');
 
   function handleClick() {
     setIsEditing(!isEditing);
@@ -119,6 +121,12 @@ export default function Profile() {
       case inp[3]:
         sd(inp[3].value);
         break;
+      case inp[4]:
+        sa(inp[4].value);
+        break;
+      case inp[5]:
+        sq(inp[5].value);
+        break;
 
       default:
         break;
@@ -131,6 +139,8 @@ export default function Profile() {
     localStorage.setItem('phno', inp[1].value);
     localStorage.setItem('email', inp[2].value);
     localStorage.setItem('dept', inp[3].value);
+    localStorage.setItem('affl', inp[4].value);
+    localStorage.setItem('qual', inp[5].value);
 
     setIsEditing(false);
   }
@@ -233,6 +243,26 @@ export default function Profile() {
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Department"
               defaultValue={d}
+              InputProps={{
+                readOnly: !isEditing,
+              }}
+              variant="outlined"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Affliation"
+              defaultValue={a}
+              InputProps={{
+                readOnly: !isEditing,
+              }}
+              variant="outlined"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Qualification"
+              defaultValue={q}
               InputProps={{
                 readOnly: !isEditing,
               }}

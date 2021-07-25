@@ -28,7 +28,7 @@
 
 .rings2 {
   position: absolute;
-  background-image: linear-gradient(90deg , rgb(142, 45, 226) 30%, rgb(74, 0, 224) 32%);
+  background-image: linear-gradient(90deg, rgb(142, 45, 226) 22%, rgb(74, 0, 224) 30%);
   width: 100%;
   height: 90vh;
   clip-path: circle(5% at 25% 90%);
@@ -45,7 +45,7 @@
 
 .rings3 {
   position: absolute;
-  background-image: linear-gradient(90deg , rgb(142, 45, 226) 40%, rgb(74, 0, 224) 42%);
+  background-image: linear-gradient(90deg , rgb(142, 45, 226) 28%, rgb(74, 0, 224) 34%);
   width: 100%;
   height: 89vh;
   clip-path: circle(3% at 30% 70%);

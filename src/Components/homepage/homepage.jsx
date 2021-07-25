@@ -14,6 +14,18 @@ import introsvg from '../../Assets/illustration.svg';
 import Profile from '../team/profile.png';
 
 const useStyles = makeStyles((theme) => ({
+  desc: {
+    maxWidth: '350px',
+    marginLeft: '100px',
+    marginBottom: '0',
+    padding: '10px',
+    fontSize: '20px',
+    [theme.breakpoints.down('sm')]: {
+      color: 'white',
+      margin: '0px auto',
+      textAlign: 'center',
+    },
+  },
   buttons: {
     borderRadius: '30px',
     marginLeft: '2rem',
@@ -26,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   firstbox: {
-    margin: '5vh 10vw 20vh 4vw',
+    margin: '-10vh 10vw 20vh 4vw',
     display: 'flex',
     justifyContent: 'space-evenly',
     alignSelf: 'center',
@@ -38,18 +50,20 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down('sm')]: {
-      margin: '8vh 10vw 0vh 0vw',
+      margin: '2vh 10vw 0vh 0vw',
     },
   },
   secondbox: {
     width: '100%',
 
     '& img': {
+      transform: 'translate(0px, -100px)',
       width: '100%',
       maxHeight: '400px',
 
       [theme.breakpoints.down('sm')]: {
         maxHeight: '350px',
+        transform: 'none',
       },
     },
   },
@@ -81,11 +95,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   rp: {
-    color: 'white',
-    textAlign: 'center',
+    color: '#ef5350', // #ff00c8
+    // textAlign: 'center',
     padding: '20px',
     fontFamily: 'Playfair Display',
-    textShadow: '10px 10px 20px black',
+    // textShadow: '10px 10px 20px black',
+    [theme.breakpoints.down('sm')]: {
+      textAlign: 'center',
+    },
   },
 }));
 
@@ -106,14 +123,12 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <Typography
-        variant="h2"
-        className={classes.rp}
-        gutterBottom
-        component="div"
-      >
+      <Typography variant="h2" className={classes.rp} component="div">
         Research Portal
       </Typography>
+      <p className={classes.desc}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+      </p>
       <div className={classes.grid}>
         <div className={classes.firstbox}>
           <Button

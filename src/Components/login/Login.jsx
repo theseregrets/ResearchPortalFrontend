@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';

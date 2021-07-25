@@ -1,16 +1,77 @@
 import React from 'react';
-import { AppBar, Container, Toolbar, Typography } from '@material-ui/core';
+import {
+  AppBar,
+  Grid,
+  Link,
+  Container,
+  Box,
+  makeStyles,
+} from '@material-ui/core';
+import { FaPhoneAlt } from 'react-icons/fa';
+
+const logo = require('../../Assets/research_portal_cropped.png').default;
+
+const useStyles = makeStyles((theme) => ({
+  link: {
+    fontWeight: 'bold',
+    color: 'white',
+    textDecoration: 'underline',
+    // hover in css jsx
+    '&:hover': {
+      textDecoration: 'underline',
+      color: 'white',
+      textDecorationColor: 'white',
+    },
+  },
+  icon: {
+    marginRight: '1rem',
+  },
+  logo: {
+    width: '20vw',
+    filter: 'invert(1)',
+    [theme.breakpoints.down('xs')]: {
+      height: '50%',
+      width: '50%',
+    },
+  },
+}));
 
 export default function Footer() {
+  const classes = useStyles();
   return (
     <AppBar position="static" color="primary">
-      <Container maxWidth="md">
-        <Toolbar>
-          <Typography variant="body1" color="inherit">
+      <Box py={{ xs: 3 }}>
+        <Container maxWidth="lg">
+          <Grid container>
+            <Grid item xs={12} sm={9}>
+              <Box>
+                <a className={classes.link} href="https://nitdgp.ac.in/">
+                  National Institute of Technology, Durgapur
+                </a>
+              </Box>
+              <Box>
+                Mahatma Gandhi Rd, A-Zone, <br /> Durgapur, West Bengal - 713209
+              </Box>
+              <Box my={2}>
+                <FaPhoneAlt className={classes.icon} />
+                0343 275 4680
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={3} className={classes.align}>
+              <Box>
+                <Link className={classes.link} href="/about-us">
+                  Contact Us
+                </Link>
+                <br />
+                <img src={logo} className={classes.logo} alt="logo" />
+              </Box>
+            </Grid>
+          </Grid>
+          <Box align="center" mt={3}>
             © 2021 Copyright: nitdgp.ac.in
-          </Typography>
-        </Toolbar>
-      </Container>
+          </Box>
+        </Container>
+      </Box>
     </AppBar>
   );
 }

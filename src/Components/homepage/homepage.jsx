@@ -14,40 +14,43 @@ import introsvg from '../../Assets/illustration.svg';
 import Profile from '../team/profile.png';
 
 const useStyles = makeStyles((theme) => ({
-  btnSet: {
-    marginLeft: '6rem',
-  },
   buttons: {
     borderRadius: '30px',
     marginLeft: '2rem',
   },
   grid: {
-    display: 'grid',
-    gridTemplateRows: '70vw 20vw',
-    [theme.breakpoints.up('sm')]: {
-      display: 'grid',
-      gridTemplateColumns: '20vw 50vw',
-      columnGap: '27vw',
-      gridTemplateRows: '0vw',
+    padding: '20px',
+    display: 'flex',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column-reverse',
     },
   },
   firstbox: {
-    gridRow: '2 / 3',
-    marginTop: '30px',
-    marginLeft: '10vw',
-    [theme.breakpoints.up('sm')]: {
-      gridColumn: '1 / 2',
-      gridRow: '1 / 2',
+    margin: '5vh 10vw 20vh 4vw',
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    alignSelf: 'center',
+
+    '& a': {
+      '&:hover': {
+        color: 'white',
+      },
+    },
+
+    [theme.breakpoints.down('sm')]: {
+      margin: '8vh 10vw 0vh 0vw',
     },
   },
   secondbox: {
-    gridRow: '1 / 2',
-    width: '90vw',
-    marginLeft: '5vw',
-    [theme.breakpoints.up('sm')]: {
-      gridColumn: '2 / 3',
-      width: 'auto',
-      marginLeft: '0vw',
+    width: '100%',
+
+    '& img': {
+      width: '100%',
+      maxHeight: '400px',
+
+      [theme.breakpoints.down('sm')]: {
+        maxHeight: '350px',
+      },
     },
   },
   main: {
@@ -62,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    Width: '300px',
+    width: '300px',
     height: '300px',
     padding: '20px',
   },
@@ -78,11 +81,11 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   rp: {
-    color: 'blue',
+    color: 'white',
     textAlign: 'center',
-    [theme.breakpoints.down('sm')]: {
-      color: 'white',
-    },
+    padding: '20px',
+    fontFamily: 'Playfair Display',
+    textShadow: '10px 10px 20px black',
   },
 }));
 
@@ -104,7 +107,7 @@ export default function Homepage() {
         </div>
       </section>
       <Typography
-        variant="h3"
+        variant="h2"
         className={classes.rp}
         gutterBottom
         component="div"
@@ -114,20 +117,22 @@ export default function Homepage() {
       <div className={classes.grid}>
         <div className={classes.firstbox}>
           <Button
+            size="large"
             className={classes.buttons}
             component={Link}
             to="/projects"
             color="primary"
-            variant="outlined"
+            variant="contained"
           >
             Projects
           </Button>
           <Button
+            size="large"
             className={classes.buttons}
             component={Link}
             to="/login"
             color="primary"
-            variant="outlined"
+            variant="contained"
           >
             Login
           </Button>
@@ -228,7 +233,7 @@ export default function Homepage() {
       </div>
       <div>
         <div className={classes.root}>
-          <Grid container direction="row" alignItems="flex-start" spacing={3}>
+          <Grid container direction="row" alignItems="flex-start">
             <Grid item xs={12} md={4}>
               <div align="center">
                 <img alt="" className={classes.cover} src={Profile} />

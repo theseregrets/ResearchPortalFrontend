@@ -98,9 +98,7 @@ export default function Profile() {
   const [n, sn] = useState(localStorage.getItem('name') || '');
   const [p, sp] = useState(localStorage.getItem('phno') || '');
   const [e, se] = useState(localStorage.getItem('email') || '');
-  const [c, sc] = useState(localStorage.getItem('clg') || '');
-  const [s, ss] = useState(localStorage.getItem('sem') || '');
-  const [cg, scg] = useState(localStorage.getItem('cgpa') || '');
+  const [d, sd] = useState(localStorage.getItem('dept') || '');
 
   function handleClick() {
     setIsEditing(!isEditing);
@@ -119,14 +117,9 @@ export default function Profile() {
         se(inp[2].value);
         break;
       case inp[3]:
-        sc(inp[3].value);
+        sd(inp[3].value);
         break;
-      case inp[4]:
-        ss(inp[4].value);
-        break;
-      case inp[5]:
-        scg(inp[5].value);
-        break;
+
       default:
         break;
     }
@@ -137,9 +130,8 @@ export default function Profile() {
     localStorage.setItem('name', inp[0].value);
     localStorage.setItem('phno', inp[1].value);
     localStorage.setItem('email', inp[2].value);
-    localStorage.setItem('clg', inp[3].value);
-    localStorage.setItem('sem', inp[4].value);
-    localStorage.setItem('cgpa', inp[5].value);
+    localStorage.setItem('dept', inp[3].value);
+
     setIsEditing(false);
   }
   function cancel() {
@@ -239,36 +231,8 @@ export default function Profile() {
             <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
-              label="College"
-              defaultValue={c}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-              variant="outlined"
-            />
-            <TextField
-              required
-              id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
-              label="Semester"
-              type="number"
-              defaultValue={s}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-              variant="outlined"
-            />
-            <TextField
-              required
-              id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
-              label="CGPA"
-              type="number"
-              defaultValue={cg}
-              InputLabelProps={{
-                shrink: true,
-              }}
+              label="Department"
+              defaultValue={d}
               InputProps={{
                 readOnly: !isEditing,
               }}

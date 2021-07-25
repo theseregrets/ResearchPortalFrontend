@@ -18,7 +18,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: 800,
+    maxWidth: 500,
   },
   media: {
     height: 0,
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function PostCard() {
+export default function ProjectCard() {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 

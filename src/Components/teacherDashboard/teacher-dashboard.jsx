@@ -25,7 +25,6 @@ import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import Applications from './applications';
-import NewPost from './new-post';
 import Overview from './overview';
 import Posts from './posts';
 import Profile from './profile';
@@ -170,6 +169,15 @@ export default function DashboardTeacher() {
               </ListItem>
             </Link>
 
+            <Link to={`${url}/posts`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Projects" />
+              </ListItem>
+            </Link>
+
             <Link to={`${url}/applications`} className={classes.drawerListText}>
               <ListItem button>
                 <ListItemIcon>
@@ -185,15 +193,6 @@ export default function DashboardTeacher() {
                   <PeopleIcon />
                 </ListItemIcon>
                 <ListItemText primary="Profile" />
-              </ListItem>
-            </Link>
-
-            <Link to={`${url}/posts`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Posts" />
               </ListItem>
             </Link>
           </List>

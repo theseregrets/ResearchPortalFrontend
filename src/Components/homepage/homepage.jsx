@@ -33,6 +33,8 @@ const useStyles = makeStyles((theme) => ({
   },
   firstbox: {
     gridRow: '2 / 3',
+    marginTop: '30px',
+    marginLeft: '10vw',
     [theme.breakpoints.up('sm')]: {
       gridColumn: '1 / 2',
       gridRow: '1 / 2',
@@ -75,6 +77,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     color: theme.palette.text.secondary,
   },
+  rp: {
+    color: 'blue',
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      color: 'white',
+    },
+  },
 }));
 
 export default function Homepage() {
@@ -94,10 +103,20 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
+      <Typography
+        variant="h3"
+        className={classes.rp}
+        gutterBottom
+        component="div"
+      >
+        Research Portal
+      </Typography>
       <div className={classes.grid}>
         <div className={classes.firstbox}>
           <Button
             className={classes.buttons}
+            component={Link}
+            to="/projects"
             color="primary"
             variant="outlined"
           >
@@ -105,6 +124,8 @@ export default function Homepage() {
           </Button>
           <Button
             className={classes.buttons}
+            component={Link}
+            to="/login"
             color="primary"
             variant="outlined"
           >

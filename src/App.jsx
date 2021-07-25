@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Navbar from './Components/navbar/Navbar';
@@ -11,9 +10,8 @@ import Login from './Components/login/Login';
 import Projects from './Components/projects/Projects';
 import Signup from './Components/signup/Signup';
 
-import UserDashboard from './Components/userDasboard/Dashboard';
+import UserDashboard from './Components/userDashboard/Dashboard';
 import DashboardTeacher from './Components/teacherDashboard/teacher-dashboard';
-
 
 function App() {
   return (

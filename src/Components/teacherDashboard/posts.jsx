@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import ProjectCard from './cards';
+import NewPost from './new-post';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,26 +15,41 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Posts = () => {
+  const [createPost, setCreatePost] = useState(false);
   const classes = useStyles();
+
+  function handleClick() {
+    setCreatePost(!createPost);
+  }
+
+  function handleCancel() {
+    setCreatePost(false);
+  }
+
   return (
     <>
-      <Button
-        component={Link}
-        to={`${url}/new-post`}
-        className={classes.button}
-        onClick={() => {
-          setishome(false);
-        }}
-      >
-        New Post
-      </Button>
       <div className={classes.root}>
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        <Button onClick={handleClick} variant="contained" color="primary">
+          {' '}
+          Create New Post{' '}
+        </Button>
+        {createPost ? (
+          <>
+            <Button variant="contained" color="primary" onClick={handleCancel}>
+              Cancel
+            </Button>
+            <NewPost />
+          </>
+        ) : (
+          <>
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+            <ProjectCard />
+          </>
+        )}
       </div>
     </>
   );

@@ -213,9 +213,6 @@ export default function DashboardTeacher() {
           <Route path={`${path}/profile`}>
             <Profile />
           </Route>
-          <Route path={`${path}/project-detail`}>
-            <ProjectDetail />
-          </Route>
         </Switch>
       </div>
     </BrowserRouter>

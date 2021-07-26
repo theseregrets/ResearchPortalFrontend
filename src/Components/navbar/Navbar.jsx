@@ -161,7 +161,7 @@ export default function Navbar() {
                 setishome(false);
               }}
             >
-              Dashborad
+              Dashboard
             </Button>
             <Button
               component={Link}
@@ -196,7 +196,7 @@ export default function Navbar() {
           <div className={classes.menu_container}>
             <IconButton
               onClick={() => {
-                console.log('clicked');
+                // ('console.logclicked');
                 toggle(true);
               }}
             >

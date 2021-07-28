@@ -33,7 +33,10 @@ const Posts = () => {
 
   return (
     <>
-      <div className={classes.root}>
+      <div
+        className={classes.root}
+        style={{ display: 'block', margin: '0px auto' }}
+      >
         <Button
           onClick={handleClick}
           variant="contained"

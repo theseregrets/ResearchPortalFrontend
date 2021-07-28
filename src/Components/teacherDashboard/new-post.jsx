@@ -58,25 +58,6 @@ export default function NewPost() {
             variant="outlined"
           />
           <div className={classes.root}>
-            <input
-              accept="image/*"
-              className={classes.input}
-              id="icon-button-file"
-              type="file"
-            />
-            <label htmlFor="contained-button-file">
-              <Button
-                variant="contained"
-                size="small"
-                color="primary"
-                component="span"
-                startIcon={<PhotoCamera />}
-              >
-                Upload Image
-              </Button>
-            </label>
-            <br />
-
             <Button
               variant="contained"
               color="primary"
@@ -84,7 +65,7 @@ export default function NewPost() {
               className={classes.button}
               startIcon={<CloudUploadIcon />}
             >
-              Post
+              Upload
             </Button>
           </div>
         </div>

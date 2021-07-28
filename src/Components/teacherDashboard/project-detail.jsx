@@ -5,89 +5,125 @@ import AssignmentTurnedInIcon from '@material-ui/icons/AssignmentTurnedIn';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import { makeStyles } from '@material-ui/core/styles';
 
 import { projects } from '../../Data/projects';
+import { data } from '../../Data/project-data';
 
-const ProjectDetail = () => (
-  <>
-    <CssBaseline />
-    <Container maxWidth="md">
-      <h1>project name</h1>
-      <h2>5 students applied</h2>
-      <img src="https://picsum.photos/200/300.jpg" alt="" />
-      <p>
-        Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
-        aside for 10 minutes. Heat oil in a (14- to 16-inch) paella pan or a
-        large, deep skillet over medium-high heat. Add chicken, shrimp and
-        chorizo, and cook, stirring occasionally until lightly browned, 6 to 8
-        minutes. Transfer shrimp to a large plate and set aside, leaving chicken
-        and chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,
-        onion, salt and pepper, and cook, stirring often until thickened and
-        fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2 cups
-        chicken broth; bring to a boil. Add rice and stir very gently to
-        distribute. Top with artichokes and peppers, and cook without stirring,
-        until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
-        medium-low, add reserved shrimp and mussels, tucking them down into the
-        rice, and cook again without stirring, until mussels have opened and
-        rice is just tender, 5 to 7 minutes more. (Discard any mussels that
-        don’t open.) Set aside off of the heat to let rest for 10 minutes, and
-        then serve.
-      </p>
-      <h1>Applications</h1>
-      <table className="table">
-        <thead>
-          <tr>
-            <th onClick={() => onSort('name')}>
-              <h3>Name</h3>
-            </th>
-            <th onClick={() => onSort('year')}>
-              <h3>Department</h3>
-            </th>
-            <th onClick={() => onSort('ratings')}>
-              <h3>Statement of Purpose</h3>
-            </th>
-            <th>
-              <h3>Status</h3>
-            </th>
-            <th>
-              <h3>Accept</h3>
-            </th>
-            <th>
-              <h3>Delete</h3>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {projects.map((project) => (
-            <tr key={project.id}>
-              <td>{project.name}</td>
-              <td>{project.dept}</td>
-              <td>{project.details}</td>
-              <td>{project.status}</td>
-              <td>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  startIcon={<AssignmentTurnedInIcon />}
-                >
-                  Accept
-                </Button>
-              </td>
-              <td>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  startIcon={<DeleteIcon />}
-                >
-                  Delete
-                </Button>
-              </td>
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: '0 14%',
+  },
+  title: {
+    fontSize: '34px',
+    textAlign: 'center',
+    color: '#0047ab',
+    fontStyle: 'italic',
+    margin: '30px',
+  },
+  summary: {
+    margin: '30px 0px',
+    fontStyle: 'italic',
+  },
+  subtitle: {
+    marginTop: '60px',
+    textAlign: 'center',
+    fontStyle: 'italic',
+  },
+  numApp: { color: 'darkblue', fontStyle: 'italic' },
+  [theme.breakpoints.down('sm')]: {
+    container: {
+      padding: '5%',
+    },
+    title: {
+      fontSize: '23px',
+      margin: '10px',
+    },
+    table: {
+      display: 'none',
+    },
+  },
+}));
+
+export default function ProjectDetail() {
+  const classes = useStyles();
+  return (
+    <>
+      <CssBaseline />
+      <Container className={classes.container}>
+        <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<DeleteIcon />}
+        >
+          Delete Project
+        </Button>
+        <h1 className={classes.title}>{data.title}</h1>
+        <hr />
+        <h4>Summary</h4>
+
+        <p className={classes.summary}>{data.project}</p>
+        <hr />
+        <h4 style={{ margin: '30px 0px' }}>Description</h4>
+        <p>{data.desc}</p>
+        <hr />
+        <h2 className={classes.subtitle}>Applications</h2>
+        <h4 className={classes.numApp}>
+          {projects.length} students have applied
+        </h4>
+        <table className={(classes.table, 'table')}>
+          <thead>
+            <tr>
+              <th>
+                <h6>Name</h6>
+              </th>
+              <th>
+                <h6>Department</h6>
+              </th>
+              <th>
+                <h6>CGPA</h6>
+              </th>
+              <th>
+                <h6>Status</h6>
+              </th>
+              <th>
+                <h6>Accept</h6>
+              </th>
+              <th>
+                <h6>Delete</h6>
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </Container>
-  </>
-);
-
-export default ProjectDetail;
+          </thead>
+          <tbody>
+            {projects.map((project) => (
+              <tr key={project.id}>
+                <td>{project.name}</td>
+                <td>{project.dept}</td>
+                <td>{project.cgpa}</td>
+                <td>{project.status}</td>
+                <td>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<AssignmentTurnedInIcon />}
+                  >
+                    Accept
+                  </Button>
+                </td>
+                <td>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Container>
+    </>
+  );
+}

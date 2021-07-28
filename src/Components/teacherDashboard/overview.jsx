@@ -40,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
   btn: {
     display: 'block',
     margin: '30px auto',
-    width: '50%',
+    width: '30%',
   },
   [theme.breakpoints.down('sm')]: {
     msg: {
-      width: '90%',
+      width: '80%',
     },
     txt: {
       marginLeft: '25px',
@@ -55,9 +55,7 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(5),
     },
     btn: {
-      margin: '0px auto',
-      display: 'block',
-      width: '50%',
+      width: '80%',
       padding: '15px',
     },
   },
@@ -86,11 +84,11 @@ export default function Overview() {
         variant="contained"
         color="primary"
         size="medium"
-        startIcon={<AddCircleIcon />}
         className={classes.btn}
       >
         {' '}
-        Create New Post{' '}
+        <AddCircleIcon />
+        Create New Project{' '}
       </Button>
       {createPost ? (
         <>

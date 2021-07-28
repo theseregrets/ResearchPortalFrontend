@@ -64,6 +64,12 @@ const useStyles = makeStyles((theme) => ({
     cardText: {
       margin: '20px 0 0 0',
     },
+    cardTextTitle: {
+      fontSize: '16px',
+    },
+    cardTextContent: {
+      fontSize: '12px',
+    },
   },
 }));
 

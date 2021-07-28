@@ -14,7 +14,7 @@ export default function DataGridDemo() {
       <DataGrid
         rows={rows}
         columns={columns}
-        pageSize={5}
+        pageSize={projects.length}
         checkboxSelection
         disableSelectionOnClick
       />

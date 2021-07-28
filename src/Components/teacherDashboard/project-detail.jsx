@@ -106,7 +106,12 @@ export default function ProjectDetail() {
               <th>
                 <h6>CGPA</h6>
               </th>
-
+              <th>
+                <h6>Year</h6>
+              </th>
+              <th>
+                <h6>Date</h6>
+              </th>
               <th>
                 <h6>Delete</h6>
               </th>
@@ -121,6 +126,8 @@ export default function ProjectDetail() {
                 <td>{project.name}</td>
                 <td>{project.dept}</td>
                 <td>{project.cgpa}</td>
+                <td>{project.year}</td>
+                <td>{project.date}</td>
 
                 <td>
                   <Button

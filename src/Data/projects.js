@@ -8,6 +8,7 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '2',
@@ -17,6 +18,7 @@ export const projects = [
     status: 'accepted',
     project: 'Neural Network',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '3',
@@ -26,6 +28,7 @@ export const projects = [
     status: 'accepted',
     project: 'IoT',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '4',
@@ -35,6 +38,7 @@ export const projects = [
     status: 'rejected',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '5',
@@ -44,6 +48,7 @@ export const projects = [
     status: 'accepted',
     project: 'Neural Network',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '6',
@@ -53,6 +58,7 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '7',
@@ -62,6 +68,7 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '8',
@@ -71,6 +78,7 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '9',
@@ -80,6 +88,7 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '10',
@@ -89,6 +98,7 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '11',
@@ -98,6 +108,7 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
   {
     id: '12',
@@ -107,5 +118,6 @@ export const projects = [
     status: 'accepted',
     project: 'Blockchain',
     date: '20-9-2020',
+    year: 'first',
   },
 ];

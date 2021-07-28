@@ -6,9 +6,11 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { projects } from '../../Data/projects';
 import { data } from '../../Data/project-data';
 
@@ -32,16 +34,17 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontStyle: 'italic',
   },
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
   },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  sop: {
+    width: '600px',
+    minHeight: '400px',
+    overflow: 'auto',
   },
 
   numApp: { color: 'darkblue', fontStyle: 'italic' },
@@ -61,15 +64,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProjectDetail() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [age, setAge] = React.useState('');
 
-  const handleOpen = () => {
-    setOpen(true);
+  const handleChange = (event) => {
+    setAge(event.target.value);
   };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
   return (
     <>
       <CssBaseline />
@@ -139,55 +139,41 @@ export default function ProjectDetail() {
                   </Button>
                 </td>
                 <td>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    type="button"
-                    onClick={handleOpen}
+                  <FormControl
+                    variant="outlined"
+                    className={classes.formControl}
                   >
-                    SOP
-                  </Button>
-                  <Modal
-                    aria-labelledby="transition-modal-title"
-                    aria-describedby="transition-modal-description"
-                    className={classes.modal}
-                    open={open}
-                    onClose={handleClose}
-                    closeAfterTransition
-                    BackdropComponent={Backdrop}
-                    BackdropProps={{
-                      timeout: 500,
-                    }}
-                  >
-                    <Fade in={open}>
-                      <div className={classes.paper}>
-                        <h2 id="transition-modal-title">
-                          {' '}
-                          Statement of Purpose
-                        </h2>
-                        <p id="transition-modal-description">
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Voluptatum consectetur numquam rerum
-                          accusantium, aliquid mollitia corporis cum reiciendis
-                          vero autem asperiores, non reprehenderit error tempora
-                          at eius totam nobis necessitatibus. Lorem ipsum dolor
-                          sit, amet consectetur adipisicing elit. Cum fugit
-                          iusto animi facere explicabo sed officia facilis culpa
-                          hic doloribus? Ducimus magnam atque natus mollitia
-                          possimus. Ducimus ullam minus impedit. Lorem ipsum
-                          dolor sit amet, consectetur adipisicing elit. Ex
-                          libero ipsum officiis aperiam molestias blanditiis,
-                          qui numquam deleniti, est dolor eius molestiae
-                          quibusdam voluptate iure, quis porro impedit neque
-                          odit. Lorem ipsum dolor sit amet consectetur
-                          adipisicing elit. Saepe iure praesentium maiores
-                          veniam odit perferendis natus, rerum illo sunt
-                          provident, a nobis incidunt tenetur unde voluptatum
-                          cum corporis adipisci dolore!
-                        </p>
-                      </div>
-                    </Fade>
-                  </Modal>
+                    <InputLabel id="demo-simple-select-outlined-label">
+                      SOP
+                    </InputLabel>
+                    <Select
+                      labelId="demo-simple-select-outlined-label"
+                      id="demo-simple-select-outlined"
+                      value={age}
+                      onChange={handleChange}
+                      label="Age"
+                    >
+                      <MenuItem className={classes.sop}>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Cumque veniam error eligendi voluptatem aliquam
+                        eum odit dolores obcaecati alias consequatur illo quia
+                        nobis libero perferendis asperiores, minus commodi
+                        aliquid! Necessitatibus. Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit. A unde neque non vitae
+                        consectetur adipisci voluptatum cupiditate architecto
+                        tenetur eligendi sit quae molestiae enim, doloribus
+                        eveniet, cum animi. Animi, expedita. Lorem ipsum dolor,
+                        sit amet consectetur adipisicing elit. Minus ipsa
+                        repellendus omnis laboriosam, exercitationem molestias
+                        quidem harum ipsam veritatis. Amet ullam voluptate sed
+                        maxime dolorem molestias illum vel enim eum. Lorem ipsum
+                        dolor sit amet, consectetur adipisicing elit. Quas nihil
+                        ipsa vitae enim facilis! Aperiam ipsa, dolorem repellat
+                        tempore delectus atque eveniet nobis ab sint tenetur
+                        vitae assumenda numquam impedit.
+                      </MenuItem>
+                    </Select>
+                  </FormControl>
                 </td>
               </tr>
             ))}

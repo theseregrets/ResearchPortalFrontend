@@ -1,15 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+
 .circle-clip {
   position: absolute;
-  background-color: rgb(91, 117, 202);
+  background-image: linear-gradient(0deg , rgb(142, 45, 226)50%, rgb(74, 0, 224));
   width: 100%;
-  height: 100vh;
+  height: 120vh;
   clip-path: circle(70% at 90% 0%);
   top: 0;
   z-index: -2;
 }
 .rings1 {
   position: absolute;
-  background-color: rgb(3, 51, 122);
+  background-image: linear-gradient(45deg , rgb(142, 45, 226), rgb(74, 0, 224) 25%);
   width: 100%;
   height: 85vh;
   clip-path: circle(10% at 5% 80%);
@@ -26,10 +28,10 @@
 
 .rings2 {
   position: absolute;
-  background-color: rgb(3, 51, 122);
+  background-image: linear-gradient(90deg, rgb(142, 45, 226) 22%, rgb(74, 0, 224) 30%);
   width: 100%;
   height: 90vh;
-  clip-path: circle(5% at 35% 90%);
+  clip-path: circle(5% at 25% 90%);
   z-index: -2;
 }
 
@@ -38,15 +40,15 @@
   background-color: rgb(255, 255, 255);
   width: 100%;
   height: 90vh;
-  clip-path: circle(4.5% at 35% 90%);
+  clip-path: circle(4.5% at 25% 90%);
 }
 
 .rings3 {
   position: absolute;
-  background-color: rgb(3, 51, 122);
+  background-image: linear-gradient(90deg , rgb(142, 45, 226) 28%, rgb(74, 0, 224) 34%);
   width: 100%;
   height: 89vh;
-  clip-path: circle(3% at 40% 80%);
+  clip-path: circle(3% at 30% 70%);
   z-index: -2;
 }
 
@@ -55,5 +57,33 @@
   background-color: rgb(255, 255, 255);
   width: 100%;
   height: 89vh;
-  clip-path: circle(2.6% at 40% 80%);
+  clip-path: circle(2.6% at 30% 70%);
+}
+.obj {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0px;
+  align-content: space-around;
+}
+
+.main-container {
+  width: 100%;
+  margin-bottom: 3rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin-top: 20vh;
+  position: relative;
+}
+
+@media only screen and (max-width: 450px) {
+  .circle-clip {
+    position: absolute;
+    background-color: rgb(91, 117, 202);
+    width: 100%;
+    height: 100vh;
+    clip-path: circle(70% at 50% 2%);
+    top: 0vh;
+    z-index: -2;
+  }
 }

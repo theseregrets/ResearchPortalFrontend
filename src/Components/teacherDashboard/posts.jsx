@@ -14,8 +14,11 @@ const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(3),
     },
-    margin: '30px auto',
+    textAlign: 'center',
+  },
+  projects: {
     display: 'block',
+    margin: '0px auto',
   },
 }));
 
@@ -33,10 +36,7 @@ const Posts = () => {
 
   return (
     <>
-      <div
-        className={classes.root}
-        style={{ display: 'block', margin: '0px auto' }}
-      >
+      <div className={classes.root}>
         <Button
           onClick={handleClick}
           variant="contained"
@@ -60,14 +60,14 @@ const Posts = () => {
             <NewPost />
           </>
         ) : (
-          <>
+          <div className={classes.projects}>
             <ProjectCard />
             <ProjectCard />
             <ProjectCard />
             <ProjectCard />
             <ProjectCard />
             <ProjectCard />
-          </>
+          </div>
         )}
       </div>
     </>

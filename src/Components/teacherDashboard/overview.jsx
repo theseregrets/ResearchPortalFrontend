@@ -85,7 +85,7 @@ export default function Overview() {
         onClick={handleClick}
         variant="contained"
         color="primary"
-        size="large"
+        size="medium"
         startIcon={<AddCircleIcon />}
         className={classes.btn}
       >
@@ -105,8 +105,7 @@ export default function Overview() {
           <NewPost />
         </>
       ) : (
-        <div className={classes.btn}>
-          <h3>check new applications</h3>
+        <div>
           <ProjectCard />
           <ProjectCard />
           <ProjectCard />

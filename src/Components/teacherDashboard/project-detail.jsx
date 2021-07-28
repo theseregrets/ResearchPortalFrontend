@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
       margin: '10px',
     },
     table: {
+      fontSize: '8px',
       display: 'none',
     },
   },

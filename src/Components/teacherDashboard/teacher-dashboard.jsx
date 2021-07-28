@@ -29,6 +29,8 @@ import Overview from './overview';
 import Posts from './posts';
 import Profile from './profile';
 import ProjectDetail from './project-detail';
+import BottomNav from './BottomNav';
+import BottomNavFix from './BottomNavFix';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -146,58 +148,68 @@ export default function DashboardTeacher() {
     <BrowserRouter>
       <div className={classes.root}>
         <CssBaseline />
-        <Drawer
-          variant="permanent"
-          classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-          }}
-          open={open}
-        >
-          <div className={classes.toolbarIcon}>
-            <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-              {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-            </IconButton>
-          </div>
-          <Divider />
+        {width > 900 ? (
+          <Drawer
+            variant="permanent"
+            classes={{
+              paper: clsx(
+                classes.drawerPaper,
+                !open && classes.drawerPaperClose
+              ),
+            }}
+            open={open}
+          >
+            <div className={classes.toolbarIcon}>
+              <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+                {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+              </IconButton>
+            </div>
+            <Divider />
 
-          <List>
-            <Link to={`${url}`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItem>
-            </Link>
+            <List>
+              <Link to={`${url}`} className={classes.drawerListText}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" />
+                </ListItem>
+              </Link>
 
-            <Link to={`${url}/posts`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Projects" />
-              </ListItem>
-            </Link>
+              <Link to={`${url}/posts`} className={classes.drawerListText}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <AssignmentIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Projects" />
+                </ListItem>
+              </Link>
 
-            <Link to={`${url}/applications`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <LayersIcon />
-                </ListItemIcon>
-                <ListItemText primary="Applications" />
-              </ListItem>
-            </Link>
+              <Link
+                to={`${url}/applications`}
+                className={classes.drawerListText}
+              >
+                <ListItem button>
+                  <ListItemIcon>
+                    <LayersIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Applications" />
+                </ListItem>
+              </Link>
 
-            <Link to={`${url}/profile`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <PeopleIcon />
-                </ListItemIcon>
-                <ListItemText primary="Profile" />
-              </ListItem>
-            </Link>
-          </List>
-        </Drawer>
+              <Link to={`${url}/profile`} className={classes.drawerListText}>
+                <ListItem button>
+                  <ListItemIcon>
+                    <PeopleIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Profile" />
+                </ListItem>
+              </Link>
+            </List>
+          </Drawer>
+        ) : (
+          <BottomNav url={url} />
+        )}
 
         <Switch>
           <Route exact path={path}>
@@ -214,6 +226,7 @@ export default function DashboardTeacher() {
             <Profile />
           </Route>
         </Switch>
+        {width < 900 ? <BottomNavFix /> : null}
       </div>
     </BrowserRouter>
   );

@@ -43,17 +43,17 @@ export default function BottomNav({ url }) {
       className={classes.box}
       onChange={handleChange}
     >
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         value="dashboard"
         icon={<DashboardIcon />}
         component={Link}
         to={url}
-      />
+      /> */}
       <BottomNavigationAction
         value="projects"
         icon={<SubjectIcon />}
         component={Link}
-        to={`${url}/posts`}
+        to={`${url}`}
       />
       <BottomNavigationAction
         value="applications"

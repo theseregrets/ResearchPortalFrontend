@@ -25,7 +25,7 @@ import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import Applications from './applications';
-import Overview from './overview';
+// import Overview from './overview';
 import Posts from './posts';
 import Profile from './profile';
 import ProjectDetail from './project-detail';
@@ -167,16 +167,16 @@ export default function DashboardTeacher() {
             <Divider />
 
             <List>
-              <Link to={`${url}`} className={classes.drawerListText}>
+              {/* <Link to={`${url}`} className={classes.drawerListText}>
                 <ListItem button>
                   <ListItemIcon>
                     <DashboardIcon />
                   </ListItemIcon>
                   <ListItemText primary="Dashboard" />
                 </ListItem>
-              </Link>
+              </Link> */}
 
-              <Link to={`${url}/posts`} className={classes.drawerListText}>
+              <Link to={`${url}`} className={classes.drawerListText}>
                 <ListItem button>
                   <ListItemIcon>
                     <AssignmentIcon />
@@ -212,11 +212,11 @@ export default function DashboardTeacher() {
         )}
 
         <Switch>
-          <Route exact path={path}>
+          {/* <Route exact path={path}>
             <Overview />
-          </Route>
+          </Route> */}
 
-          <Route path={`${path}/posts`}>
+          <Route exact path={`${path}`}>
             <Posts />
           </Route>
           <Route path={`${path}/applications`}>

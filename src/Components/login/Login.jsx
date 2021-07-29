@@ -64,7 +64,9 @@ export default function Login() {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => {})
+      .then((data) => {
+        console.log(data);
+      })
       .catch((error) => {
         console.log(error);
       });

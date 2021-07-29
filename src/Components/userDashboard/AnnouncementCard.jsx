@@ -22,16 +22,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
   },
-  img: {
-    maxHeight: '200px',
-    maxWidth: '200px',
-    borderRadius: '10px',
-  },
   details: {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: '0 0 0 25px',
 
     '& h6': {
       color: '#482ff7',
@@ -58,12 +52,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column',
       width: '90%',
     },
-    img: {
-      margin: 'auto',
-    },
     details: {
-      padding: '20px 0 0 0',
-
       '& h4': {
         fontSize: '1.25rem',
       },
@@ -72,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AnnouncementCard({
-  img,
   title,
   project,
   faculty,
@@ -83,7 +71,6 @@ export default function AnnouncementCard({
 
   return (
     <div className={classes.card}>
-      <img src={img} alt="project" className={classes.img} />
       <div className={classes.details}>
         <h4>{title}</h4>
         <h6>{project}</h6>
@@ -100,7 +87,6 @@ export default function AnnouncementCard({
 }
 
 AnnouncementCard.propTypes = {
-  img: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   project: PropTypes.string.isRequired,
   faculty: PropTypes.string.isRequired,

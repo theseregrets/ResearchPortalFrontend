@@ -86,7 +86,7 @@ const data = {
 
 export default function ProjectCard() {
   const classes = useStyles();
-  const { path, url } = useRouteMatch();
+  const { url } = useRouteMatch();
 
   return (
     <div className={classes.card}>

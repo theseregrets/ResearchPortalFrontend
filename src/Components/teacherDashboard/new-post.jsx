@@ -20,6 +20,17 @@ const useStyles = makeStyles((theme) => ({
   input: {
     display: 'none',
   },
+  [theme.breakpoints.down('sm')]: {
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(3),
+        width: '30ch',
+      },
+      '& > *': {
+        margin: theme.spacing(3),
+      },
+    },
+  },
 }));
 
 export default function NewPost() {

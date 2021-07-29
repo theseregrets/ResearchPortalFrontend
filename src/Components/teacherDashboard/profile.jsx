@@ -164,7 +164,9 @@ export default function Profile() {
           </div>
           <div className={classes.editBtn}>
             {!isEditing ? (
-              <Button
+              <>
+                <p />
+                {/* <Button
                 size="small"
                 variant="contained"
                 color="primary"
@@ -172,7 +174,8 @@ export default function Profile() {
               >
                 <UpdateIcon />
                 Edit
-              </Button>
+              </Button> */}
+              </>
             ) : (
               <div className={classes.editBtnContainer}>
                 <Button

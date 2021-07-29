@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '50vw',
     margin: 'auto',
+    marginBottom: '3rem',
     height: '80vh',
     display: 'flex',
     flexDirection: 'column',
@@ -48,9 +49,30 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Signup() {
   const classes = useStyles();
+  const data = {};
+  function getData(event, key) {
+    data[key] = event.target.value;
+  }
 
   const onSignup = () => {
-    alert('Signed In');
+    fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username) {
+          alert('registered succesfully');
+        } else {
+          alert('registration failed');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -65,8 +87,9 @@ export default function Signup() {
         required
         className={classes.field}
         id="outlined-required"
-        label="Full Name"
+        label="User Name"
         variant="outlined"
+        onChange={(event) => getData(event, 'username')}
       />
       <TextField
         required
@@ -74,6 +97,23 @@ export default function Signup() {
         id="outlined-required"
         label="Email"
         variant="outlined"
+        onChange={(event) => getData(event, 'email')}
+      />
+      <TextField
+        required
+        className={classes.field}
+        id="outlined-required"
+        label="First Name"
+        variant="outlined"
+        onChange={(event) => getData(event, 'first_name')}
+      />
+      <TextField
+        required
+        className={classes.field}
+        id="outlined-required"
+        label="Last Name"
+        variant="outlined"
+        onChange={(event) => getData(event, 'last_name')}
       />
       <TextField
         required
@@ -81,17 +121,26 @@ export default function Signup() {
         id="outlined-required"
         label="Password"
         variant="outlined"
+        onChange={(event) => getData(event, 'password')}
+      />
+      <TextField
+        required
+        className={classes.field}
+        id="outlined-required"
+        label="Confirm Password"
+        variant="outlined"
+        onChange={(event) => getData(event, 'password2')}
       />
       <Button
         className={classes.field}
         color="primary"
         variant="contained"
-        component={Link}
-        to="/signup"
+        onClick={() => {
+          onSignup();
+        }}
       >
         Sign Up
       </Button>
-      <GoogleButton className={classes.field} onClick={() => onSignup()} />
     </Paper>
   );
 }

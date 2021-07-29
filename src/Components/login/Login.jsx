@@ -50,9 +50,24 @@ const useStyles = makeStyles((theme) => ({
 export default function Login() {
   const history = useHistory();
   const classes = useStyles();
+  const data = {};
+  function getData(event, key) {
+    data[key] = event.target.value;
+  }
 
   const onLogin = () => {
-    alert('Logged In');
+    fetch('https://ieeenitdgp.pythonanywhere.com/api/token/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {})
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -67,8 +82,11 @@ export default function Login() {
         required
         className={classes.field}
         id="outlined-required"
-        label="Email"
+        label="Username"
         variant="outlined"
+        onChange={(event) => {
+          getData(event, 'username');
+        }}
       />
       <TextField
         required
@@ -76,6 +94,9 @@ export default function Login() {
         id="outlined-required"
         label="Password"
         variant="outlined"
+        onChange={(event) => {
+          getData(event, 'password');
+        }}
       />
       <Button className={classes.field} color="secondary" variant="contained">
         Login

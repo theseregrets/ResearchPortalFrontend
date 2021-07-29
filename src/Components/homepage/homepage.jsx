@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
@@ -108,7 +109,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Homepage() {
   const classes = useStyles();
-
+  const log = useSelector((state) => state.isLogged);
+  console.log(log);
   return (
     <div>
       <section>
@@ -123,6 +125,7 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
+      <h1>The state is: {log}</h1>
       <Typography variant="h2" className={classes.rp} component="div">
         Research Portal
       </Typography>

@@ -1,3 +1,9 @@
-import redux from 'redux';
+import { createStore } from 'redux';
+import Reducer from './reducer';
 
-const store = redux.createStore;
+const store = createStore(
+  Reducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
+
+export default store;

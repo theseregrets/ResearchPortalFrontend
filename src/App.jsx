@@ -11,6 +11,7 @@ import Login from './Components/login/Login';
 import Projects from './Components/projects/Projects';
 import Signup from './Components/signup/Signup';
 import UserDashboard from './Components/userDashboard/Dashboard';
+import DashboardTeacher from './Components/teacherDashboard/teacher-dashboard';
 
 function App() {
   return (
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/dashboard">
             <UserDashboard />
+          </Route>
+          <Route exact path="/teacher">
+            <DashboardTeacher />
           </Route>
         </Switch>
         <Footer />

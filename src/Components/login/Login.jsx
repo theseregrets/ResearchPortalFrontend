@@ -4,6 +4,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
 import GoogleButton from 'react-google-button';
@@ -11,6 +12,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import login from '../../Redux/Actions/login';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -50,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Login() {
   const history = useHistory();
   const classes = useStyles();
+  const dispatch = useDispatch();
   const data = {};
   function getData(event, key) {
     data[key] = event.target.value;
@@ -63,11 +66,14 @@ export default function Login() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => {
-        res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if ('access' in data) {
+          dispatch(login(data));
+          history.push('/');
+        } else {
+          alert(data.detail);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -82,43 +88,46 @@ export default function Login() {
       <Typography variant="h3" align="center">
         Login
       </Typography>
-      <TextField
-        required
-        className={classes.field}
-        id="outlined-required"
-        label="Username"
-        variant="outlined"
-        onChange={(event) => {
-          getData(event, 'username');
-        }}
-      />
-      <TextField
-        required
-        className={classes.field}
-        id="outlined-required"
-        label="Password"
-        variant="outlined"
-        onChange={(event) => {
-          getData(event, 'password');
-        }}
-      />
-      <Button
-        className={classes.field}
-        color="secondary"
-        variant="contained"
-        onClick={() => onLogin()}
-      >
-        Login
-      </Button>
-      <Button
-        className={classes.field}
-        color="primary"
-        variant="contained"
-        component={Link}
-        to="/signup"
-      >
-        Sign Up
-      </Button>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <TextField
+          required
+          className={classes.field}
+          id="outlined-required"
+          label="Username"
+          variant="outlined"
+          onChange={(event) => {
+            getData(event, 'username');
+          }}
+        />
+        <TextField
+          required
+          className={classes.field}
+          id="outlined-required"
+          label="Password"
+          variant="outlined"
+          onChange={(event) => {
+            getData(event, 'password');
+          }}
+        />
+        <Button
+          type="submit"
+          className={classes.field}
+          color="secondary"
+          variant="contained"
+          onClick={() => onLogin()}
+        >
+          Login
+        </Button>
+        <Button
+          className={classes.field}
+          color="primary"
+          variant="contained"
+          component={Link}
+          to="/signup"
+        >
+          Sign Up
+        </Button>
+      </form>
     </Paper>
   );
 }

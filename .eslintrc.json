@@ -25,6 +25,7 @@
     "no-underscore-dangle":"off",
     "no-use-before-define": "off",
     "no-shadow":"off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-prototype-builtins":"off"
   }
 }

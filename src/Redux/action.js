@@ -1,8 +1,8 @@
-const name='User'
+function Authenticate(auth) {
+  return {
+    type: auth,
+    info: 'Authenticate',
+  };
+}
 
-functions getProfile(){
-    return{
-        type:name,
-        info:'Update Profile'
-    }
-} 
+export default Authenticate;

@@ -225,6 +225,9 @@ export default function DashboardTeacher() {
           <Route path={`${path}/profile`}>
             <Profile />
           </Route>
+          <Route path={`${path}/project-detail`}>
+            <ProjectDetail />
+          </Route>
         </Switch>
         {width < 900 ? <BottomNavFix /> : null}
       </div>

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
@@ -86,7 +86,7 @@ const data = {
 
 export default function ProjectCard() {
   const classes = useStyles();
-  const history = useHistory();
+  const { path, url } = useRouteMatch();
 
   return (
     <div className={classes.card}>
@@ -94,16 +94,15 @@ export default function ProjectCard() {
         <h4 className={classes.cardTextTitle}>{data.title}</h4>
         <p className={classes.cardTextContent}>{data.project}</p>
         <div className={classes.txt}>
-          <Button
-            variant="contained"
-            color="secondary"
-            className={classes.delButton}
-            onClick={() =>
-              window.location.reload(history.push('/project-detail'))
-            }
-          >
-            More Info
-          </Button>
+          <Link to={`${url}/project-detail`}>
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.delButton}
+            >
+              More Info
+            </Button>
+          </Link>
         </div>
       </div>
     </div>

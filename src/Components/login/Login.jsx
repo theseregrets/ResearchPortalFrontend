@@ -63,11 +63,13 @@ export default function Login() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => {
-        res.json();
-      })
+      .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.access) {
+          history.push('/');
+        } else {
+          alert('wrong credentials');
+        }
       })
       .catch((error) => {
         console.log(error);

@@ -1,6 +1,6 @@
-function Authenticate(auth) {
+function Authenticate() {
   return {
-    type: auth,
+    type: 'LOGIN',
     info: 'Authenticate',
   };
 }

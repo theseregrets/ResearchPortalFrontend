@@ -1,16 +1,20 @@
-export default reducer = (state = initialState, action) => {
+import state from './state';
+
+const Reducer = (initialState = state, action) => {
   switch (action.type) {
-    case LOGIN:
+    case 'LOGIN':
       return {
-        ...state,
+        ...initialState,
         isLogged: true,
       };
-    case LOGOUT:
+    case 'LOGOUT':
       return {
-        ...state,
+        ...initialState,
         isLogged: false,
       };
     default:
-      return state;
+      return initialState;
   }
 };
+
+export default Reducer;

@@ -21,6 +21,9 @@
     ],
     "no-unused-vars": "warn",
     "no-alert": "off",
-    "no-undef": "off"
+    "no-undef": "off",
+    "no-underscore-dangle":"off",
+    "no-use-before-define": "off",
+    "no-shadow":"off"
   }
 }

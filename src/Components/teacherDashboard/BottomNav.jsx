@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+
 import SubjectIcon from '@material-ui/icons/Subject';
 import PeopleIcon from '@material-ui/icons/People';
 import LayersIcon from '@material-ui/icons/Layers';

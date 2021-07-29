@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import UpdateIcon from '@material-ui/icons/Update';
 import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles((theme) => ({
@@ -102,9 +101,9 @@ export default function Profile() {
   const [a, sa] = useState(localStorage.getItem('affl') || '');
   const [q, sq] = useState(localStorage.getItem('qual') || '');
 
-  function handleClick() {
-    setIsEditing(!isEditing);
-  }
+  // function handleClick() {
+  //   setIsEditing(!isEditing);
+  // }
 
   function handleChange(evt) {
     const inp = document.querySelectorAll('input');

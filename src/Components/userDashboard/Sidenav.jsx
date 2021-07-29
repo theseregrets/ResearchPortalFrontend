@@ -40,8 +40,9 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerPaper: {
     position: 'sticky',
-    top: '0',
-    height: '100vh',
+    top: '80px',
+    border: '0',
+    height: 'auto',
     whiteSpace: 'nowrap',
     width: '240px',
     transition: theme.transitions.create('width', {

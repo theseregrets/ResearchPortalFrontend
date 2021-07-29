@@ -63,8 +63,12 @@ export default function Login() {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json())
-      .then((data) => {})
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -98,7 +102,12 @@ export default function Login() {
           getData(event, 'password');
         }}
       />
-      <Button className={classes.field} color="secondary" variant="contained">
+      <Button
+        className={classes.field}
+        color="secondary"
+        variant="contained"
+        onClick={() => onLogin()}
+      >
         Login
       </Button>
       <Button
@@ -110,7 +119,6 @@ export default function Login() {
       >
         Sign Up
       </Button>
-      <GoogleButton className={classes.field} onClick={() => onLogin()} />
     </Paper>
   );
 }

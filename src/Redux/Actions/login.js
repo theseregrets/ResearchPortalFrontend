@@ -3,6 +3,7 @@ function login(data) {
     type: 'LOGIN',
     access: data.access,
     refresh: data.refresh,
+    isStudent: data.isStudent,
   };
 }
 

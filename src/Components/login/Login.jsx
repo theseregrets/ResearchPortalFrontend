@@ -7,7 +7,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
-import GoogleButton from 'react-google-button';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -51,12 +52,18 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login() {
   const history = useHistory();
+  const [value, setValue] = React.useState();
   const classes = useStyles();
   const dispatch = useDispatch();
   const data = {};
-  function getData(event, key) {
+  function setData(event, key) {
     data[key] = event.target.value;
   }
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    console.log(newValue);
+  };
 
   const onLogin = () => {
     fetch('https://ieeenitdgp.pythonanywhere.com/api/token/', {
@@ -68,7 +75,7 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if ('access' in data) {
+        if (data.access) {
           dispatch(login(data));
           history.push('/');
         } else {
@@ -88,6 +95,16 @@ export default function Login() {
       <Typography variant="h3" align="center">
         Login
       </Typography>
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
+      >
+        <Tab label="Student" />
+        <Tab label="Faculty" />
+      </Tabs>
       <form onSubmit={(e) => e.preventDefault()}>
         <TextField
           required
@@ -96,7 +113,7 @@ export default function Login() {
           label="Username"
           variant="outlined"
           onChange={(event) => {
-            getData(event, 'username');
+            setData(event, 'username');
           }}
         />
         <TextField
@@ -106,7 +123,7 @@ export default function Login() {
           label="Password"
           variant="outlined"
           onChange={(event) => {
-            getData(event, 'password');
+            setData(event, 'password');
           }}
         />
         <Button

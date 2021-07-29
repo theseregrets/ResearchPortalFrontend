@@ -1,3 +1,8 @@
-import redux from 'redux';
+import { createStore } from 'redux';
+import Reducer from './reducer';
 
-const store = redux.createStore;
+const state = {
+  isLogged: false,
+};
+
+export default store = createStore(Reducer, state);

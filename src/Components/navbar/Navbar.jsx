@@ -194,6 +194,16 @@ export default function Navbar() {
             >
               About us
             </Button>
+            <Button
+              component={Link}
+              to="/teacher"
+              className={classes.button}
+              onClick={() => {
+                setishome(false);
+              }}
+            >
+              Teacher
+            </Button>
           </div>
           <div className={classes.logo_container}>
             <a href="https://www.ieeesbnitdgp.com/">

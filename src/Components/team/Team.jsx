@@ -15,7 +15,7 @@ const useStyles = makeStyles(() => ({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    margin: '1em 1em',
+    // margin: '1em 1em',
   },
   card: {
     display: 'flex',

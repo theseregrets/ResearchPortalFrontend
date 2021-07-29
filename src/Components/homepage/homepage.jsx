@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Homepage() {
   const classes = useStyles();
   const log = useSelector((state) => state.isLogged);
-
+  console.log(log);
   return (
     <div>
       <section>

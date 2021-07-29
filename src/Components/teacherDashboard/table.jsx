@@ -34,15 +34,6 @@ function Row(props) {
   return (
     <>
       <TableRow className={classes.root}>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
         <TableCell component="th" scope="row">
           {row.name}
         </TableCell>
@@ -58,13 +49,22 @@ function Row(props) {
             Reject
           </Button>
         </TableCell>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
-                SOP
+                Statement of Purpose
               </Typography>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
@@ -110,12 +110,12 @@ export default function ApplicationTable() {
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell>SOP</TableCell>
             <TableCell>Name</TableCell>
             <TableCell align="right">Dept</TableCell>
             <TableCell align="right">Year</TableCell>
             <TableCell align="right">CGPA</TableCell>
             <TableCell align="right">Reject</TableCell>
+            <TableCell>SOP</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

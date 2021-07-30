@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
-import GoogleButton from 'react-google-button';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -19,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '50vw',
     margin: 'auto',
-    height: '80vh',
+    marginBottom: '3rem',
+    height: '100vh',
     display: 'flex',
     flexDirection: 'column',
     [theme.breakpoints.down('sm')]: {
@@ -48,9 +51,38 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Signup() {
   const classes = useStyles();
+  const history = useHistory();
+  const [value, setValue] = React.useState();
+  const dispatch = useDispatch();
+  const data = {};
+  function setData(event, key) {
+    data[key] = event.target.value;
+  }
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+    console.log(newValue);
+  };
 
   const onSignup = () => {
-    alert('Signed In');
+    fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.username) {
+          history.push('/login');
+        } else {
+          alert('registration failed');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -61,37 +93,80 @@ export default function Signup() {
       <Typography variant="h3" align="center">
         Sign Up
       </Typography>
-      <TextField
-        required
-        className={classes.field}
-        id="outlined-required"
-        label="Full Name"
-        variant="outlined"
-      />
-      <TextField
-        required
-        className={classes.field}
-        id="outlined-required"
-        label="Email"
-        variant="outlined"
-      />
-      <TextField
-        required
-        className={classes.field}
-        id="outlined-required"
-        label="Password"
-        variant="outlined"
-      />
-      <Button
-        className={classes.field}
-        color="primary"
-        variant="contained"
-        component={Link}
-        to="/signup"
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        indicatorColor="primary"
+        textColor="primary"
+        centered
       >
-        Sign Up
-      </Button>
-      <GoogleButton className={classes.field} onClick={() => onSignup()} />
+        <Tab label="Student" />
+        <Tab label="Faculty" />
+      </Tabs>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <TextField
+          required
+          className={classes.field}
+          id="outlined-required"
+          label="User Name"
+          variant="outlined"
+          onChange={(event) => setData(event, 'username')}
+        />
+        <TextField
+          required
+          type="email"
+          className={classes.field}
+          id="outlined-required"
+          label="Email"
+          variant="outlined"
+          onChange={(event) => setData(event, 'email')}
+        />
+        <TextField
+          required
+          className={classes.field}
+          id="outlined-required"
+          label="First Name"
+          variant="outlined"
+          onChange={(event) => setData(event, 'first_name')}
+        />
+        <TextField
+          required
+          className={classes.field}
+          id="outlined-required"
+          label="Last Name"
+          variant="outlined"
+          onChange={(event) => setData(event, 'last_name')}
+        />
+        <TextField
+          required
+          type="password"
+          className={classes.field}
+          id="outlined-required"
+          label="Password"
+          variant="outlined"
+          onChange={(event) => setData(event, 'password')}
+        />
+        <TextField
+          required
+          type="password"
+          className={classes.field}
+          id="outlined-required"
+          label="Confirm Password"
+          variant="outlined"
+          onChange={(event) => setData(event, 'password2')}
+        />
+        <Button
+          type="submit"
+          className={classes.field}
+          color="primary"
+          variant="contained"
+          onClick={() => {
+            onSignup();
+          }}
+        >
+          Sign Up
+        </Button>
+      </form>
     </Paper>
   );
 }

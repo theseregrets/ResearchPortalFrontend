@@ -108,7 +108,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Homepage() {
   const classes = useStyles();
-
   return (
     <div>
       <section>

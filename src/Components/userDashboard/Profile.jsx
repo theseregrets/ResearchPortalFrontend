@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
+    color: 'white',
   },
   profile: {
     width: '80%',

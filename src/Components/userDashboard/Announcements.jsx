@@ -10,6 +10,7 @@ const useStyles = makeStyles(() => ({
   title: {
     textAlign: 'center',
     padding: '10px',
+    color: 'white',
   },
 }));
 

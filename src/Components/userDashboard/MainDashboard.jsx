@@ -13,6 +13,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: '100vh',
     flex: '1',
+    '& a': {
+      '&:hover': {
+        color: 'white',
+      },
+    },
   },
   msg: {
     margin: 'auto',
@@ -39,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginTop: '50px',
     textAlign: 'center',
+    color: 'white',
   },
   btn: {
     display: 'block',

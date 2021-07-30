@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
+    color: 'white',
   },
   btnContainer: {
     display: 'flex',

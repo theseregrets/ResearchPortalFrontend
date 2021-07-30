@@ -33,6 +33,12 @@ import BottomNavFix from './BottomNavFix';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+
+    // for sidenav
+    '& .MuiDrawer-docked': {
+      backgroundColor: 'white',
+      borderRight: '1px solid rgba(0, 0, 0, 0.12)',
+    },
   },
   toolbar: {
     paddingRight: 24, // keep right padding when drawer closed
@@ -54,10 +60,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
-    // position: 'relative',
     position: 'sticky',
-    top: '0',
-    height: '100vh',
+    top: '80px',
+    border: '0',
+    height: 'auto',
     whiteSpace: 'nowrap',
     width: '240px',
     transition: theme.transitions.create('width', {

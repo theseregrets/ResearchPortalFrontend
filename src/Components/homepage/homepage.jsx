@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     [theme.breakpoints.down('sm')]: {
-      margin: '2vh 10vw 0vh 0vw',
+      margin: '6vh 10vw 0vh 0vw',
     },
   },
   secondbox: {
@@ -102,6 +102,7 @@ const useStyles = makeStyles((theme) => ({
     // textShadow: '10px 10px 20px black',
     [theme.breakpoints.down('sm')]: {
       textAlign: 'center',
+      padding: '5px',
     },
   },
 }));

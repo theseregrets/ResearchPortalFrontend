@@ -17,6 +17,12 @@ const useStyles = makeStyles(() => ({
   },
   dash: {
     display: 'flex',
+
+    // for sidenav
+    '& .MuiDrawer-docked': {
+      backgroundColor: 'white',
+      borderRight: '1px solid rgba(0, 0, 0, 0.12)',
+    },
   },
 }));
 

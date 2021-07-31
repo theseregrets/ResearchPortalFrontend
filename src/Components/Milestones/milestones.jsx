@@ -7,8 +7,8 @@ import Carousel from './Carousel';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    background:
-      'linear-gradient(to bottom, #fff 0%, #e9f0f5 25%,#e9f0f5 75% ,#fff 100%)',
+    // background:
+    //   'linear-gradient(to bottom, #fff 0%, #e9f0f5 25%,#e9f0f5 75% ,#fff 100%)',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
       overflowX: 'hidden',
@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  heading: {
+    color: 'white',
+  },
 }));
 
 export default function Milestones() {
@@ -35,7 +38,7 @@ export default function Milestones() {
   return (
     <Grid container className={classes.root}>
       <Grid item align="center" spacing={1} xs={12}>
-        <h1>Milestones</h1>
+        <h1 className={classes.heading}>Milestones</h1>
       </Grid>
       <Carousel />
       <FaDotCircle className={classes.logo} />

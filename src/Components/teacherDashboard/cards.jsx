@@ -24,7 +24,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginLeft: '40px',
   },
   cardTextTitle: {
     color: '#1414b0',
@@ -60,9 +59,6 @@ const useStyles = makeStyles((theme) => ({
     },
     img: {
       margin: 'auto',
-    },
-    cardText: {
-      margin: '20px 0 0 0',
     },
     cardTextTitle: {
       fontSize: '16px',

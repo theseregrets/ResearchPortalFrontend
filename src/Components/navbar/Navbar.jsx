@@ -169,11 +169,7 @@ export default function Navbar() {
           </div>
           <div className={classes.logo_container}>
             <a href="https://www.ieeesbnitdgp.com/">
-              <img
-                src={ishome ? Logow : Logob}
-                alt="ieeelogo"
-                className={classes.logo2}
-              />
+              <img src={Logow} alt="ieeelogo" className={classes.logo2} />
             </a>
           </div>
           <div className={classes.menu_container}>

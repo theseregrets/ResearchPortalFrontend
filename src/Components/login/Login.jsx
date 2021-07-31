@@ -76,6 +76,7 @@ export default function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.access) {
+          console.log(data);
           dispatch(login(data));
           history.push('/');
         } else {

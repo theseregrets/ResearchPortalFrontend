@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   animatedNumber: {
     transition: '0.8s ease-out',
-    color: '#4499fe',
+    color: 'rgb(91, 117, 202)',
     fontSize: '3rem',
     textAlign: 'center',
     alignItems: 'center',
@@ -103,7 +103,14 @@ export default function AboutUs() {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={4} spacing={1} align="center">
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          spacing={1}
+          align="center"
+          style={{ backgroundColor: 'white' }}
+        >
           <Box borderRight={0.1}>
             <AnimatedNumber
               className={classes.animatedNumber}
@@ -118,7 +125,14 @@ export default function AboutUs() {
             </Typography>
           </Box>
         </Grid>
-        <Grid item xs={12} sm={4} spacing={1} align="center">
+        <Grid
+          item
+          xs={12}
+          sm={4}
+          spacing={1}
+          align="center"
+          style={{ backgroundColor: 'white' }}
+        >
           <Box>
             <AnimatedNumber
               className={classes.animatedNumber}

@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  heading: {
+    color: 'white',
+  },
 }));
 
 export default function Milestones() {
@@ -35,7 +38,7 @@ export default function Milestones() {
   return (
     <Grid container className={classes.root}>
       <Grid item align="center" spacing={1} xs={12}>
-        <h1>Milestones</h1>
+        <h1 className={classes.heading}>Milestones</h1>
       </Grid>
       <Carousel />
       <FaDotCircle className={classes.logo} />

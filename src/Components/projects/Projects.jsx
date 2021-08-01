@@ -139,7 +139,7 @@ export default function Projects() {
           </div>
         </AccordionSummary>
       </Accordion> */}
-      <Accordion defaultExpanded className={classes.accord} elevation={3}>
+      <Accordion className={classes.accord} elevation={3}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1c-content"

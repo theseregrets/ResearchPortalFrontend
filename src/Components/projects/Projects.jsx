@@ -114,7 +114,7 @@ export default function Projects() {
       />
       {project.length ? (
         project.map((proj) => (
-          <Accordion defaultExpanded className={classes.accord} elevation={3}>
+          <Accordion className={classes.accord} elevation={3}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1c-content"

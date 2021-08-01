@@ -280,6 +280,7 @@ export default function FilterProject(props) {
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"
               size="small"
+              color="primary"
               onClick={() => {}}
               onDelete={() => {
                 handleDelete(ele, 'dept');
@@ -295,6 +296,7 @@ export default function FilterProject(props) {
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"
               size="small"
+              color="primary"
               onClick={() => {}}
               onDelete={() => {
                 handleDelete(ele, 'prof');
@@ -310,6 +312,7 @@ export default function FilterProject(props) {
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"
               size="small"
+              color="primary"
               onClick={() => {}}
               onDelete={() => {
                 handleDelete(ele, 'tag');

@@ -63,7 +63,6 @@ const useStyle = makeStyles((theme) => ({
   accord_detail: {
     flexWrap: 'wrap',
     gap: '10px',
-    boxShadow: '0px 1px 14px 0px rgba(0,0,0,0.12)',
     // width: '500px',
     BackgroundColor: 'white',
 
@@ -219,7 +218,7 @@ export default function FilterProject(props) {
         Reset
       </Button>
 
-      <Accordion elevation={0} className={classes.accord}>
+      <Accordion elevation={3} className={classes.accord}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Icon>
             <FilterListIcon className={classes.icon} />

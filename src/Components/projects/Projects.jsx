@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable react/button-has-type */
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -10,12 +11,16 @@ import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import FilterProject from './filterProject';
+import { projects } from '../../Data/proj';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '80%',
-    margin: 'auto',
-    marginTop: '5rem',
+    margin: '5rem auto',
+    minHeight: '80vh',
+    [theme.breakpoints.down('sm')]: {
+      width: '90%',
+    },
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -35,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   column: {
-    flexBasis: '33.33%',
+    flex: '1 1 0',
   },
   helper: {
     borderLeft: `2px solid ${theme.palette.divider}`,
@@ -49,6 +54,10 @@ const useStyles = makeStyles((theme) => ({
     margin: '1rem 2rem 1rem 2rem',
     padding: '1rem',
     borderRadius: '1rem',
+
+    [theme.breakpoints.down('sm')]: {
+      margin: '0',
+    },
   },
   link: {
     color: theme.palette.primary.main,
@@ -69,15 +78,6 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: theme.shadows[7],
     },
   },
-  clip: {
-    position: 'fixed',
-    backgroundColor: ' rgb(91, 117, 202)',
-    width: '100%',
-    height: '100vh',
-    clipPath: 'circle(100% at 100% -40%)',
-    top: 0,
-    zIndex: -2,
-  },
   rings: {
     position: 'fixed',
     backgroundColor: 'rgb(91, 117, 202)',
@@ -88,6 +88,11 @@ const useStyles = makeStyles((theme) => ({
   },
   accord_sum: {
     backgroundColor: 'rgba(217, 243, 247, 0.05)',
+
+    '& .MuiAccordionSummary-content': {
+      flexWrap: 'wrap',
+      gap: '10px',
+    },
   },
   project_chip: {
     marginRight: '3px',
@@ -97,414 +102,73 @@ const useStyles = makeStyles((theme) => ({
 export default function Projects() {
   const classes = useStyles();
 
+  const allProjects = projects;
+  const [project, setProject] = useState(projects);
+
   return (
-    // <TableContainer component={Paper} className="w-75 ml-auto mr-auto">
-    //   <Table className={classes.table} aria-label="simple table">
-    //     <TableHead>
-    //       <TableRow>
-    //         <TableCell align="center">Project Name</TableCell>
-    //         <TableCell align="center">Faculty Name</TableCell>
-    //         <TableCell align="center">Department</TableCell>
-    //       </TableRow>
-    //     </TableHead>
-    //     <TableBody>
-    //       {projects.map((row) => (
-    //         <TableRow key={row.name}>
-    //           <TableCell align="center" component="th" scope="row">
-    //             {row.name}
-    //           </TableCell>
-    //           <TableCell align="center">{row.faculty}</TableCell>
-    //           <TableCell align="center">{row.dept}</TableCell>
-    //         </TableRow>
-    //       ))}
-    //     </TableBody>
-    //   </Table>
-    // </TableContainer>
     <div className={classes.root}>
-      <div className={classes.clip} />
-      {/* <div className={classes.rings}>
-        <div className={classes.innerRing} />
-      </div> */}
-      <FilterProject />
-      {/* <Accordion className={classes.accord} elevation={3}>
-        <AccordionSummary className={classes.accord_sum}>
-          <div className={classes.column}>
-            <Typography variant="h5">Project Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Typography variant="h5">Prof Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Typography variant="h5">Department</Typography>
-          </div>
-        </AccordionSummary>
-      </Accordion> */}
-      <Accordion defaultExpanded className={classes.accord} elevation={3}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-          className={classes.accord_sum}
-        >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Project Name</Typography>
-            <Chip
-              label="AI & ML "
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="BlockChain"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="web development"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Professor Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Chip label="computer Science" color="primary" />
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className={classes.details}>
-          <div>
-            <Typography className={classes.secondaryHeading}>
-              Project Heading
-            </Typography>
+      <FilterProject
+        project={project}
+        setProject={setProject}
+        allProjects={allProjects}
+      />
+      {project.length ? (
+        project.map((proj) => (
+          <Accordion defaultExpanded className={classes.accord} elevation={3}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1c-content"
+              id="panel1c-header"
+              className={classes.accord_sum}
+            >
+              <div className={classes.column}>
+                <Typography className={classes.heading}>{proj.name}</Typography>
+                {proj.tags.map((tag) => (
+                  <Chip
+                    label={tag}
+                    color="primary"
+                    variant="outlined"
+                    size="small"
+                    className={classes.project_chip}
+                  />
+                ))}
+              </div>
+              <div className={classes.column}>
+                <Typography className={classes.heading}>{proj.prof}</Typography>
+              </div>
+              <div className={classes.column}>
+                <Chip label={proj.dept} color="primary" />
+              </div>
+            </AccordionSummary>
+            <AccordionDetails className={classes.details}>
+              <div>
+                <Typography className={classes.secondaryHeading}>
+                  Project Heading
+                </Typography>
+                <Divider />
+                <div className={classes.proj_para}>
+                  <Typography>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
+                    in reprehenderit possimus maxime laborum laboriosam eius
+                    laboreaut, vero ad aperiam est officiis, nostrum nihil minus
+                    commodi ipsum cumque!
+                  </Typography>
+                </div>
+              </div>
+            </AccordionDetails>
             <Divider />
-            <div className={classes.proj_para}>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et in
-                reprehenderit possimus maxime laborum laboriosam eius laboreaut,
-                vero ad aperiam est officiis, nostrum nihil minus accusamus,
-                commodi ipsum cumque!
-              </Typography>
-            </div>
-          </div>
-        </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="medium" variant="contained" color="primary">
-            Apply
-          </Button>
-        </AccordionActions>
-      </Accordion>
-      <Accordion className={classes.accord} elevation={3}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-          className={classes.accord_sum}
-        >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Project Name</Typography>
-            <Chip
-              label="AI & ML "
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="BlockChain"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="web development"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Professor Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Chip label="electronic & communication" color="primary" />
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className={classes.details}>
-          <div>
-            <Typography className={classes.secondaryHeading}>
-              Project Heading
-            </Typography>
-            <Divider />
-            <div className={classes.proj_para}>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et in
-                reprehenderit possimus maxime laborum laboriosam eius laboreaut,
-                vero ad aperiam est officiis, nostrum nihil minus accusamus,
-                commodi ipsum cumque!
-              </Typography>
-            </div>
-          </div>
-        </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="medium" variant="contained" color="primary">
-            Apply
-          </Button>
-        </AccordionActions>
-      </Accordion>
-      <Accordion className={classes.accord} elevation={3}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-          className={classes.accord_sum}
-        >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Project Name</Typography>
-            <Chip
-              label="AI & ML "
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="BlockChain"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="web development"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Professor Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Chip label="biotech" color="primary" />
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className={classes.details}>
-          <div>
-            <Typography className={classes.secondaryHeading}>
-              Project Heading
-            </Typography>
-            <Divider />
-            <div className={classes.proj_para}>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et in
-                reprehenderit possimus maxime laborum laboriosam eius laboreaut,
-                vero ad aperiam est officiis, nostrum nihil minus accusamus,
-                commodi ipsum cumque!
-              </Typography>
-            </div>
-          </div>
-        </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="medium" variant="contained" color="primary">
-            Apply
-          </Button>
-        </AccordionActions>
-      </Accordion>
-      <Accordion className={classes.accord} elevation={3}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-          className={classes.accord_sum}
-        >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Project Name</Typography>
-            <Chip
-              label="AI & ML "
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="BlockChain"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="web development"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Professor Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Chip label="electrical" color="primary" />
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className={classes.details}>
-          <div>
-            <Typography className={classes.secondaryHeading}>
-              Project Heading
-            </Typography>
-            <Divider />
-            <div className={classes.proj_para}>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et in
-                reprehenderit possimus maxime laborum laboriosam eius laboreaut,
-                vero ad aperiam est officiis, nostrum nihil minus accusamus,
-                commodi ipsum cumque!
-              </Typography>
-            </div>
-          </div>
-        </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="medium" variant="contained" color="primary">
-            Apply
-          </Button>
-        </AccordionActions>
-      </Accordion>
-      <Accordion className={classes.accord} elevation={3}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-          className={classes.accord_sum}
-        >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Project Name</Typography>
-            <Chip
-              label="AI & ML "
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="BlockChain"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="web development"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Professor Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Chip label="metallurgy" color="primary" />
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className={classes.details}>
-          <div>
-            <Typography className={classes.secondaryHeading}>
-              Project Heading
-            </Typography>
-            <Divider />
-            <div className={classes.proj_para}>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et in
-                reprehenderit possimus maxime laborum laboriosam eius laboreaut,
-                vero ad aperiam est officiis, nostrum nihil minus accusamus,
-                commodi ipsum cumque!
-              </Typography>
-            </div>
-          </div>
-        </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="medium" variant="contained" color="primary">
-            Apply
-          </Button>
-        </AccordionActions>
-      </Accordion>
-      <Accordion className={classes.accord} elevation={3}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1c-content"
-          id="panel1c-header"
-          className={classes.accord_sum}
-        >
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Project Name</Typography>
-            <Chip
-              label="AI & ML "
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="BlockChain"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-            <Chip
-              label="web development"
-              color="primary"
-              variant="outlined"
-              size="small"
-              className={classes.project_chip}
-            />
-          </div>
-          <div className={classes.column}>
-            <Typography className={classes.heading}>Professor Name</Typography>
-          </div>
-          <div className={classes.column}>
-            <Chip label="civil" color="primary" />
-          </div>
-        </AccordionSummary>
-        <AccordionDetails className={classes.details}>
-          <div>
-            <Typography className={classes.secondaryHeading}>
-              Project Heading
-            </Typography>
-            <Divider />
-            <div className={classes.proj_para}>
-              <Typography>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et in
-                reprehenderit possimus maxime laborum laboriosam eius laboreaut,
-                vero ad aperiam est officiis, nostrum nihil minus accusamus,
-                commodi ipsum cumque!
-              </Typography>
-            </div>
-          </div>
-        </AccordionDetails>
-        <Divider />
-        <AccordionActions>
-          <Button size="medium" variant="contained" color="primary">
-            Apply
-          </Button>
-        </AccordionActions>
-      </Accordion>
+            <AccordionActions>
+              <Button size="medium" variant="contained" color="primary">
+                Apply
+              </Button>
+            </AccordionActions>
+          </Accordion>
+        ))
+      ) : (
+        <Typography variant="h4" align="center">
+          No matching projects
+        </Typography>
+      )}
     </div>
   );
 }

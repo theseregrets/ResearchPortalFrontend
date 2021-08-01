@@ -13,10 +13,14 @@ import AnimatedNumber from 'react-animated-number';
 const useStyles = makeStyles((theme) => ({
   heading: {
     textDecoration: 'underline',
+    color: 'white',
   },
   paragraph: {
-    padding: '20px 5px',
-    margin: 'auto 2rem',
+    padding: '20px',
+    margin: '2rem 2rem',
+    backgroundColor: 'white',
+    boxShadow: theme.shadows[4],
+    borderRadius: '10px',
   },
   animatedNumber: {
     transition: '0.8s ease-out',
@@ -40,6 +44,9 @@ const useStyles = makeStyles((theme) => ({
   align: {
     marginLeft: 'auto',
     marginRight: 'auto',
+  },
+  desc: {
+    padding: '10px',
   },
 }));
 
@@ -65,8 +72,13 @@ export default function AboutUs() {
           </Typography>
         </Grid>
 
-        <Grid item xs={12} className={classes.paragraph}>
-          <Typography paragraph variant="body">
+        <Grid
+          item
+          xs={10}
+          className={classes.paragraph}
+          style={{ padding: '20px' }}
+        >
+          <Typography variant="body" className={classes.desc}>
             The IEEE Student Branch , NIT Durgapur is a society of enthusiasts
             aimed at promoting research-related activities in the campus. We are
             a direct handshake to IEEE, an international body that allows
@@ -169,19 +181,10 @@ export default function AboutUs() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
-                  fullWidth
-                  type="tel"
-                  placeholder="Enter phone number"
-                  label="Phone"
-                  variant="outlined"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
                   label="Message"
                   fullWidth
                   multiline
-                  rows={4}
+                  rows={8}
                   placeholder="Type your message here"
                   variant="outlined"
                   required

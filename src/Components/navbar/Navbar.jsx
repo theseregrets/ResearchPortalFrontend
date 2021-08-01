@@ -82,11 +82,11 @@ const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: theme.spacing(1),
     },
-    color: props.ishome ? 'white' : 'blue',
+    color: 'white',
     fontSize: '15px',
 
     '&:hover': {
-      color: props.ishome ? 'white' : 'blue',
+      color: 'white',
     },
   }),
   menu_container: {
@@ -99,7 +99,7 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   menu_icon: (props) => ({
-    color: props.ishome ? 'white' : 'blue',
+    color: 'white',
     fontSize: '3rem',
   }),
   drawer_logo_container: {
@@ -118,7 +118,6 @@ const useStyle = makeStyles((theme) => ({
 
 export default function Navbar() {
   const [isOpen, toggle] = useState(false);
-  const [ishome, setishome] = useState(true);
   const [scroll, setScroll] = useState(false);
 
   useEffect(() => {
@@ -129,13 +128,12 @@ export default function Navbar() {
     };
   }, []);
 
-  const classes = useStyle({ ishome });
+  const classes = useStyle();
 
   const history = useHistory();
   function pushTo(path) {
     history.push(path);
     toggle(false);
-    setishome(false);
   }
 
   return (
@@ -143,12 +141,7 @@ export default function Navbar() {
       <AppBar position="none" color="transparent" elevation="0">
         <Toolbar>
           <div className={classes.logo_container}>
-            <Link
-              to="/"
-              onClick={() => {
-                setishome(true);
-              }}
-            >
+            <Link to="/">
               <img src={RP} alt="logo" className={classes.logo1} />
             </Link>
           </div>
@@ -158,60 +151,25 @@ export default function Navbar() {
               component={Link}
               to="/milestones"
               className={classes.button}
-              onClick={() => {
-                setishome(false);
-              }}
             >
               Milestone
             </Button>
-            <Button
-              component={Link}
-              to="/team"
-              className={classes.button}
-              onClick={() => {
-                setishome(false);
-              }}
-            >
+            <Button component={Link} to="/team" className={classes.button}>
               Team
             </Button>
-            <Button
-              component={Link}
-              to="/dashboard"
-              className={classes.button}
-              onClick={() => {
-                setishome(false);
-              }}
-            >
+            <Button component={Link} to="/dashboard" className={classes.button}>
               Dashboard
             </Button>
-            <Button
-              component={Link}
-              to="/about-us"
-              className={classes.button}
-              onClick={() => {
-                setishome(false);
-              }}
-            >
+            <Button component={Link} to="/about-us" className={classes.button}>
               About us
             </Button>
-            <Button
-              component={Link}
-              to="/teacher"
-              className={classes.button}
-              onClick={() => {
-                setishome(false);
-              }}
-            >
+            <Button component={Link} to="/teacher" className={classes.button}>
               Teacher
             </Button>
           </div>
           <div className={classes.logo_container}>
             <a href="https://www.ieeesbnitdgp.com/">
-              <img
-                src={ishome ? Logow : Logob}
-                alt="ieeelogo"
-                className={classes.logo2}
-              />
+              <img src={Logow} alt="ieeelogo" className={classes.logo2} />
             </a>
           </div>
           <div className={classes.menu_container}>

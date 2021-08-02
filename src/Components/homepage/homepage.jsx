@@ -112,7 +112,6 @@ export default function Homepage() {
   return (
     <div>
       <section>
-        <div className="circle-clip" />
         <div className="rings1">
           <div className="inner-ring1" />
         </div>

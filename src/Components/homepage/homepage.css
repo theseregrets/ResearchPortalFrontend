@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 
 .circle-clip {
-  position: absolute;
+  position: fixed;
   /* background-image: linear-gradient(0deg , rgb(142, 45, 226)50%, rgb(161, 161, 161)); */
   background-color: rgb(91, 117, 202);
   width: 100%;

@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MainDashboard from './MainDashboard';
 import Statement from './ResearchStatement';
-import Announcements from './Announcements';
 import Profile from './Profile';
 import SideNav from './Sidenav';
 import BottomNav from './BottomNav';
@@ -76,9 +75,6 @@ export default function Dashboard() {
             </Route>
             <Route path={`${path}/research-statement`}>
               <Statement />
-            </Route>
-            <Route path={`${path}/announcements`}>
-              <Announcements />
             </Route>
             <Route path={`${path}/profile`}>
               <Profile />

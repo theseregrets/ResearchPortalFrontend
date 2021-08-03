@@ -46,7 +46,7 @@ function App() {
             <Route path="/dashboard">
               <UserDashboard />
             </Route>
-            <Route exact path="/teacher">
+            <Route path="/teacher">
               <DashboardTeacher />
             </Route>
           </Switch>

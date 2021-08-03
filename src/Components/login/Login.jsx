@@ -7,8 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -47,6 +45,11 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 'auto',
       marginTop: '40px',
     },
+  },
+  form: {
+    width: '40vw',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 }));
 
@@ -96,17 +99,7 @@ export default function Login() {
       <Typography variant="h3" align="center">
         Login
       </Typography>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        centered
-      >
-        <Tab label="Student" />
-        <Tab label="Faculty" />
-      </Tabs>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
         <TextField
           required
           className={classes.field}
@@ -136,16 +129,13 @@ export default function Login() {
         >
           Login
         </Button>
-        <Button
-          className={classes.field}
-          color="primary"
-          variant="contained"
-          component={Link}
-          to="/signup"
-        >
-          Sign Up
-        </Button>
       </form>
+      <h5>
+        Don't have an account?
+        <span>
+          <Link to="/signup">Signup</Link>
+        </span>
+      </h5>
     </Paper>
   );
 }

@@ -1,11 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
@@ -46,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 'auto',
       marginTop: '40px',
     },
+  },
+  form: {
+    width: '40vw',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 }));
 
@@ -93,17 +96,7 @@ export default function Signup() {
       <Typography variant="h3" align="center">
         Sign Up
       </Typography>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        centered
-      >
-        <Tab label="Student" />
-        <Tab label="Faculty" />
-      </Tabs>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
         <TextField
           required
           className={classes.field}
@@ -167,6 +160,12 @@ export default function Signup() {
           Sign Up
         </Button>
       </form>
+      <h5>
+        Already have an account?{' '}
+        <span>
+          <Link to="/login">Login</Link>
+        </span>
+      </h5>
     </Paper>
   );
 }

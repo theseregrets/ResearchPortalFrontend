@@ -82,7 +82,7 @@ export default function MainDashboard() {
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
-        <h4 className={classes.txt}>Welcome back Nitin!</h4>
+        <h4 className={classes.txt}>Welcome back User!</h4>
       </div>
       <h2 className={classes.title}>Projects Applied</h2>
       <Button

@@ -11,6 +11,8 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import FilterProject from './filterProject';
 
 // import { projects } from '../../Data/proj';
@@ -104,8 +106,9 @@ const useStyles = makeStyles((theme) => ({
 let projs = [];
 export default function Projects() {
   const classes = useStyles();
-  console.log(projs);
+  const state = useSelector((state) => state.profile);
   const [project, setProject] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     if (!projs.length) {
@@ -125,6 +128,30 @@ export default function Projects() {
         });
     }
   }, []);
+
+  function applyforProject(slug) {
+    if (state.isLogged) {
+      fetch(
+        `https://ieeenitdgp.pythonanywhere.com//api/projects/apply/${slug}/`,
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${state.jwt}`,
+          },
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // this is console.log but the student cannot apply if CV is not downloaded.
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      history.push('/login');
+    }
+  }
 
   return (
     <div className={classes.root}>
@@ -182,7 +209,7 @@ export default function Projects() {
                 size="medium"
                 variant="contained"
                 color="primary"
-                onClick={(proj) => {
+                onClick={(event) => {
                   applyforProject(proj.slug);
                 }}
               >

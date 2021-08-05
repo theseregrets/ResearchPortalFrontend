@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile() {
   const classes = useStyles();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.profile);
 
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState('default');

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
@@ -97,12 +97,32 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile() {
   const classes = useStyles();
-  const token = useSelector((state) => state.jwt);
+  const state = useSelector((state) => state);
 
   const [isEditing, setIsEditing] = useState(false);
-  const [branch, setbranch] = useState('CS');
+  const [branch, setbranch] = useState('default');
   const [cgpa, setcgpa] = useState(null);
   const [contact, setContact] = useState(null);
+
+  useEffect(() => {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/user/student/details/${state.username}/`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // store the user detail in redux.
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const [n, sn] = useState(localStorage.getItem('name') || '');
   const [p, sp] = useState(localStorage.getItem('phno') || '');
@@ -123,7 +143,7 @@ export default function Profile() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${state.jwt}`,
         },
         body: JSON.stringify(data),
       }
@@ -242,17 +262,19 @@ export default function Profile() {
         <div className={classes.info}>
           <div className={classes.infoContainer}>
             <h4>Basic details</h4>
-            {/* <TextField
+            <TextField
               required
+              disabled
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Name"
+              value={state.first_name + state.last_name}
               defaultValue={n}
               InputProps={{
-                readOnly: !isEditing,
+                readOnly: true,
               }}
               variant="outlined"
               onChange={handleChange}
-            /> */}
+            />
             <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
@@ -261,39 +283,41 @@ export default function Profile() {
               InputLabelProps={{
                 shrink: true,
               }}
-              // InputProps={{
-              //   readOnly: !isEditing,
-              // }}
+              InputProps={{
+                readOnly: !isEditing,
+              }}
               variant="outlined"
               onChange={(event) => {
                 setContact(event.target.value);
               }}
             />
-            {/* <TextField
+            <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Email"
+              value={state.email}
               defaultValue={e}
               InputProps={{
-                readOnly: !isEditing,
+                readOnly: true,
               }}
               variant="outlined"
-            /> */}
+            />
           </div>
 
           <div className={classes.infoContainer}>
             <h4>Academic details</h4>
-            {/* <TextField
+            <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="College"
+              value="NIT Durgapur"
               defaultValue={c}
               InputProps={{
-                readOnly: !isEditing,
+                readOnly: true,
               }}
               variant="outlined"
-            /> */}
-            {/* <TextField
+            />
+            <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="Semester"
@@ -306,7 +330,7 @@ export default function Profile() {
                 readOnly: !isEditing,
               }}
               variant="outlined"
-            /> */}
+            />
             <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
@@ -316,9 +340,9 @@ export default function Profile() {
               InputLabelProps={{
                 shrink: true,
               }}
-              // InputProps={{
-              //   readOnly: !isEditing,
-              // }}
+              InputProps={{
+                readOnly: !isEditing,
+              }}
               variant="outlined"
               onChange={(event) => {
                 setcgpa(event.target.value);
@@ -332,6 +356,9 @@ export default function Profile() {
               variant="outlined"
               onChange={(event) => {
                 setbranch(event.target.value);
+              }}
+              InputProps={{
+                readOnly: !isEditing,
               }}
             >
               {Branches.map((option) => (

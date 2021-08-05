@@ -178,7 +178,14 @@ export default function Projects() {
             </AccordionDetails>
             <Divider />
             <AccordionActions>
-              <Button size="medium" variant="contained" color="primary">
+              <Button
+                size="medium"
+                variant="contained"
+                color="primary"
+                onClick={(proj) => {
+                  applyforProject(proj.slug);
+                }}
+              >
                 Apply
               </Button>
             </AccordionActions>

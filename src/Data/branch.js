@@ -16,4 +16,8 @@ export const Branches = [
     value: 'CE',
     label: 'Civil Engineerign',
   },
+  {
+    value: 'default',
+    label: null,
+  },
 ];

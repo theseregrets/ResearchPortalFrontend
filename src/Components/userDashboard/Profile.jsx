@@ -97,7 +97,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile() {
   const classes = useStyles();
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.profile);
 
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState('default');
@@ -116,7 +116,6 @@ export default function Profile() {
     )
       .then((res) => res.json())
       .then((data) => {
-        // store the user detail in redux.
         console.log(data);
       })
       .catch((err) => {

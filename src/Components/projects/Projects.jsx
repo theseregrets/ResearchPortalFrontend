@@ -1,5 +1,5 @@
 /* eslint-disable react/button-has-type */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
@@ -104,6 +104,24 @@ export default function Projects() {
 
   const allProjects = projects;
   const [project, setProject] = useState(projects);
+  let projs = [];
+
+  useEffect(() => {
+    fetch('https://ieeenitdgp.pythonanywhere.com/api/projects/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        projs = data.results;
+        console.log(projs);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
 
   return (
     <div className={classes.root}>

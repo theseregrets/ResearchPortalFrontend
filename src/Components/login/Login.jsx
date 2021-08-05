@@ -21,9 +21,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '50vw',
     margin: 'auto',
-    height: '70vh',
+    height: '60vh',
     display: 'flex',
     flexDirection: 'column',
+    marginBottom: '3rem',
     [theme.breakpoints.down('sm')]: {
       width: '90vw',
       margin: 'auto',
@@ -130,7 +131,7 @@ export default function Login() {
           Login
         </Button>
       </form>
-      <h5>
+      <h5 style={{ textAlign: 'center', marginTop: '20px' }}>
         Don't have an account?
         <span>
           <Link to="/signup">Signup</Link>

@@ -12,6 +12,7 @@ const Auth = (initialState = state, action) => {
         username: action.username,
         first_name: action.first_name,
         last_name: action.last_name,
+        email: action.email,
       };
     case 'LOGOUT':
       return {

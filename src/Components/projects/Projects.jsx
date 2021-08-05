@@ -108,14 +108,14 @@ export default function Projects() {
 
   useEffect(() => {
     fetch('https://ieeenitdgp.pythonanywhere.com/api/projects/', {
-      method: 'POST',
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        projs = data.results;
+        projs = data;
         console.log(projs);
       })
       .catch((error) => {

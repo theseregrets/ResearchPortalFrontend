@@ -160,7 +160,7 @@ export default function Signup() {
           Sign Up
         </Button>
       </form>
-      <h5>
+      <h5 style={{ textAlign: 'center', marginTop: '20px' }}>
         Already have an account?{' '}
         <span>
           <Link to="/login">Login</Link>

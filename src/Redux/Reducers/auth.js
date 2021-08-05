@@ -9,6 +9,9 @@ const Auth = (initialState = state, action) => {
         jwt: action.access,
         refresh: action.refresh,
         isStudent: action.isStudent,
+        username: action.username,
+        first_name: action.first_name,
+        last_name: action.last_name,
       };
     case 'LOGOUT':
       return {

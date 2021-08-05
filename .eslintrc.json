@@ -35,6 +35,6 @@
     "no-console": "off",
     "no-prototype-builtins":"off",
     "react/no-unescaped-entities": "off",
-    "camelcase":"off",
+    "camelcase":"off"
   }
 }

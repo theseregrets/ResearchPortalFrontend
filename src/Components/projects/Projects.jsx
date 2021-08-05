@@ -5,13 +5,15 @@ import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionActions from '@material-ui/core/AccordionActions';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import FilterProject from './filterProject';
-import { projects } from '../../Data/proj';
+
+// import { projects } from '../../Data/proj';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,36 +101,37 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let projs = [];
 export default function Projects() {
   const classes = useStyles();
-
-  const allProjects = projects;
-  const [project, setProject] = useState(projects);
-  let projs = [];
+  console.log(projs);
+  const [project, setProject] = useState([]);
 
   useEffect(() => {
-    fetch('https://ieeenitdgp.pythonanywhere.com/api/projects/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        projs = data.results;
-        console.log(projs);
+    if (!projs.length) {
+      fetch('https://ieeenitdgp.pythonanywhere.com/api/projects/', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  });
+        .then((res) => res.json())
+        .then((data) => {
+          projs = data;
+          setProject(projs);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, []);
 
   return (
     <div className={classes.root}>
       <FilterProject
-        project={project}
+        project={projs}
         setProject={setProject}
-        allProjects={allProjects}
+        allProjects={projs}
       />
       {project.length ? (
         project.map((proj) => (
@@ -140,8 +143,10 @@ export default function Projects() {
               className={classes.accord_sum}
             >
               <div className={classes.column}>
-                <Typography className={classes.heading}>{proj.name}</Typography>
-                {proj.tags.map((tag) => (
+                <Typography className={classes.heading}>
+                  {proj.title}
+                </Typography>
+                {/* {proj.tags.map((tag) => (
                   <Chip
                     label={tag}
                     color="primary"
@@ -149,28 +154,25 @@ export default function Projects() {
                     size="small"
                     className={classes.project_chip}
                   />
-                ))}
+                ))} */}
               </div>
               <div className={classes.column}>
-                <Typography className={classes.heading}>{proj.prof}</Typography>
+                <Typography className={classes.heading}>
+                  {proj.teacher.user.first_name + proj.teacher.user.last_name}
+                </Typography>
               </div>
               <div className={classes.column}>
-                <Chip label={proj.dept} color="primary" />
+                <Chip label={proj.teacher.branch} color="primary" />
               </div>
             </AccordionSummary>
             <AccordionDetails className={classes.details}>
               <div>
                 <Typography className={classes.secondaryHeading}>
-                  Project Heading
+                  {proj.title}
                 </Typography>
                 <Divider />
                 <div className={classes.proj_para}>
-                  <Typography>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
-                    in reprehenderit possimus maxime laborum laboriosam eius
-                    laboreaut, vero ad aperiam est officiis, nostrum nihil minus
-                    commodi ipsum cumque!
-                  </Typography>
+                  <Typography>{proj.description}</Typography>
                 </div>
               </div>
             </AccordionDetails>
@@ -183,9 +185,13 @@ export default function Projects() {
           </Accordion>
         ))
       ) : (
-        <Typography variant="h4" align="center">
-          No matching projects
-        </Typography>
+        <>
+          {!projs.length ? (
+            <CircularProgress disableShrink />
+          ) : (
+            <Typography variant="h4">No match found</Typography>
+          )}
+        </>
       )}
     </div>
   );

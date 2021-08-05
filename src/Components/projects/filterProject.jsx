@@ -16,15 +16,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import DoneIcon from '@material-ui/icons/Done';
 import { makeStyles } from '@material-ui/styles';
 
-const department = [
-  'Computer science',
-  'Electronics and communication',
-  'Electrical',
-  'Civil',
-  'Chemical',
-  'Metallurgy',
-  'Biotechnology',
-];
+const department = ['CS', 'ECE', 'EE', 'CE', 'CH', 'MM', 'BT'];
 const prof = [
   'Dr ABCD',
   'Dr EFGH',
@@ -86,6 +78,7 @@ export default function FilterProject(props) {
   const classes = useStyle();
 
   const { allProjects } = props;
+
   const [filterParameter, setFilterParameter] = useState({
     dept: [],
     prof: [],
@@ -132,7 +125,7 @@ export default function FilterProject(props) {
       if (filterParameter.dept.length !== 0) {
         filteredProjects.forEach((element) => {
           filterParameter.dept.forEach((p) => {
-            if (element.dept === p) {
+            if (element.teacher.branch === p) {
               temp.push(element);
             }
           });

@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 export default function AcadDetails() {
-  const state = useSelector((state) => state);
+  const state = useSelector((state) => state.profile);
 
   return (
     <div>

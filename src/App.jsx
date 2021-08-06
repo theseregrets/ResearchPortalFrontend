@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 import theme from './Components/theme/Theme';
 import Navbar from './Components/navbar/Navbar';
 import Footer from './Components/footer/Footer';
@@ -16,6 +17,7 @@ import UserDashboard from './Components/userDashboard/Dashboard';
 import DashboardTeacher from './Components/teacherDashboard/teacher-dashboard';
 
 function App() {
+  const state = useSelector((state) => state.profile);
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
@@ -44,10 +46,7 @@ function App() {
               <Signup />
             </Route>
             <Route path="/dashboard">
-              <UserDashboard />
-            </Route>
-            <Route path="/teacher">
-              <DashboardTeacher />
+              {state.isStudent ? <UserDashboard /> : <DashboardTeacher />}
             </Route>
           </Switch>
           <Footer />

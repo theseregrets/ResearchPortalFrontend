@@ -5,9 +5,13 @@ import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Branches } from '../../Data/branch';
 import FileDropzone from './Dropzone';
+import cv from '../../Redux/Actions/cv';
+import cont from '../../Redux/Actions/updateContacts';
+import dept from '../../Redux/Actions/updateDept';
+import cgpa from '../../Redux/Actions/cgpa';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -99,6 +103,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState('default');
@@ -119,6 +124,10 @@ export default function Profile() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        dispatch(cv(data));
+        dispatch(cont(data.contact));
+        dispatch(dept(data.branch));
+        dispatch(cgpa(data));
       })
       .catch((err) => {
         console.log(err);
@@ -255,6 +264,7 @@ export default function Profile() {
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="Phone Number"
+              value={state.contacts}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -308,6 +318,7 @@ export default function Profile() {
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="CGPA"
+              value={state.cgpa}
               type="number"
               InputLabelProps={{
                 shrink: true,
@@ -323,7 +334,7 @@ export default function Profile() {
             <TextField
               select
               label="Select"
-              value={branch}
+              value={state.department}
               helperText="Please select your Branch"
               variant="outlined"
               onChange={(event) => {

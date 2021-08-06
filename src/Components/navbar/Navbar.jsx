@@ -163,9 +163,6 @@ export default function Navbar() {
             <Button component={Link} to="/about-us" className={classes.button}>
               About us
             </Button>
-            <Button component={Link} to="/teacher" className={classes.button}>
-              Teacher
-            </Button>
           </div>
           <div className={classes.logo_container}>
             <a href="https://www.ieeesbnitdgp.com/">

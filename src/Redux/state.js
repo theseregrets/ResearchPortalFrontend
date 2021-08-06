@@ -9,6 +9,8 @@ const state = {
   last_name: '',
   department: '',
   contacts: '',
+  cv: '',
+  cgpa: '',
 };
 
 export default state;

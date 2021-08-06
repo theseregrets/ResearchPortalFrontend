@@ -24,15 +24,25 @@ const Profile = (initialState = state, action) => {
         ...initialState,
         isLogged: false,
       };
-    case 'TEACHER-CONTACTS':
+    case 'CONTACTS':
       return {
         ...initialState,
         contacts: action.contacts,
       };
-    case 'TEACHER-DEPT':
+    case 'DEPT':
       return {
         ...initialState,
         department: action.department,
+      };
+    case 'CV':
+      return {
+        ...initialState,
+        cv: action.cv,
+      };
+    case 'CGPA':
+      return {
+        ...initialState,
+        cgpa: action.cgpa,
       };
     default:
       return initialState;

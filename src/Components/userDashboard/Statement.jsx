@@ -1,7 +1,9 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import rstatement from '../../Redux/Actions/statement';
 
 const useStyles = makeStyles((theme) => ({
   txt: {
@@ -35,16 +37,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Statement({ ie, text }) {
   const classes = useStyles();
-
-  const [txt, setTxt] = useState(localStorage.getItem('statement') || text);
+  const dispatch = useDispatch();
 
   function handleChange(e) {
-    setTxt(e.target.value);
+    dispatch(rstatement(e.target.value));
   }
 
   return ie ? (
     <textarea
-      value={txt}
+      value={text}
       maxLength={1500}
       onChange={handleChange}
       className={classes.txtArea}

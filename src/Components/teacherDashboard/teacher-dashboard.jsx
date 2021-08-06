@@ -185,15 +185,6 @@ export default function DashboardTeacher() {
               </ListItem>
             </Link>
 
-            <Link to={`${url}/applications`} className={classes.drawerListText}>
-              <ListItem button>
-                <ListItemIcon>
-                  <LayersIcon />
-                </ListItemIcon>
-                <ListItemText primary="Applications" />
-              </ListItem>
-            </Link>
-
             <Link to={`${url}/profile`} className={classes.drawerListText}>
               <ListItem button>
                 <ListItemIcon>
@@ -215,9 +206,6 @@ export default function DashboardTeacher() {
 
         <Route exact path={`${path}`}>
           <Posts />
-        </Route>
-        <Route path={`${path}/applications`}>
-          <Applications />
         </Route>
         <Route path={`${path}/profile`}>
           <Profile />

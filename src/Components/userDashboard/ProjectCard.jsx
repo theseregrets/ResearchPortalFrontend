@@ -8,7 +8,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles((theme) => ({
   card: {
     padding: '25px',
-    display: 'flex',
+    display: 'block',
     backgroundColor: 'white',
     width: '80%',
     margin: '20px auto',
@@ -66,7 +66,7 @@ export default function ProjectCard({ project, desc, faculty, dept }) {
         <div className={classes.txt}>
           <div>
             <p>{faculty}</p>
-            <p>{dept}</p>
+            {/* <p>{dept}</p> */}
           </div>
           <Button
             variant="contained"

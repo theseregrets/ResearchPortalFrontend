@@ -103,6 +103,7 @@ export default function Profile() {
   const [branch, setbranch] = useState('default');
   const [cgpa, setcgpa] = useState(null);
   const [contact, setContact] = useState(null);
+  const [file, setfile] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -164,40 +165,14 @@ export default function Profile() {
     setIsEditing(!isEditing);
   }
 
-  function handleChange(evt) {
-    const inp = document.querySelectorAll('input');
-    switch (evt.target) {
-      case inp[0]:
-        sn(inp[0].value);
-        break;
-      case inp[1]:
-        sp(inp[1].value);
-        break;
-      case inp[2]:
-        se(inp[2].value);
-        break;
-      case inp[3]:
-        sc(inp[3].value);
-        break;
-      case inp[4]:
-        ss(inp[4].value);
-        break;
-      case inp[5]:
-        scg(inp[5].value);
-        break;
-      default:
-        break;
-    }
-  }
-
   function update() {
-    const inp = document.querySelectorAll('input');
-    localStorage.setItem('name', inp[0].value);
-    localStorage.setItem('phno', inp[1].value);
-    localStorage.setItem('email', inp[2].value);
-    localStorage.setItem('clg', inp[3].value);
-    localStorage.setItem('sem', inp[4].value);
-    localStorage.setItem('cgpa', inp[5].value);
+    const data = {
+      branch,
+      cgpa,
+      contact,
+      file,
+    };
+
     setIsEditing(false);
   }
   function cancel() {
@@ -264,7 +239,6 @@ export default function Profile() {
             <h4>Basic details</h4>
             <TextField
               required
-              disabled
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Name"
               value={state.first_name + state.last_name}
@@ -272,8 +246,7 @@ export default function Profile() {
               InputProps={{
                 readOnly: true,
               }}
-              variant="outlined"
-              onChange={handleChange}
+              variant="filled"
             />
             <TextField
               required
@@ -300,7 +273,7 @@ export default function Profile() {
               InputProps={{
                 readOnly: true,
               }}
-              variant="outlined"
+              variant="filled"
             />
           </div>
 
@@ -315,9 +288,9 @@ export default function Profile() {
               InputProps={{
                 readOnly: true,
               }}
-              variant="outlined"
+              variant="filled"
             />
-            <TextField
+            {/* <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="Semester"
@@ -330,7 +303,7 @@ export default function Profile() {
                 readOnly: !isEditing,
               }}
               variant="outlined"
-            />
+            /> */}
             <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
@@ -372,7 +345,12 @@ export default function Profile() {
 
         <div className={classes.infoContainer}>
           <h4>Resume</h4>
-          <FileDropzone />
+          <FileDropzone
+            setFile={(file) => {
+              setfile(file);
+            }}
+            Edit={isEditing}
+          />
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -103,6 +104,7 @@ export default function Profile() {
   const [branch, setbranch] = useState('default');
   const [cgpa, setcgpa] = useState(null);
   const [contact, setContact] = useState(null);
+  const [file, setfile] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -123,82 +125,60 @@ export default function Profile() {
       });
   }, []);
 
-  const [n, sn] = useState(localStorage.getItem('name') || '');
-  const [p, sp] = useState(localStorage.getItem('phno') || '');
-  const [e, se] = useState(localStorage.getItem('email') || '');
-  const [c, sc] = useState(localStorage.getItem('clg') || '');
-  const [s, ss] = useState(localStorage.getItem('sem') || '');
-  const [cg, scg] = useState(localStorage.getItem('cgpa') || '');
-
-  function uploadData() {
-    const data = {
-      branch,
-      cgpa,
-      contact,
-    };
-    fetch(
-      'https://ieeenitdgp.pythonanywhere.com/api/user/student/create-profile/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${state.jwt}`,
-        },
-        body: JSON.stringify(data),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.id) {
-          alert('profile created');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(data);
-  }
-
   function handleClick() {
     setIsEditing(!isEditing);
   }
 
-  function handleChange(evt) {
-    const inp = document.querySelectorAll('input');
-    switch (evt.target) {
-      case inp[0]:
-        sn(inp[0].value);
-        break;
-      case inp[1]:
-        sp(inp[1].value);
-        break;
-      case inp[2]:
-        se(inp[2].value);
-        break;
-      case inp[3]:
-        sc(inp[3].value);
-        break;
-      case inp[4]:
-        ss(inp[4].value);
-        break;
-      case inp[5]:
-        scg(inp[5].value);
-        break;
-      default:
-        break;
+  function update() {
+    const formdata = new FormData();
+    let isSomethingEdited = false;
+    if (file && file.length) {
+      formdata.append('cv', file[0]);
+      isSomethingEdited = true;
+    }
+    if (cgpa) {
+      formdata.append('cgpa', cgpa);
+      isSomethingEdited = true;
+    }
+    if (contact) {
+      formdata.append('contact', contact);
+      isSomethingEdited = true;
+    }
+    if (branch !== 'default') {
+      formdata.append('branch', branch);
+      isSomethingEdited = true;
+    }
+    console.log(isSomethingEdited);
+
+    if (isSomethingEdited) {
+      fetch(
+        `https://ieeenitdgp.pythonanywhere.com/api/user/student/details/${state.username}/`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${state.jwt}`,
+          },
+          body: formdata,
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // new changed data is comming store it in redux;
+          console.log(data);
+          setbranch('default');
+          setcgpa(null);
+          setfile(null);
+          setContact(null);
+          setIsEditing(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('you have not changed anything');
     }
   }
 
-  function update() {
-    const inp = document.querySelectorAll('input');
-    localStorage.setItem('name', inp[0].value);
-    localStorage.setItem('phno', inp[1].value);
-    localStorage.setItem('email', inp[2].value);
-    localStorage.setItem('clg', inp[3].value);
-    localStorage.setItem('sem', inp[4].value);
-    localStorage.setItem('cgpa', inp[5].value);
-    setIsEditing(false);
-  }
   function cancel() {
     setIsEditing(false);
   }
@@ -263,22 +243,18 @@ export default function Profile() {
             <h4>Basic details</h4>
             <TextField
               required
-              disabled
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Name"
               value={state.first_name + state.last_name}
-              defaultValue={n}
               InputProps={{
                 readOnly: true,
               }}
-              variant="outlined"
-              onChange={handleChange}
+              variant="filled"
             />
             <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="Phone Number"
-              defaultValue={p}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -295,11 +271,10 @@ export default function Profile() {
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Email"
               value={state.email}
-              defaultValue={e}
               InputProps={{
                 readOnly: true,
               }}
-              variant="outlined"
+              variant="filled"
             />
           </div>
 
@@ -310,13 +285,12 @@ export default function Profile() {
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="College"
               value="NIT Durgapur"
-              defaultValue={c}
               InputProps={{
                 readOnly: true,
               }}
-              variant="outlined"
+              variant="filled"
             />
-            <TextField
+            {/* <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="Semester"
@@ -329,13 +303,12 @@ export default function Profile() {
                 readOnly: !isEditing,
               }}
               variant="outlined"
-            />
+            /> */}
             <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="CGPA"
               type="number"
-              defaultValue={cg}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -371,7 +344,12 @@ export default function Profile() {
 
         <div className={classes.infoContainer}>
           <h4>Resume</h4>
-          <FileDropzone />
+          <FileDropzone
+            setFile={(file) => {
+              setfile(file);
+            }}
+            Edit={isEditing}
+          />
         </div>
       </div>
     </div>

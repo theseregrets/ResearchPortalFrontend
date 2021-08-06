@@ -137,15 +137,6 @@ export default function SideNav({ url, width }) {
           </ListItem>
         </Link>
 
-        <Link to={`${url}/announcements`} className={classes.drawerListText}>
-          <ListItem button>
-            <ListItemIcon>
-              <LayersIcon />
-            </ListItemIcon>
-            <ListItemText primary="Announcements" />
-          </ListItem>
-        </Link>
-
         <Link to={`${url}/profile`} className={classes.drawerListText}>
           <ListItem button>
             <ListItemIcon>

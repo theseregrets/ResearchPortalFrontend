@@ -20,7 +20,7 @@ import FlagIcon from '@material-ui/icons/Flag';
 import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import InfoIcon from '@material-ui/icons/Info';
-import RP from '../../Assets/research_portal_cropped.png';
+import rp from '../../Assets/rplogo.svg';
 import Logow from '../../Assets/ieeesb_logowhite.png';
 import Logob from '../../Assets/ieeesb_logoblue.png';
 
@@ -69,7 +69,7 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   logo1: {
-    width: '50%',
+    width: '40%',
     [theme.breakpoints.down('xs')]: {
       width: '60%',
     },
@@ -142,7 +142,7 @@ export default function Navbar() {
         <Toolbar>
           <div className={classes.logo_container}>
             <Link to="/">
-              <img src={RP} alt="logo" className={classes.logo1} />
+              <img src={rp} alt="logo" className={classes.logo1} />
             </Link>
           </div>
 

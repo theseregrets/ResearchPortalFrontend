@@ -17,6 +17,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     // margin: '1em 1em',
   },
+  heading: {
+    color: 'white',
+  },
   card: {
     display: 'flex',
     flexDirection: 'row',
@@ -60,7 +63,7 @@ export default function Team() {
   return (
     <Grid container align="center " className={classes.container}>
       <Grid item xs={12} align="center" spacing={1}>
-        <Typography variant="h3" gutterBottom>
+        <Typography variant="h3" gutterBottom className={classes.heading}>
           Our Team
         </Typography>
       </Grid>

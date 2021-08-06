@@ -7,6 +7,8 @@ const state = {
   email: '',
   first_name: '',
   last_name: '',
+  department: '',
+  contacts: '',
 };
 
 export default state;

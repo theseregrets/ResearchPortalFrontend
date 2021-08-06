@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
@@ -77,12 +78,13 @@ const data = {
 
 export default function MainDashboard() {
   const classes = useStyles();
+  const firstName = useSelector((state) => state.first_name);
 
   return (
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
-        <h4 className={classes.txt}>Welcome back Nitin!</h4>
+        <h4 className={classes.txt}>Welcome back {firstName}</h4>
       </div>
       <h2 className={classes.title}>Projects Applied</h2>
       <Button

@@ -7,8 +7,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import Paper from '@material-ui/core/Paper';
 import clsx from 'clsx';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
@@ -23,9 +21,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     width: '50vw',
     margin: 'auto',
-    height: '70vh',
+    height: '60vh',
     display: 'flex',
     flexDirection: 'column',
+    marginBottom: '3rem',
     [theme.breakpoints.down('sm')]: {
       width: '90vw',
       margin: 'auto',
@@ -47,6 +46,11 @@ const useStyles = makeStyles((theme) => ({
       marginRight: 'auto',
       marginTop: '40px',
     },
+  },
+  form: {
+    width: '40vw',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
 }));
 
@@ -76,6 +80,7 @@ export default function Login() {
       .then((res) => res.json())
       .then((data) => {
         if (data.access) {
+          console.log(data);
           dispatch(login(data));
           history.push('/');
         } else {
@@ -95,17 +100,7 @@ export default function Login() {
       <Typography variant="h3" align="center">
         Login
       </Typography>
-      <Tabs
-        value={value}
-        onChange={handleChange}
-        indicatorColor="primary"
-        textColor="primary"
-        centered
-      >
-        <Tab label="Student" />
-        <Tab label="Faculty" />
-      </Tabs>
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
         <TextField
           required
           className={classes.field}
@@ -135,16 +130,13 @@ export default function Login() {
         >
           Login
         </Button>
-        <Button
-          className={classes.field}
-          color="primary"
-          variant="contained"
-          component={Link}
-          to="/signup"
-        >
-          Sign Up
-        </Button>
       </form>
+      <h5 style={{ textAlign: 'center', marginTop: '20px' }}>
+        Don't have an account?
+        <span>
+          <Link to="/signup">Signup</Link>
+        </span>
+      </h5>
     </Paper>
   );
 }

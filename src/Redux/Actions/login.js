@@ -1,9 +1,19 @@
 function login(data) {
+  const {
+    access,
+    refresh,
+    isStudent,
+    user: { username, first_name, last_name, email },
+  } = data;
   return {
     type: 'LOGIN',
-    access: data.access,
-    refresh: data.refresh,
-    isStudent: data.isStudent,
+    access,
+    refresh,
+    isStudent,
+    username,
+    first_name,
+    last_name,
+    email,
   };
 }
 

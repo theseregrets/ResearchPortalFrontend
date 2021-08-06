@@ -10,7 +10,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Paper from '@material-ui/core/Paper';
-import introsvg from '../../Assets/illustration.svg';
+import introsvg from '../../Assets/rp_homepage.svg';
 import Profile from '../team/profile.png';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import { useSelector } from 'react-redux';
+import { Branches } from '../../Data/branch';
 import FileDropzone from './Dropzone';
 
 const useStyles = makeStyles((theme) => ({
@@ -94,8 +97,32 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Profile() {
   const classes = useStyles();
+  const state = useSelector((state) => state.profile);
 
   const [isEditing, setIsEditing] = useState(false);
+  const [branch, setbranch] = useState('default');
+  const [cgpa, setcgpa] = useState(null);
+  const [contact, setContact] = useState(null);
+
+  useEffect(() => {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/user/student/details/${state.username}/`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // store the user detail in redux.
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const [n, sn] = useState(localStorage.getItem('name') || '');
   const [p, sp] = useState(localStorage.getItem('phno') || '');
@@ -103,6 +130,35 @@ export default function Profile() {
   const [c, sc] = useState(localStorage.getItem('clg') || '');
   const [s, ss] = useState(localStorage.getItem('sem') || '');
   const [cg, scg] = useState(localStorage.getItem('cgpa') || '');
+
+  function uploadData() {
+    const data = {
+      branch,
+      cgpa,
+      contact,
+    };
+    fetch(
+      'https://ieeenitdgp.pythonanywhere.com/api/user/student/create-profile/',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${state.jwt}`,
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.id) {
+          alert('profile created');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log(data);
+  }
 
   function handleClick() {
     setIsEditing(!isEditing);
@@ -158,7 +214,14 @@ export default function Profile() {
               src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-512.png"
               alt="profile"
             />
-            <Button size="small" variant="contained" color="primary" onClick="">
+            <Button
+              size="small"
+              variant="contained"
+              color="primary"
+              onClick={() => {
+                uploadData();
+              }}
+            >
               Upload
             </Button>
           </div>
@@ -201,11 +264,13 @@ export default function Profile() {
             <h4>Basic details</h4>
             <TextField
               required
+              disabled
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Name"
+              value={state.first_name + state.last_name}
               defaultValue={n}
               InputProps={{
-                readOnly: !isEditing,
+                readOnly: true,
               }}
               variant="outlined"
               onChange={handleChange}
@@ -214,7 +279,6 @@ export default function Profile() {
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="Phone Number"
-              type="number"
               defaultValue={p}
               InputLabelProps={{
                 shrink: true,
@@ -223,14 +287,18 @@ export default function Profile() {
                 readOnly: !isEditing,
               }}
               variant="outlined"
+              onChange={(event) => {
+                setContact(event.target.value);
+              }}
             />
             <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Email"
+              value={state.email}
               defaultValue={e}
               InputProps={{
-                readOnly: !isEditing,
+                readOnly: true,
               }}
               variant="outlined"
             />
@@ -242,9 +310,10 @@ export default function Profile() {
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="College"
+              value="NIT Durgapur"
               defaultValue={c}
               InputProps={{
-                readOnly: !isEditing,
+                readOnly: true,
               }}
               variant="outlined"
             />
@@ -275,7 +344,29 @@ export default function Profile() {
                 readOnly: !isEditing,
               }}
               variant="outlined"
+              onChange={(event) => {
+                setcgpa(event.target.value);
+              }}
             />
+            <TextField
+              select
+              label="Select"
+              value={branch}
+              helperText="Please select your Branch"
+              variant="outlined"
+              onChange={(event) => {
+                setbranch(event.target.value);
+              }}
+              InputProps={{
+                readOnly: !isEditing,
+              }}
+            >
+              {Branches.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </div>
         </div>
 

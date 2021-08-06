@@ -149,29 +149,25 @@ export default function DashboardTeacher() {
   const { path, url } = useRouteMatch();
 
   return (
-    <BrowserRouter>
-      <div className={classes.root}>
-        <CssBaseline />
-        {width > 900 ? (
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: clsx(
-                classes.drawerPaper,
-                !open && classes.drawerPaperClose
-              ),
-            }}
-            open={open}
-          >
-            <div className={classes.toolbarIcon}>
-              <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-                {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-              </IconButton>
-            </div>
-            <Divider />
+    <div className={classes.root}>
+      <CssBaseline />
+      {width > 900 ? (
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+              {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
 
-            <List>
-              {/* <Link to={`${url}`} className={classes.drawerListText}>
+          <List>
+            {/* <Link to={`${url}`} className={classes.drawerListText}>
                 <ListItem button>
                   <ListItemIcon>
                     <DashboardIcon />
@@ -180,61 +176,57 @@ export default function DashboardTeacher() {
                 </ListItem>
               </Link> */}
 
-              <Link to={`${url}`} className={classes.drawerListText}>
-                <ListItem button>
-                  <ListItemIcon>
-                    <AssignmentIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Projects" />
-                </ListItem>
-              </Link>
+            <Link to={`${url}`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Projects" />
+              </ListItem>
+            </Link>
 
-              <Link
-                to={`${url}/applications`}
-                className={classes.drawerListText}
-              >
-                <ListItem button>
-                  <ListItemIcon>
-                    <LayersIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Applications" />
-                </ListItem>
-              </Link>
+            <Link to={`${url}/applications`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <LayersIcon />
+                </ListItemIcon>
+                <ListItemText primary="Applications" />
+              </ListItem>
+            </Link>
 
-              <Link to={`${url}/profile`} className={classes.drawerListText}>
-                <ListItem button>
-                  <ListItemIcon>
-                    <PeopleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Profile" />
-                </ListItem>
-              </Link>
-            </List>
-          </Drawer>
-        ) : (
-          <BottomNav url={url} />
-        )}
+            <Link to={`${url}/profile`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItem>
+            </Link>
+          </List>
+        </Drawer>
+      ) : (
+        <BottomNav url={url} />
+      )}
 
-        <Switch>
-          {/* <Route exact path={path}>
+      <Switch>
+        {/* <Route exact path={path}>
             <Overview />
           </Route> */}
 
-          <Route exact path={`${path}`}>
-            <Posts />
-          </Route>
-          <Route path={`${path}/applications`}>
-            <Applications />
-          </Route>
-          <Route path={`${path}/profile`}>
-            <Profile />
-          </Route>
-          <Route path={`${path}/project-detail`}>
-            <ProjectDetail />
-          </Route>
-        </Switch>
-        {width < 900 ? <BottomNavFix /> : null}
-      </div>
-    </BrowserRouter>
+        <Route exact path={`${path}`}>
+          <Posts />
+        </Route>
+        <Route path={`${path}/applications`}>
+          <Applications />
+        </Route>
+        <Route path={`${path}/profile`}>
+          <Profile />
+        </Route>
+        <Route path={`${path}/project-detail`}>
+          <ProjectDetail />
+        </Route>
+      </Switch>
+      {width < 900 ? <BottomNavFix /> : null}
+    </div>
   );
 }

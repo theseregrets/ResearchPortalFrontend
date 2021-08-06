@@ -58,31 +58,28 @@ export default function Dashboard() {
   const { path, url } = useRouteMatch();
 
   return (
-    <BrowserRouter>
-      {/* For BottomNavFix */}
-      <div className={classes.root}>
-        <div className={classes.dash}>
-          <CssBaseline />
-          {width > 900 ? (
-            <SideNav url={url} width={width} />
-          ) : (
-            <BottomNav url={url} />
-          )}
+    <div className={classes.root}>
+      <div className={classes.dash}>
+        <CssBaseline />
+        {width > 900 ? (
+          <SideNav url={url} width={width} />
+        ) : (
+          <BottomNav url={url} />
+        )}
 
-          <Switch>
-            <Route exact path={path}>
-              <MainDashboard />
-            </Route>
-            <Route path={`${path}/research-statement`}>
-              <Statement />
-            </Route>
-            <Route path={`${path}/profile`}>
-              <Profile />
-            </Route>
-          </Switch>
-        </div>
-        {width < 900 ? <BottomNavFix /> : null}
+        <Switch>
+          <Route exact path={path}>
+            <MainDashboard />
+          </Route>
+          <Route path={`${path}/research-statement`}>
+            <Statement />
+          </Route>
+          <Route path={`${path}/profile`}>
+            <Profile />
+          </Route>
+        </Switch>
       </div>
-    </BrowserRouter>
+      {width < 900 ? <BottomNavFix /> : null}
+    </div>
   );
 }

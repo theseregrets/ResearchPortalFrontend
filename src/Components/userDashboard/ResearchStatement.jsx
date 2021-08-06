@@ -52,6 +52,7 @@ export default function ResearchStatement() {
       {
         method: 'PATCH',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${state.jwt}`,
         },
         body: {

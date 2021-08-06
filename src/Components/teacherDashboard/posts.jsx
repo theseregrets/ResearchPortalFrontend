@@ -6,7 +6,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectCard from './cards';
-
 import NewPost from './new-post';
 
 const useStyles = makeStyles((theme) => ({
@@ -79,6 +78,7 @@ const Posts = () => {
               Cancel
             </Button>
             <NewPost
+              setProjects={setProjects}
               setCreate={() => {
                 setCreateProject(false);
               }}

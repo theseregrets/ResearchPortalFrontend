@@ -52,7 +52,7 @@ const Status = [
   },
 ];
 
-export default function NewPost(props) {
+export default function NewPost({ setProjects }) {
   const classes = useStyles();
   const history = useHistory();
   const state = useSelector((state) => state.profile);
@@ -80,11 +80,26 @@ export default function NewPost(props) {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then((data) => {
-        // new changed data is comming store it in redux;
-        console.log(data);
-        // props.setCreate();
-        history.push('/dashboard/profile');
+      .then(() => {
+        fetch(
+          `https://ieeenitdgp.pythonanywhere.com/api/projects/my-projects/`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${state.jwt}`,
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            // store the user detail in redux.
+            setProjects(data);
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        history.push('/dashboard');
       })
       .catch((err) => {
         console.log(err);

@@ -20,4 +20,8 @@ export const Branches = [
     value: 'default',
     label: null,
   },
+  {
+    value: '',
+    label: null,
+  },
 ];

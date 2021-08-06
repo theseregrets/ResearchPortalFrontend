@@ -247,7 +247,6 @@ export default function Profile() {
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Name"
               value={state.first_name + state.last_name}
-              defaultValue={n}
               InputProps={{
                 readOnly: true,
               }}
@@ -257,7 +256,6 @@ export default function Profile() {
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="Phone Number"
-              defaultValue={p}
               InputLabelProps={{
                 shrink: true,
               }}
@@ -274,7 +272,6 @@ export default function Profile() {
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Email"
               value={state.email}
-              defaultValue={e}
               InputProps={{
                 readOnly: true,
               }}
@@ -289,7 +286,6 @@ export default function Profile() {
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="College"
               value="NIT Durgapur"
-              defaultValue={c}
               InputProps={{
                 readOnly: true,
               }}
@@ -314,7 +310,6 @@ export default function Profile() {
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="CGPA"
               type="number"
-              defaultValue={cg}
               InputLabelProps={{
                 shrink: true,
               }}

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectCard from './cards';
 
 import NewPost from './new-post';
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   projects: {
     display: 'block',
+    width: '100%',
     margin: '0px auto',
   },
 }));
@@ -25,6 +27,7 @@ const Posts = () => {
   const [createProject, setCreateProject] = useState(false);
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
+  const [projects, setProjects] = useState(null);
 
   useEffect(() => {
     fetch(`https://ieeenitdgp.pythonanywhere.com/api/projects/my-projects/`, {
@@ -36,7 +39,7 @@ const Posts = () => {
       .then((res) => res.json())
       .then((data) => {
         // store the user detail in redux.
-        // setProjects(data);
+        setProjects(data);
         console.log(data);
       })
       .catch((err) => {
@@ -45,7 +48,7 @@ const Posts = () => {
   }, []);
 
   function handleClick() {
-    setCreateProject(!createPost);
+    setCreateProject(!createProject);
   }
 
   function handleCancel() {
@@ -79,12 +82,19 @@ const Posts = () => {
           </>
         ) : (
           <div className={classes.projects}>
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
-            <ProjectCard />
+            {projects ? (
+              <>
+                {projects.length ? (
+                  projects.map((ele) => (
+                    <ProjectCard project={ele.title} desc={ele.description} />
+                  ))
+                ) : (
+                  <p>create Project</p>
+                )}
+              </>
+            ) : (
+              <CircularProgress disableShrink />
+            )}
           </div>
         )}
       </div>

@@ -9,7 +9,7 @@ import Button from '@material-ui/core/Button';
 const useStyles = makeStyles((theme) => ({
   card: {
     padding: '25px',
-    display: 'flex',
+    display: 'block',
     backgroundColor: 'white',
     width: '80%',
     margin: '20px auto',

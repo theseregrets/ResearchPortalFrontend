@@ -1,6 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
@@ -119,6 +120,7 @@ const useStyle = makeStyles((theme) => ({
 export default function Navbar() {
   const [isOpen, toggle] = useState(false);
   const [scroll, setScroll] = useState(false);
+  const state = useSelector((state) => state.profile);
 
   useEffect(() => {
     window.onscroll = () => {
@@ -157,9 +159,15 @@ export default function Navbar() {
             <Button component={Link} to="/team" className={classes.button}>
               Team
             </Button>
-            <Button component={Link} to="/dashboard" className={classes.button}>
-              Dashboard
-            </Button>
+            {state.isLogged && (
+              <Button
+                component={Link}
+                to="/dashboard"
+                className={classes.button}
+              >
+                Dashboard
+              </Button>
+            )}
             <Button component={Link} to="/about-us" className={classes.button}>
               About us
             </Button>

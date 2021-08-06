@@ -44,6 +44,11 @@ const Profile = (initialState = state, action) => {
         ...initialState,
         cgpa: action.cgpa,
       };
+    case 'STATEMENT':
+      return {
+        ...initialState,
+        research_statement: action.research_statement,
+      };
     default:
       return initialState;
   }

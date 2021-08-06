@@ -11,6 +11,7 @@ const state = {
   contacts: '',
   cv: '',
   cgpa: 0,
+  research_statement: '',
 };
 
 export default state;

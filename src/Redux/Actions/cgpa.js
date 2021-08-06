@@ -1,7 +1,7 @@
 function cgpa(data) {
   return {
     type: 'CGPA',
-    cgpa: data.cgpa,
+    cgpa: data,
   };
 }
 

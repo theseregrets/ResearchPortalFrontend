@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector, useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
 import Statement from './Statement';
+import rstatement from '../../Redux/Actions/statement';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,6 +37,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ResearchStatement() {
   const classes = useStyles();
+  const state = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
 
@@ -42,19 +46,61 @@ export default function ResearchStatement() {
     setIsEditing(!isEditing);
   }
 
-  const [text, setText] = useState(
-    localStorage.getItem('statement') || 'hello'
-  );
-
   function update() {
-    const ta = document.querySelector('textarea');
-    localStorage.setItem('statement', ta.value);
-    setText(ta.value);
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/user/student/rs/update/${state.username}/`,
+      {
+        method: 'PATCH',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+        body: {
+          research_statement: state.research_statement,
+          status: 'published',
+        },
+      }
+    ).catch((err) => console.log(err));
     setIsEditing(false);
   }
   function cancel() {
     setIsEditing(false);
   }
+
+  useEffect(() => {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/user/student/rs/update/${state.username}/`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.research_statement) {
+          dispatch(rstatement(data.research_statement));
+          console.log(data);
+        } else {
+          fetch(
+            `https://ieeenitdgp.pythonanywhere.com/api/user/student/rs/create/`,
+            {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${state.jwt}`,
+              },
+              body: {
+                research_statement: '',
+                status: 'published',
+              },
+            }
+          ).catch((err) => console.log(err));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -86,7 +132,7 @@ export default function ResearchStatement() {
           <div />
         )}
       </div>
-      <Statement ie={isEditing} text={text} />
+      <Statement ie={isEditing} text={state.research_statement} />
     </div>
   );
 }

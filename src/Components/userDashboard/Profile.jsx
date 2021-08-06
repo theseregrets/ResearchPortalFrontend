@@ -11,7 +11,7 @@ import FileDropzone from './Dropzone';
 import cv from '../../Redux/Actions/cv';
 import cont from '../../Redux/Actions/updateContacts';
 import dept from '../../Redux/Actions/updateDept';
-import cgpa from '../../Redux/Actions/cgpa';
+import cg from '../../Redux/Actions/cgpa';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -127,7 +127,7 @@ export default function Profile() {
         dispatch(cv(data));
         dispatch(cont(data.contact));
         dispatch(dept(data.branch));
-        dispatch(cgpa(data));
+        dispatch(cg(data.cgpa));
       })
       .catch((err) => {
         console.log(err);
@@ -318,8 +318,8 @@ export default function Profile() {
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
               label="CGPA"
-              value={state.cgpa}
               type="number"
+              value={state.cgpa}
               InputLabelProps={{
                 shrink: true,
               }}

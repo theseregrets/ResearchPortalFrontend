@@ -68,15 +68,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const data = {
-  img: 'https://miro.medium.com/max/1838/1*MI686k5sDQrISBM6L8pf5A.jpeg',
-  project:
-    'Development of experimental rover and investigation of mobility and approaches for local and global motion planning on uneven terrain',
-  desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  faculty: 'Dr. K. Kurien Issac',
-  dept: 'Aerospace engineering',
-};
-
 export default function MainDashboard() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
@@ -104,7 +95,7 @@ export default function MainDashboard() {
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
-        <h4 className={classes.txt}>Welcome back {state.first_Name}</h4>
+        <h4 className={classes.txt}>Welcome back {state.first_name}</h4>
       </div>
       <h2 className={classes.title}>Projects Applied</h2>
       <Button

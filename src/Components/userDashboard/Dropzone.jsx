@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
-import { CodeSharp } from '@material-ui/icons';
-import { gridColumnsTotalWidthSelector } from '@material-ui/x-grid';
 import React, { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useSelector } from 'react-redux';
@@ -36,8 +34,7 @@ const rejectStyle = {
   borderColor: '#ff1744',
 };
 
-export default function FileDropzone(props) {
-  const { Edit } = props;
+export default function FileDropzone({ setFile, Edit, cv }) {
   const state = useSelector((state) => state.profile);
   const {
     getRootProps,
@@ -48,7 +45,7 @@ export default function FileDropzone(props) {
     isDragReject,
   } = useDropzone({
     accept: 'application/pdf',
-    onDrop: (files) => props.setFile(files),
+    onDrop: (files) => setFile(files),
     disabled: !Edit,
     onDragEnter: () => {
       if (!Edit) {
@@ -82,10 +79,23 @@ export default function FileDropzone(props) {
           <p>click on Edit button to upload CV</p>
         )}
       </div>
-      <aside>
-        <h5>Uploaded file-</h5>
-        <ul>{files}</ul>
-      </aside>
+      {Edit ? (
+        <>
+          <h3>
+            <h5>Updated file-</h5>
+            <h3>{files}</h3>
+          </h3>
+        </>
+      ) : (
+        <>
+          <h3>
+            <h5>Uploaded file-</h5>
+            <a href={cv} target="_blank" rel="noreferrer">
+              Click Here
+            </a>
+          </h3>
+        </>
+      )}
     </div>
   );
 }

@@ -360,6 +360,7 @@ export default function Profile() {
               setfile(file);
             }}
             Edit={isEditing}
+            cv={state.cv}
           />
         </div>
       </div>

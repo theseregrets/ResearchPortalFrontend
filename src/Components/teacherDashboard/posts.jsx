@@ -78,7 +78,11 @@ const Posts = () => {
             >
               Cancel
             </Button>
-            <NewPost />
+            <NewPost
+              setCreate={() => {
+                setCreateProject(false);
+              }}
+            />
           </>
         ) : (
           <div className={classes.projects}>

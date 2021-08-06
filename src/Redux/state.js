@@ -10,7 +10,7 @@ const state = {
   department: '',
   contacts: '',
   cv: '',
-  cgpa: '',
+  cgpa: 0,
 };
 
 export default state;

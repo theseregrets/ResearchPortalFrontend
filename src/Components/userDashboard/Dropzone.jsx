@@ -5,6 +5,7 @@ import { CodeSharp } from '@material-ui/icons';
 import { gridColumnsTotalWidthSelector } from '@material-ui/x-grid';
 import React, { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useSelector } from 'react-redux';
 
 const baseStyle = {
   flex: 1,
@@ -37,6 +38,7 @@ const rejectStyle = {
 
 export default function FileDropzone(props) {
   const { Edit } = props;
+  const state = useSelector((state) => state.profile);
   const {
     getRootProps,
     getInputProps,

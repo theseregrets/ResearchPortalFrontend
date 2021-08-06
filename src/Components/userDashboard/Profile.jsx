@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -125,56 +126,60 @@ export default function Profile() {
       });
   }, []);
 
-  const [n, sn] = useState(localStorage.getItem('name') || '');
-  const [p, sp] = useState(localStorage.getItem('phno') || '');
-  const [e, se] = useState(localStorage.getItem('email') || '');
-  const [c, sc] = useState(localStorage.getItem('clg') || '');
-  const [s, ss] = useState(localStorage.getItem('sem') || '');
-  const [cg, scg] = useState(localStorage.getItem('cgpa') || '');
-
-  function uploadData() {
-    const data = {
-      branch,
-      cgpa,
-      contact,
-    };
-    fetch(
-      'https://ieeenitdgp.pythonanywhere.com/api/user/student/create-profile/',
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${state.jwt}`,
-        },
-        body: JSON.stringify(data),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.id) {
-          alert('profile created');
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    console.log(data);
-  }
-
   function handleClick() {
     setIsEditing(!isEditing);
   }
 
   function update() {
-    const data = {
-      branch,
-      cgpa,
-      contact,
-      file,
-    };
+    const formdata = new FormData();
+    let isSomethingEdited = false;
+    if (file && file.length) {
+      formdata.append('cv', file[0]);
+      isSomethingEdited = true;
+    }
+    if (cgpa) {
+      formdata.append('cgpa', cgpa);
+      isSomethingEdited = true;
+    }
+    if (contact) {
+      formdata.append('contact', contact);
+      isSomethingEdited = true;
+    }
+    if (branch !== 'default') {
+      formdata.append('branch', branch);
+      isSomethingEdited = true;
+    }
+    console.log(isSomethingEdited);
 
-    setIsEditing(false);
+    if (isSomethingEdited) {
+      fetch(
+        `https://ieeenitdgp.pythonanywhere.com/api/user/student/details/${state.username}/`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${state.jwt}`,
+          },
+          body: formdata,
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // new changed data is comming store it in redux;
+          console.log(data);
+          setbranch('default');
+          setcgpa(null);
+          setfile(null);
+          setContact(null);
+          setIsEditing(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('you have not changed anything');
+    }
   }
+
   function cancel() {
     setIsEditing(false);
   }

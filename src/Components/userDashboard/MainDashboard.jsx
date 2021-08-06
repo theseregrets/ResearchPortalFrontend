@@ -82,7 +82,6 @@ export default function MainDashboard() {
     })
       .then((res) => res.json())
       .then((data) => {
-        // store the user detail in redux.
         setProjects(data);
         console.log(data);
       })
@@ -116,6 +115,7 @@ export default function MainDashboard() {
                 project={ele.post.title}
                 desc={ele.post.description}
                 faculty={ele.post.teacher}
+                identity={ele.post.slug}
               />
             ))
           ) : (

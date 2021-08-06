@@ -59,7 +59,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectCard({ project, desc, faculty, identity }) {
+export default function ProjectCard({
+  project,
+  desc,
+  faculty,
+  identity,
+  setProjects,
+}) {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
 
@@ -76,7 +82,23 @@ export default function ProjectCard({ project, desc, faculty, identity }) {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        this.forceUpdate();
+        fetch(
+          `https://ieeenitdgp.pythonanywhere.com//api/projects/applied-to/`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${state.jwt}`,
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setProjects(data);
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);

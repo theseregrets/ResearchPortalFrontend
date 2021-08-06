@@ -47,6 +47,11 @@ export default function ResearchStatement() {
   }
 
   function update() {
+    const data = {
+      research_statement: state.research_statement,
+      status: 'published',
+    };
+
     fetch(
       `https://ieeenitdgp.pythonanywhere.com/api/user/student/rs/update/${state.username}/`,
       {
@@ -55,13 +60,15 @@ export default function ResearchStatement() {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${state.jwt}`,
         },
-        body: {
-          research_statement: state.research_statement,
-          status: 'published',
-        },
+        body: JSON.stringify(data),
       }
-    ).catch((err) => console.log(err));
-    setIsEditing(false);
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setIsEditing(false);
+      })
+      .catch((err) => console.log(err));
   }
   function cancel() {
     setIsEditing(false);

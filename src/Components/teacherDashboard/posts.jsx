@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -22,15 +22,34 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Posts = () => {
-  const [createPost, setCreatePost] = useState(false);
+  const [createProject, setCreateProject] = useState(false);
   const classes = useStyles();
+  const state = useSelector((state) => state.profile);
+
+  useEffect(() => {
+    fetch(`https://ieeenitdgp.pythonanywhere.com/api/projects/my-projects/`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${state.jwt}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        // store the user detail in redux.
+        // setProjects(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function handleClick() {
-    setCreatePost(!createPost);
+    setCreateProject(!createPost);
   }
 
   function handleCancel() {
-    setCreatePost(false);
+    setCreateProject(false);
   }
 
   return (
@@ -44,9 +63,9 @@ const Posts = () => {
           startIcon={<AddCircleIcon />}
         >
           {' '}
-          Create New Post{' '}
+          Create New Project{' '}
         </Button>
-        {createPost ? (
+        {createProject ? (
           <>
             <Button
               variant="contained"

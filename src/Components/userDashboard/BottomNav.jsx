@@ -56,12 +56,6 @@ export default function BottomNav({ url }) {
         to={`${url}/research-statement`}
       />
       <BottomNavigationAction
-        value="announcements"
-        icon={<LayersIcon />}
-        component={Link}
-        to={`${url}/announcements`}
-      />
-      <BottomNavigationAction
         value="profile"
         icon={<PeopleIcon />}
         component={Link}

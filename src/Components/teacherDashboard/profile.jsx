@@ -97,9 +97,46 @@ export default function Profile() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
   const [isEditing, setIsEditing] = useState(false);
+  const [branch, setbranch] = useState(null);
+  const [contact, setcontact] = useState(null);
 
   function update() {
-    setIsEditing(false);
+    const formdata = new FormData();
+    let isSomethingEdited = false;
+
+    if (contact) {
+      formdata.append('contact', contact);
+      isSomethingEdited = true;
+    }
+    if (branch) {
+      formdata.append('branch', branch);
+      isSomethingEdited = true;
+    }
+    if (isSomethingEdited) {
+      fetch(
+        `https://ieeenitdgp.pythonanywhere.com/api/user/teacher/details/${state.username}/`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${state.jwt}`,
+          },
+          body: formdata,
+        }
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          // new changed data is comming store it in redux;
+          console.log(data);
+          setbranch(null);
+          setcontact(null);
+          setIsEditing(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      alert('you have not changed anything');
+    }
   }
 
   useEffect(() => {
@@ -183,7 +220,11 @@ export default function Profile() {
           </div>
           <div className={classes.infoContainer}>
             <h1>Academic details</h1>
-            {isEditing ? <EditDetails /> : <Details />}
+            {isEditing ? (
+              <EditDetails setBranch={setbranch} setContact={setcontact} />
+            ) : (
+              <Details />
+            )}
           </div>
         </div>
       </div>

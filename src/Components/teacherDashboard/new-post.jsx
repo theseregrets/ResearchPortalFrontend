@@ -56,7 +56,7 @@ export default function NewPost(props) {
   const classes = useStyles();
   const history = useHistory();
   const state = useSelector((state) => state.profile);
-  const [checked, setChecked] = useState(true);
+  const [is_active, setChecked] = useState(true);
   const [status, setstatus] = useState('published');
   const [title, settitle] = useState(null);
   const [description, setdescription] = useState(null);
@@ -66,7 +66,7 @@ export default function NewPost(props) {
     const data = {
       title,
       status,
-      checked,
+      is_active,
       description,
       tags,
     };
@@ -113,7 +113,7 @@ export default function NewPost(props) {
             <FormControlLabel
               control={
                 <Checkbox
-                  checked={checked}
+                  checked={is_active}
                   onChange={(event) => {
                     setChecked(event.target.checked);
                   }}

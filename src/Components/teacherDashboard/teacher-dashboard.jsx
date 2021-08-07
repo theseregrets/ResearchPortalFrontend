@@ -25,6 +25,7 @@ import Profile from './profile';
 import ProjectDetail from './project-detail';
 import BottomNav from './BottomNav';
 import BottomNavFix from './BottomNavFix';
+import NewPost from './new-post';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -181,6 +182,18 @@ export default function DashboardTeacher() {
               </ListItem>
             </Link>
 
+            <Link
+              to={`${url}/create-project`}
+              className={classes.drawerListText}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Create-Project" />
+              </ListItem>
+            </Link>
+
             <Link to={`${url}/profile`} className={classes.drawerListText}>
               <ListItem button>
                 <ListItemIcon>
@@ -205,6 +218,9 @@ export default function DashboardTeacher() {
         </Route>
         <Route path={`${path}/profile`}>
           <Profile />
+        </Route>
+        <Route path={`${path}/create-project`}>
+          <NewPost />
         </Route>
         <Route path={`${path}/project-detail/:slug`}>
           <ProjectDetail />

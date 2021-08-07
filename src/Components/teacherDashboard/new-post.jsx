@@ -10,9 +10,11 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    marginLeft: theme.spacing(10),
     '& .MuiTextField-root': {
       margin: theme.spacing(3),
       width: '100ch',
@@ -34,6 +36,21 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(3),
       },
     },
+    group: {
+      width: '30ch',
+    },
+  },
+  group: {
+    display: 'flex',
+    width: '100ch',
+    padding: theme.spacing(3),
+    '& > p': {
+      flexGrow: '1',
+    },
+    '& .MuiTextField-root': {
+      margin: theme.spacing(3),
+      width: '25ch',
+    },
   },
 }));
 
@@ -52,7 +69,7 @@ const Status = [
   },
 ];
 
-export default function NewPost({ setProjects }) {
+export default function NewPost() {
   const classes = useStyles();
   const history = useHistory();
   const state = useSelector((state) => state.profile);
@@ -80,25 +97,8 @@ export default function NewPost({ setProjects }) {
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
-      .then(() => {
-        fetch(
-          `https://ieeenitdgp.pythonanywhere.com/api/projects/my-projects/`,
-          {
-            method: 'GET',
-            headers: {
-              Authorization: `Bearer ${state.jwt}`,
-            },
-          }
-        )
-          .then((res) => res.json())
-          .then((data) => {
-            // store the user detail in redux.
-            setProjects(data);
-            console.log(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+      .then((data) => {
+        console.log(data);
         history.push('/dashboard');
       })
       .catch((err) => {
@@ -109,6 +109,13 @@ export default function NewPost({ setProjects }) {
   return (
     <>
       <form className={classes.root} noValidate autoComplete="off">
+        <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<DeleteIcon />}
+        >
+          Cancel
+        </Button>
         <div>
           <TextField
             id="outline-basic"
@@ -124,7 +131,18 @@ export default function NewPost({ setProjects }) {
             multiline
             onChange={(event) => settags(event.target.value)}
           />
-          <div>
+          <TextField
+            id="outlined-multiline-static"
+            label="Description"
+            multiline
+            rows={6}
+            placeholder="add a brief description about your project"
+            variant="outlined"
+            onChange={(event) => {
+              setdescription(event.target.value);
+            }}
+          />
+          <div className={classes.group}>
             <FormControlLabel
               control={
                 <Checkbox
@@ -138,6 +156,7 @@ export default function NewPost({ setProjects }) {
               }
               label="is-Active"
             />
+            <p />
             <TextField
               select
               label="status"
@@ -154,17 +173,7 @@ export default function NewPost({ setProjects }) {
               ))}
             </TextField>
           </div>
-          <TextField
-            id="outlined-multiline-static"
-            label="Description"
-            multiline
-            rows={6}
-            placeholder="add a brief description about your project"
-            variant="outlined"
-            onChange={(event) => {
-              setdescription(event.target.value);
-            }}
-          />
+
           <div className={classes.root}>
             <Button
               variant="contained"

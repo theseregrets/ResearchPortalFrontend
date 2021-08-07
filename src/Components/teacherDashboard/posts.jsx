@@ -90,7 +90,11 @@ const Posts = () => {
               <>
                 {projects.length ? (
                   projects.map((ele) => (
-                    <ProjectCard project={ele.title} desc={ele.description} />
+                    <ProjectCard
+                      project={ele.title}
+                      desc={ele.description}
+                      slug={ele.slug}
+                    />
                   ))
                 ) : (
                   <p>create Project</p>

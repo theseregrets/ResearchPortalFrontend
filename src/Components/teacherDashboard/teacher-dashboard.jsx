@@ -19,11 +19,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PeopleIcon from '@material-ui/icons/People';
-import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-
-import Applications from './applications';
-// import Overview from './overview';
 import Posts from './posts';
 import Profile from './profile';
 import ProjectDetail from './project-detail';
@@ -210,7 +206,7 @@ export default function DashboardTeacher() {
         <Route path={`${path}/profile`}>
           <Profile />
         </Route>
-        <Route path={`${path}/project-detail`}>
+        <Route path={`${path}/project-detail/:slug`}>
           <ProjectDetail />
         </Route>
       </Switch>

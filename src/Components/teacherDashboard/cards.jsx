@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectCard({ project, desc }) {
+export default function ProjectCard({ project, desc, slug }) {
   const classes = useStyles();
   const { url } = useRouteMatch();
 
@@ -80,7 +80,7 @@ export default function ProjectCard({ project, desc }) {
         <h4 className={classes.cardTextTitle}>{project}</h4>
         <p className={classes.cardTextContent}>{desc}</p>
         <div className={classes.txt}>
-          <Link to={`${url}/project-detail`}>
+          <Link to={`${url}/project-detail/${slug}`}>
             <Button
               variant="contained"
               color="secondary"

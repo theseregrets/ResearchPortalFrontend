@@ -1,6 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React, { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { useSelector } from 'react-redux';
 
 const baseStyle = {
   flex: 1,
@@ -31,7 +34,8 @@ const rejectStyle = {
   borderColor: '#ff1744',
 };
 
-export default function FileDropzone() {
+export default function FileDropzone({ setFile, Edit, cv }) {
+  const state = useSelector((state) => state.profile);
   const {
     getRootProps,
     getInputProps,
@@ -39,16 +43,25 @@ export default function FileDropzone() {
     isDragActive,
     isDragAccept,
     isDragReject,
-  } = useDropzone({ accept: 'application/pdf' });
+  } = useDropzone({
+    accept: 'application/pdf',
+    onDrop: (files) => setFile(files),
+    disabled: !Edit,
+    onDragEnter: () => {
+      if (!Edit) {
+        alert('click on update button to upload CV');
+      }
+    },
+  });
 
   const style = useMemo(
     () => ({
       ...baseStyle,
-      ...(isDragActive ? activeStyle : {}),
+      ...(Edit ? activeStyle : {}),
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),
     }),
-    [isDragActive, isDragReject, isDragAccept]
+    [Edit, isDragReject, isDragAccept]
   );
 
   const files = acceptedFiles.map((file) => (
@@ -56,17 +69,33 @@ export default function FileDropzone() {
       {file.path} - {file.size} bytes
     </li>
   ));
-
   return (
     <div>
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        <p>Drag n drop Resume here, or click to select files (pdf)</p>
+        {Edit ? (
+          <p>Drag n drop Resume here, or click to select files (pdf)</p>
+        ) : (
+          <p>click on Edit button to upload CV</p>
+        )}
       </div>
-      <aside>
-        <h5>Uploaded file-</h5>
-        <ul>{files}</ul>
-      </aside>
+      {Edit ? (
+        <>
+          <h3>
+            <h5>Updated file-</h5>
+            <h3>{files}</h3>
+          </h3>
+        </>
+      ) : (
+        <>
+          <h3>
+            <h5>Uploaded file-</h5>
+            <a href={cv} target="_blank" rel="noreferrer">
+              Click Here
+            </a>
+          </h3>
+        </>
+      )}
     </div>
   );
 }

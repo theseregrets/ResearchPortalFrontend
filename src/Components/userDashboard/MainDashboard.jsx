@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { deepPurple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectCard from './ProjectCard';
 
 const useStyles = makeStyles((theme) => ({
@@ -67,24 +68,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const data = {
-  img: 'https://miro.medium.com/max/1838/1*MI686k5sDQrISBM6L8pf5A.jpeg',
-  project:
-    'Development of experimental rover and investigation of mobility and approaches for local and global motion planning on uneven terrain',
-  desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-  faculty: 'Dr. K. Kurien Issac',
-  dept: 'Aerospace engineering',
-};
-
 export default function MainDashboard() {
   const classes = useStyles();
-  const firstName = useSelector((state) => state.first_name);
+  const state = useSelector((state) => state.profile);
+  const [projects, setProjects] = useState(null);
+
+  useEffect(() => {
+    if (projects == null) {
+      fetch(`https://ieeenitdgp.pythonanywhere.com//api/projects/applied-to/`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setProjects(data);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   return (
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
-        <h4 className={classes.txt}>Welcome back {firstName}</h4>
+        <h4 className={classes.txt}>Welcome back {state.first_name}</h4>
       </div>
       <h2 className={classes.title}>Projects Applied</h2>
       <Button
@@ -97,27 +109,25 @@ export default function MainDashboard() {
         <AddIcon />
         Apply for more
       </Button>
-      <ProjectCard
-        img={data.img}
-        project={data.project}
-        desc={data.desc}
-        faculty={data.faculty}
-        dept={data.dept}
-      />
-      <ProjectCard
-        img={data.img}
-        project={data.project}
-        desc={data.desc}
-        faculty={data.faculty}
-        dept={data.dept}
-      />
-      <ProjectCard
-        img={data.img}
-        project={data.project}
-        desc={data.desc}
-        faculty={data.faculty}
-        dept={data.dept}
-      />
+      {projects ? (
+        <>
+          {projects.length ? (
+            projects.map((ele) => (
+              <ProjectCard
+                project={ele.post.title}
+                desc={ele.post.description}
+                faculty={ele.post.teacher}
+                identity={ele.post.slug}
+                setProjects={setProjects}
+              />
+            ))
+          ) : (
+            <p>Apply for project</p>
+          )}
+        </>
+      ) : (
+        <CircularProgress disableShrink />
+      )}
     </div>
   );
 }

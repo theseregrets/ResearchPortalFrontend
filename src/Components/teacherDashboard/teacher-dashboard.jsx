@@ -19,16 +19,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PeopleIcon from '@material-ui/icons/People';
-import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-
-import Applications from './applications';
-// import Overview from './overview';
 import Posts from './posts';
 import Profile from './profile';
 import ProjectDetail from './project-detail';
 import BottomNav from './BottomNav';
 import BottomNavFix from './BottomNavFix';
+import NewPost from './new-post';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -149,29 +146,25 @@ export default function DashboardTeacher() {
   const { path, url } = useRouteMatch();
 
   return (
-    <BrowserRouter>
-      <div className={classes.root}>
-        <CssBaseline />
-        {width > 900 ? (
-          <Drawer
-            variant="permanent"
-            classes={{
-              paper: clsx(
-                classes.drawerPaper,
-                !open && classes.drawerPaperClose
-              ),
-            }}
-            open={open}
-          >
-            <div className={classes.toolbarIcon}>
-              <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
-                {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-              </IconButton>
-            </div>
-            <Divider />
+    <div className={classes.root}>
+      <CssBaseline />
+      {width > 900 ? (
+        <Drawer
+          variant="permanent"
+          classes={{
+            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+          }}
+          open={open}
+        >
+          <div className={classes.toolbarIcon}>
+            <IconButton onClick={open ? handleDrawerClose : handleDrawerOpen}>
+              {open ? <ChevronLeftIcon /> : <ChevronRightIcon />}
+            </IconButton>
+          </div>
+          <Divider />
 
-            <List>
-              {/* <Link to={`${url}`} className={classes.drawerListText}>
+          <List>
+            {/* <Link to={`${url}`} className={classes.drawerListText}>
                 <ListItem button>
                   <ListItemIcon>
                     <DashboardIcon />
@@ -180,61 +173,60 @@ export default function DashboardTeacher() {
                 </ListItem>
               </Link> */}
 
-              <Link to={`${url}`} className={classes.drawerListText}>
-                <ListItem button>
-                  <ListItemIcon>
-                    <AssignmentIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Projects" />
-                </ListItem>
-              </Link>
+            <Link to={`${url}`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Projects" />
+              </ListItem>
+            </Link>
 
-              <Link
-                to={`${url}/applications`}
-                className={classes.drawerListText}
-              >
-                <ListItem button>
-                  <ListItemIcon>
-                    <LayersIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Applications" />
-                </ListItem>
-              </Link>
+            <Link
+              to={`${url}/create-project`}
+              className={classes.drawerListText}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <AssignmentIcon />
+                </ListItemIcon>
+                <ListItemText primary="Create-Project" />
+              </ListItem>
+            </Link>
 
-              <Link to={`${url}/profile`} className={classes.drawerListText}>
-                <ListItem button>
-                  <ListItemIcon>
-                    <PeopleIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Profile" />
-                </ListItem>
-              </Link>
-            </List>
-          </Drawer>
-        ) : (
-          <BottomNav url={url} />
-        )}
+            <Link to={`${url}/profile`} className={classes.drawerListText}>
+              <ListItem button>
+                <ListItemIcon>
+                  <PeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Profile" />
+              </ListItem>
+            </Link>
+          </List>
+        </Drawer>
+      ) : (
+        <BottomNav url={url} />
+      )}
 
-        <Switch>
-          {/* <Route exact path={path}>
+      <Switch>
+        {/* <Route exact path={path}>
             <Overview />
           </Route> */}
 
-          <Route exact path={`${path}`}>
-            <Posts />
-          </Route>
-          <Route path={`${path}/applications`}>
-            <Applications />
-          </Route>
-          <Route path={`${path}/profile`}>
-            <Profile />
-          </Route>
-          <Route path={`${path}/project-detail`}>
-            <ProjectDetail />
-          </Route>
-        </Switch>
-        {width < 900 ? <BottomNavFix /> : null}
-      </div>
-    </BrowserRouter>
+        <Route exact path={`${path}`}>
+          <Posts />
+        </Route>
+        <Route path={`${path}/profile`}>
+          <Profile />
+        </Route>
+        <Route path={`${path}/create-project`}>
+          <NewPost />
+        </Route>
+        <Route path={`${path}/project-detail/:slug`}>
+          <ProjectDetail />
+        </Route>
+      </Switch>
+      {width < 900 ? <BottomNavFix /> : null}
+    </div>
   );
 }

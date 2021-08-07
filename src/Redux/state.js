@@ -9,6 +9,9 @@ const state = {
   last_name: '',
   department: '',
   contacts: '',
+  cv: '',
+  cgpa: 0,
+  research_statement: '',
 };
 
 export default state;

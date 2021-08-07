@@ -1,6 +1,6 @@
 function updateDept(dept) {
   return {
-    type: 'TEACHER-DEPT',
+    type: 'DEPT',
     department: dept,
   };
 }

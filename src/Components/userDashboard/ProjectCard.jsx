@@ -1,6 +1,10 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/no-unused-prop-types */
+/* eslint-disable react/no-this-in-sfc */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -8,7 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 const useStyles = makeStyles((theme) => ({
   card: {
     padding: '25px',
-    display: 'flex',
+    display: 'block',
     backgroundColor: 'white',
     width: '80%',
     margin: '20px auto',
@@ -55,8 +59,51 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProjectCard({ project, desc, faculty, dept }) {
+export default function ProjectCard({
+  project,
+  desc,
+  faculty,
+  identity,
+  setProjects,
+}) {
   const classes = useStyles();
+  const state = useSelector((state) => state.profile);
+
+  const onDelete = (slug) => {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/projects/withdraw/${slug}/`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        fetch(
+          `https://ieeenitdgp.pythonanywhere.com//api/projects/applied-to/`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${state.jwt}`,
+            },
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setProjects(data);
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className={classes.card}>
@@ -66,11 +113,12 @@ export default function ProjectCard({ project, desc, faculty, dept }) {
         <div className={classes.txt}>
           <div>
             <p>{faculty}</p>
-            <p>{dept}</p>
+            {/* <p>{dept}</p> */}
           </div>
           <Button
             variant="contained"
             color="secondary"
+            onClick={() => onDelete(identity)}
             className={classes.delButton}
             startIcon={<DeleteIcon />}
           >

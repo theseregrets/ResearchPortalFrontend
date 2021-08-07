@@ -1,6 +1,6 @@
 function updateContacts(cont) {
   return {
-    type: 'TEACHER-CONTACTS',
+    type: 'CONTACTS',
     contacts: cont,
   };
 }

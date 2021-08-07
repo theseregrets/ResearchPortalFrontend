@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-
+import { useSelector } from 'react-redux';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-
+import { useParams } from 'react-router-dom';
 import { projects } from '../../Data/projects';
 import { data } from '../../Data/project-data';
 import ApplicationTable from './table';
@@ -61,6 +61,28 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ProjectDetail() {
   const classes = useStyles();
+  const { slug } = useParams();
+  const state = useSelector((state) => state.profile);
+
+  useEffect(() => {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/projects/applied/${slug}/`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // store the user detail in redux.
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <>

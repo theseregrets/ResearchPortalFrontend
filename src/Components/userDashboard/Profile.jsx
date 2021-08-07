@@ -124,7 +124,7 @@ export default function Profile() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        dispatch(cv(data));
+        dispatch(cv(data.cv));
         dispatch(cont(data.contact));
         dispatch(dept(data.branch));
         dispatch(cg(data.cgpa));
@@ -360,6 +360,7 @@ export default function Profile() {
               setfile(file);
             }}
             Edit={isEditing}
+            cv={state.cv}
           />
         </div>
       </div>

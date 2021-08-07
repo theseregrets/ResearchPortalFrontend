@@ -74,21 +74,22 @@ export default function MainDashboard() {
   const [projects, setProjects] = useState(null);
 
   useEffect(() => {
-    fetch(`https://ieeenitdgp.pythonanywhere.com//api/projects/applied-to/`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${state.jwt}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        // store the user detail in redux.
-        setProjects(data);
-        console.log(data);
+    if (projects == null) {
+      fetch(`https://ieeenitdgp.pythonanywhere.com//api/projects/applied-to/`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
       })
-      .catch((err) => {
-        console.log(err);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          setProjects(data);
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
 
   return (
@@ -116,6 +117,8 @@ export default function MainDashboard() {
                 project={ele.post.title}
                 desc={ele.post.description}
                 faculty={ele.post.teacher}
+                identity={ele.post.slug}
+                setProjects={setProjects}
               />
             ))
           ) : (

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import UpdateIcon from '@material-ui/icons/Update';
 import EditDetails from './EditAcadDetails';
 import Details from './AcadDetails';
+import cont from '../../Redux/Actions/updateContacts';
+import dept from '../../Redux/Actions/updateDept';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Profile() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState(null);
   const [contact, setcontact] = useState(null);
@@ -152,6 +155,8 @@ export default function Profile() {
       .then((res) => res.json())
       .then((data) => {
         // store the user detail in redux.
+        dispatch(cont(data.contact));
+        dispatch(dept(data.branch));
         console.log(data);
       })
       .catch((err) => {

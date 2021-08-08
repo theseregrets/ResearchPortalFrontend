@@ -56,10 +56,10 @@ export default function BottomNav({ url }) {
         to={`${url}`}
       />
       <BottomNavigationAction
-        value="applications"
+        value="create-project"
         icon={<LayersIcon />}
         component={Link}
-        to={`${url}/applications`}
+        to={`${url}/create-project`}
       />
       <BottomNavigationAction
         value="profile"

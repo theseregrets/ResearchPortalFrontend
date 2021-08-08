@@ -223,18 +223,20 @@ export default function Navbar() {
               Team
             </ListItemText>
           </ListItem>
-          <ListItem style={{ paddingTop: '10px' }} divider button>
-            <ListItemIcon>
-              <DashboardIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText
-              onClick={() => {
-                pushTo('/dashboard');
-              }}
-            >
-              Dashboard
-            </ListItemText>
-          </ListItem>
+          {state.isLogged && (
+            <ListItem style={{ paddingTop: '10px' }} divider button>
+              <ListItemIcon>
+                <DashboardIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                onClick={() => {
+                  pushTo('/dashboard');
+                }}
+              >
+                Dashboard
+              </ListItemText>
+            </ListItem>
+          )}
           <ListItem style={{ paddingTop: '10px' }} divider button>
             <ListItemIcon>
               <InfoIcon color="primary" />

@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px',
     borderRadius: '10px',
     boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+    whiteSpace: 'pre-line',
   },
   txtArea: {
     display: 'block',

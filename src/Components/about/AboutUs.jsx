@@ -24,7 +24,8 @@ const useStyles = makeStyles((theme) => ({
   },
   animatedNumber: {
     transition: '0.8s ease-out',
-    color: 'rgb(91, 117, 202)',
+    color: '#ffb016',
+    fontWeight: '600',
     fontSize: '3rem',
     textAlign: 'center',
     alignItems: 'center',
@@ -48,19 +49,18 @@ const useStyles = makeStyles((theme) => ({
   desc: {
     padding: '10px',
   },
+  [theme.breakpoints.down('xs')]: {
+    counter: {
+      border: '0',
+    },
+  },
 }));
 
 export default function AboutUs() {
   const classes = useStyles();
   return (
     <Grid container>
-      <Grid
-        container
-        spacing={1}
-        justify="center"
-        alignItems="center"
-        margin="auto"
-      >
+      <Grid container justify="center" alignItems="center" margin="auto">
         <Grid item xs={12}>
           <Typography
             className={classes.heading}
@@ -90,7 +90,7 @@ export default function AboutUs() {
         </Grid>
 
         <Grid item xs={12} sm={4} spacing={1} align="center">
-          <Box borderRight={0.1}>
+          <Box borderRight={0.1} className={classes.counter}>
             <AnimatedNumber
               className={classes.animatedNumber}
               stepPrecision={0}
@@ -103,15 +103,8 @@ export default function AboutUs() {
             </Typography>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          spacing={1}
-          align="center"
-          style={{ backgroundColor: 'white' }}
-        >
-          <Box borderRight={0.1}>
+        <Grid item xs={12} sm={4} spacing={1} align="center">
+          <Box borderRight={0.1} className={classes.counter}>
             <AnimatedNumber
               className={classes.animatedNumber}
               stepPrecision={0}
@@ -125,14 +118,7 @@ export default function AboutUs() {
             </Typography>
           </Box>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          spacing={1}
-          align="center"
-          style={{ backgroundColor: 'white' }}
-        >
+        <Grid item xs={12} sm={4} spacing={1} align="center">
           <Box>
             <AnimatedNumber
               className={classes.animatedNumber}

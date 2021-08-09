@@ -70,7 +70,10 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   logo1: {
-    width: '40%',
+    filter: 'invert(1)',
+    padding: '5px 0',
+    width: '35%',
+    minWidth: '100px',
     [theme.breakpoints.down('xs')]: {
       width: '60%',
     },

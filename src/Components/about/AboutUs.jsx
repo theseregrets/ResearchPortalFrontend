@@ -7,12 +7,13 @@ import {
   Paper,
   Typography,
   Box,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core';
 import AnimatedNumber from 'react-animated-number';
 
 const useStyles = makeStyles((theme) => ({
   heading: {
-    textDecoration: 'underline',
     color: 'white',
   },
   paragraph: {
@@ -52,6 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AboutUs() {
   const classes = useStyles();
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   return (
     <Grid container>
       <Grid
@@ -65,7 +68,7 @@ export default function AboutUs() {
           <Typography
             className={classes.heading}
             gutterBottom
-            variant="h2"
+            variant="h3"
             align="center"
           >
             About Us
@@ -74,7 +77,7 @@ export default function AboutUs() {
 
         <Grid
           item
-          xs={10}
+          xs={12}
           className={classes.paragraph}
           style={{ padding: '20px' }}
         >
@@ -88,64 +91,51 @@ export default function AboutUs() {
             welcomes in the era of better research prospects, on the campus.
           </Typography>
         </Grid>
+        <Grid container className={classes.paragraph}>
+          <Grid item xs={12} sm={4} spacing={1} align="center">
+            <Box borderRight={smallScreen ? 0 : 0.1}>
+              <AnimatedNumber
+                className={classes.animatedNumber}
+                stepPrecision={0}
+                duration={1000}
+                value={50}
+                formatValue={(n) => `${n} +`}
+              />
+              <Typography variant="p" component="p" gutterBottom>
+                Branch Members
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4} spacing={1} align="center">
+            <Box borderRight={smallScreen ? 0 : 0.1}>
+              <AnimatedNumber
+                className={classes.animatedNumber}
+                stepPrecision={0}
+                duration={1000}
+                value={30}
+                formatValue={(n) => `${n} +`}
+              />
 
-        <Grid item xs={12} sm={4} spacing={1} align="center">
-          <Box borderRight={0.1}>
-            <AnimatedNumber
-              className={classes.animatedNumber}
-              stepPrecision={0}
-              duration={1000}
-              value={50}
-              formatValue={(n) => `${n} +`}
-            />
-            <Typography variant="p" component="p" gutterBottom>
-              Branch Members
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          spacing={1}
-          align="center"
-          style={{ backgroundColor: 'white' }}
-        >
-          <Box borderRight={0.1}>
-            <AnimatedNumber
-              className={classes.animatedNumber}
-              stepPrecision={0}
-              duration={1000}
-              value={30}
-              formatValue={(n) => `${n} +`}
-            />
+              <Typography variant="p" component="p" gutterBottom>
+                Events and Workshops
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={4} spacing={1} align="center">
+            <Box>
+              <AnimatedNumber
+                className={classes.animatedNumber}
+                stepPrecision={0}
+                duration={1000}
+                value={500}
+                formatValue={(n) => `${n} +`}
+              />
 
-            <Typography variant="p" component="p" gutterBottom>
-              Events and Workshops
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          spacing={1}
-          align="center"
-          style={{ backgroundColor: 'white' }}
-        >
-          <Box>
-            <AnimatedNumber
-              className={classes.animatedNumber}
-              stepPrecision={0}
-              duration={1000}
-              value={500}
-              formatValue={(n) => `${n} +`}
-            />
-
-            <Typography variant="p" component="p" gutterBottom>
-              Participants
-            </Typography>
-          </Box>
+              <Typography variant="p" component="p" gutterBottom>
+                Participants
+              </Typography>
+            </Box>
+          </Grid>
         </Grid>
       </Grid>
 

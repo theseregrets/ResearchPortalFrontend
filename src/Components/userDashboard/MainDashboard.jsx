@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import { deepPurple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import { Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectCard from './ProjectCard';
 
@@ -66,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
       height: theme.spacing(5),
     },
   },
+  placeholderText: {
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'center',
+  },
 }));
 
 export default function MainDashboard() {
@@ -110,7 +116,7 @@ export default function MainDashboard() {
         Apply for more
       </Button>
       {projects ? (
-        <>
+        <div>
           {projects.length ? (
             projects.map((ele) => (
               <ProjectCard
@@ -122,11 +128,15 @@ export default function MainDashboard() {
               />
             ))
           ) : (
-            <p>Apply for project</p>
+            <Typography className={classes.placeholderText}>
+              Apply for project
+            </Typography>
           )}
-        </>
+        </div>
       ) : (
-        <CircularProgress disableShrink />
+        <div className={classes.placeholderText}>
+          <CircularProgress color="white" disableShrink />
+        </div>
       )}
     </div>
   );

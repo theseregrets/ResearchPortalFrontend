@@ -13,7 +13,7 @@ import ProjectCard from './ProjectCard';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
+    minHeight: '60vh',
     flex: '1',
     '& a': {
       '&:hover': {

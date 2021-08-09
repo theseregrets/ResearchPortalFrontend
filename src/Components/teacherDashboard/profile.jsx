@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
+    color: 'white',
   },
   profile: {
     width: '80%',
@@ -99,9 +100,32 @@ export default function Profile() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
   const dispatch = useDispatch();
+
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState(null);
   const [contact, setcontact] = useState(null);
+
+  useEffect(() => {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/user/teacher/details/${state.username}/`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // store the user detail in redux.
+        dispatch(cont(data.contact));
+        dispatch(dept(data.branch));
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function update() {
     const formdata = new FormData();
@@ -142,28 +166,6 @@ export default function Profile() {
     }
   }
 
-  useEffect(() => {
-    fetch(
-      `https://ieeenitdgp.pythonanywhere.com/api/user/teacher/details/${state.username}/`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${state.jwt}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        // store the user detail in redux.
-        dispatch(cont(data.contact));
-        dispatch(dept(data.branch));
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   return (
     <div className={classes.root}>
       <h2 className={classes.title}>Profile</h2>
@@ -180,7 +182,7 @@ export default function Profile() {
           </div>
           <div className={classes.editBtn}>
             {!isEditing ? (
-              <>
+              <div>
                 <p />
                 <Button
                   size="small"
@@ -191,7 +193,7 @@ export default function Profile() {
                   <UpdateIcon />
                   Edit
                 </Button>
-              </>
+              </div>
             ) : (
               <div className={classes.editBtnContainer}>
                 <Button
@@ -217,14 +219,50 @@ export default function Profile() {
 
         <div className={classes.info}>
           <div className={classes.infoContainer}>
-            <h1>Basic details</h1>
-            <h4>Username: {state.username}</h4>
-            <h4>First Name: {state.first_name}</h4>
-            <h4>Last Name: {state.last_name}</h4>
-            <h4>Email: {state.email}</h4>
+            <h4>Basic details</h4>
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Username"
+              value={state.username}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Firstname"
+              value={state.first_name}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Lastname"
+              value={state.last_name}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Email"
+              value={state.email}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
           </div>
           <div className={classes.infoContainer}>
-            <h1>Academic details</h1>
+            <h4>Academic details</h4>
             {isEditing ? (
               <EditDetails setBranch={setbranch} setContact={setcontact} />
             ) : (

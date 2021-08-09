@@ -40,6 +40,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
 
+    '& > a': {
+      textDecoration: 'none',
+    },
+
     '& > Button': {
       alignSelf: 'flex-end',
       margin: '0',

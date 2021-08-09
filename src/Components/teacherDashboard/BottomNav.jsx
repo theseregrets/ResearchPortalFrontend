@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 
-import SubjectIcon from '@material-ui/icons/Subject';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import PeopleIcon from '@material-ui/icons/People';
-import LayersIcon from '@material-ui/icons/Layers';
+import CreateIcon from '@material-ui/icons/Create';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(() => ({
@@ -51,13 +51,13 @@ export default function BottomNav({ url }) {
       /> */}
       <BottomNavigationAction
         value="projects"
-        icon={<SubjectIcon />}
+        icon={<AssignmentIcon />}
         component={Link}
         to={`${url}`}
       />
       <BottomNavigationAction
         value="create-project"
-        icon={<LayersIcon />}
+        icon={<CreateIcon />}
         component={Link}
         to={`${url}/create-project`}
       />

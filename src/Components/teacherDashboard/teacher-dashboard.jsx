@@ -20,6 +20,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PeopleIcon from '@material-ui/icons/People';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import CreateIcon from '@material-ui/icons/Create';
 import Posts from './posts';
 import Profile from './profile';
 import ProjectDetail from './project-detail';
@@ -188,7 +189,7 @@ export default function DashboardTeacher() {
             >
               <ListItem button>
                 <ListItemIcon>
-                  <AssignmentIcon />
+                  <CreateIcon />
                 </ListItemIcon>
                 <ListItemText primary="Create-Project" />
               </ListItem>

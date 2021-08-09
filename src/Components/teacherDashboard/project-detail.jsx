@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useSelector } from 'react-redux';
+import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from 'react-router-dom';
@@ -95,7 +95,9 @@ export default function ProjectDetail() {
         >
           Delete Project
         </Button>
-        <h1 className={classes.title}>{data.title}</h1>
+        <Typography variant="h3" gutterBottom className={classes.title}>
+          {data.title}
+        </Typography>
         <hr />
         <h4>Summary</h4>
 

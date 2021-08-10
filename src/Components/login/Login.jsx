@@ -15,20 +15,19 @@ import login from '../../Redux/Actions/login';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
-    marginTop: '10px',
+    margin: '10px auto',
     backgroundColor: 'green',
   },
   paper: {
     width: '50vw',
-    margin: 'auto',
-    height: '60vh',
+    margin: '1rem auto 3rem auto',
+    padding: '2rem',
     display: 'flex',
     flexDirection: 'column',
-    marginBottom: '3rem',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backdropFilter: 'blur(10px)',
     [theme.breakpoints.down('sm')]: {
       width: '90vw',
-      margin: 'auto',
-      height: '90vh',
     },
   },
   align: {
@@ -36,21 +35,17 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
   },
   field: {
-    width: '40vw',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: '15px',
-    [theme.breakpoints.down('sm')]: {
-      width: '80vw',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: '40px',
-    },
+    width: '100%',
+    margin: '1rem auto',
   },
   form: {
-    width: '40vw',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    width: '80%',
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '1rem auto',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
 }));
 
@@ -93,7 +88,7 @@ export default function Login() {
   };
 
   return (
-    <Paper className={classes.paper} elevation={2}>
+    <Paper className={classes.paper} elevation={5}>
       <Avatar className={clsx(classes.align, classes.avatar)}>
         <LockOpenIcon />
       </Avatar>

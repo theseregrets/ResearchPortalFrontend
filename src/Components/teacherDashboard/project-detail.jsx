@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useSelector } from 'react-redux';
+import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { projects } from '../../Data/projects';
 import { data } from '../../Data/project-data';
 import ApplicationTable from './table';
@@ -63,6 +63,7 @@ export default function ProjectDetail() {
   const classes = useStyles();
   const { slug } = useParams();
   const state = useSelector((state) => state.profile);
+  const history = useHistory();
 
   useEffect(() => {
     fetch(
@@ -84,6 +85,29 @@ export default function ProjectDetail() {
       });
   }, []);
 
+  function deleteProject() {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/projects/details/${slug}/`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => {
+        if (res.status === 204) {
+          history.replace('/dashboard');
+        } else {
+          alert('some error');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('some error');
+      });
+  }
+
   return (
     <>
       <CssBaseline />
@@ -92,10 +116,15 @@ export default function ProjectDetail() {
           variant="contained"
           color="secondary"
           startIcon={<DeleteIcon />}
+          onClick={() => {
+            deleteProject();
+          }}
         >
           Delete Project
         </Button>
-        <h1 className={classes.title}>{data.title}</h1>
+        <Typography variant="h3" gutterBottom className={classes.title}>
+          {data.title}
+        </Typography>
         <hr />
         <h4>Summary</h4>
 

@@ -31,7 +31,7 @@ import NewPost from './new-post';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-
+    minHeight: '100vh',
     // for sidenav
     '& .MuiDrawer-docked': {
       backgroundColor: 'white',

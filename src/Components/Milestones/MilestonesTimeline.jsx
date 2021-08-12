@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   time: {
-    color: '#4499fe',
+    color: '#fff',
     fontWeight: 'bold',
   },
   left: {

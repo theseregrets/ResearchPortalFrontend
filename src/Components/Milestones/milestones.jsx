@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaDotCircle } from 'react-icons/fa';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MilestonesTimeline from './MilestonesTimeline';
 import Carousel from './Carousel';
@@ -38,7 +38,9 @@ export default function Milestones() {
   return (
     <Grid container className={classes.root}>
       <Grid item align="center" spacing={1} xs={12}>
-        <h1 className={classes.heading}>Milestones</h1>
+        <Typography variant="h3" gutterBottom className={classes.heading}>
+          Milestones
+        </Typography>
       </Grid>
       <Carousel />
       <FaDotCircle className={classes.logo} />

@@ -7,18 +7,20 @@ import {
   Paper,
   Typography,
   Box,
+  useTheme,
+  useMediaQuery,
 } from '@material-ui/core';
 import AnimatedNumber from 'react-animated-number';
 
 const useStyles = makeStyles((theme) => ({
   heading: {
-    textDecoration: 'underline',
     color: 'white',
   },
   paragraph: {
     padding: '20px',
     margin: '2rem 2rem',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255,255,255,0.9)',
+    backdropFilter: 'blur(5px)',
     boxShadow: theme.shadows[4],
     borderRadius: '10px',
   },
@@ -52,6 +54,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AboutUs() {
   const classes = useStyles();
+  const theme = useTheme();
+  const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   return (
     <Grid container>
       <Grid
@@ -65,88 +69,71 @@ export default function AboutUs() {
           <Typography
             className={classes.heading}
             gutterBottom
-            variant="h2"
+            variant="h3"
             align="center"
           >
             About Us
           </Typography>
         </Grid>
-
-        <Grid
-          item
-          xs={10}
-          className={classes.paragraph}
-          style={{ padding: '20px' }}
-        >
-          <Typography variant="body" className={classes.desc}>
-            The IEEE Student Branch , NIT Durgapur is a society of enthusiasts
-            aimed at promoting research-related activities in the campus. We are
-            a direct handshake to IEEE, an international body that allows
-            countless young researchers the opportunity to present & publish
-            their innovations every year. Comprising of bright researchers,
-            developers, speakers, and other contributors we are a society that
-            welcomes in the era of better research prospects, on the campus.
-          </Typography>
-        </Grid>
-
-        <Grid item xs={12} sm={4} spacing={1} align="center">
-          <Box borderRight={0.1}>
-            <AnimatedNumber
-              className={classes.animatedNumber}
-              stepPrecision={0}
-              duration={1000}
-              value={50}
-              formatValue={(n) => `${n} +`}
-            />
-            <Typography variant="p" component="p" gutterBottom>
-              Branch Members
+        <div className={classes.paragraph}>
+          <Grid item xs={12} style={{ padding: '20px' }}>
+            <Typography variant="body" className={classes.desc}>
+              The IEEE Student Branch , NIT Durgapur is a society of enthusiasts
+              aimed at promoting research-related activities in the campus. We
+              are a direct handshake to IEEE, an international body that allows
+              countless young researchers the opportunity to present & publish
+              their innovations every year. Comprising of bright researchers,
+              developers, speakers, and other contributors we are a society that
+              welcomes in the era of better research prospects, on the campus.
             </Typography>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          spacing={1}
-          align="center"
-          style={{ backgroundColor: 'white' }}
-        >
-          <Box borderRight={0.1}>
-            <AnimatedNumber
-              className={classes.animatedNumber}
-              stepPrecision={0}
-              duration={1000}
-              value={30}
-              formatValue={(n) => `${n} +`}
-            />
+          </Grid>
+          <Grid container>
+            <Grid item xs={12} sm={4} spacing={1} align="center">
+              <Box borderRight={smallScreen ? 0 : 0.1}>
+                <AnimatedNumber
+                  className={classes.animatedNumber}
+                  stepPrecision={0}
+                  duration={1000}
+                  value={50}
+                  formatValue={(n) => `${n} +`}
+                />
+                <Typography variant="p" component="p" gutterBottom>
+                  Branch Members
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4} spacing={1} align="center">
+              <Box borderRight={smallScreen ? 0 : 0.1}>
+                <AnimatedNumber
+                  className={classes.animatedNumber}
+                  stepPrecision={0}
+                  duration={1000}
+                  value={30}
+                  formatValue={(n) => `${n} +`}
+                />
 
-            <Typography variant="p" component="p" gutterBottom>
-              Events and Workshops
-            </Typography>
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          spacing={1}
-          align="center"
-          style={{ backgroundColor: 'white' }}
-        >
-          <Box>
-            <AnimatedNumber
-              className={classes.animatedNumber}
-              stepPrecision={0}
-              duration={1000}
-              value={500}
-              formatValue={(n) => `${n} +`}
-            />
+                <Typography variant="p" component="p" gutterBottom>
+                  Events and Workshops
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={4} spacing={1} align="center">
+              <Box>
+                <AnimatedNumber
+                  className={classes.animatedNumber}
+                  stepPrecision={0}
+                  duration={1000}
+                  value={500}
+                  formatValue={(n) => `${n} +`}
+                />
 
-            <Typography variant="p" component="p" gutterBottom>
-              Participants
-            </Typography>
-          </Box>
-        </Grid>
+                <Typography variant="p" component="p" gutterBottom>
+                  Participants
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
+        </div>
       </Grid>
 
       <Grid container>

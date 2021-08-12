@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3),
     },
     textAlign: 'center',
+    width: '100%',
   },
   projects: {
     display: 'block',

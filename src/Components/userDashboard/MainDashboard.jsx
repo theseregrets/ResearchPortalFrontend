@@ -114,10 +114,12 @@ export default function MainDashboard() {
           {projects.length ? (
             projects.map((ele) => (
               <ProjectCard
-                project={ele.post.title}
-                desc={ele.post.description}
-                faculty={ele.post.teacher}
-                identity={ele.post.slug}
+                project={ele.title}
+                desc={ele.description}
+                faculty={
+                  ele.teacher.user.first_name + ele.teacher.user.last_name
+                }
+                identity={ele.slug}
                 setProjects={setProjects}
               />
             ))

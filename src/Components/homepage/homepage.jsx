@@ -122,9 +122,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'row',
     margin: '1rem',
-    width: '19.3rem',
+    width: '17rem',
     height: '14rem',
     backgroundImage: 'linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)',
+    [theme.breakpoints.down('sm')]: {
+      width: '70vw',
+    },
   },
   contents: {
     margin: '1rem auto',
@@ -214,8 +217,8 @@ export default function Homepage() {
         >
           Our Objectives
         </Typography>
-        <Grid container align="center " className={classes.container}>
-          <Grid item>
+        <Grid container align="center" className={classes.container}>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography
@@ -244,7 +247,7 @@ export default function Homepage() {
               />
             </Card>
           </Grid>
-          <Grid item>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography
@@ -273,7 +276,7 @@ export default function Homepage() {
               />
             </Card>
           </Grid>
-          <Grid item>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography
@@ -302,7 +305,7 @@ export default function Homepage() {
               />
             </Card>
           </Grid>
-          <Grid item>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography

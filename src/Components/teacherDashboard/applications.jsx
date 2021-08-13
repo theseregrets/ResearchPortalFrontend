@@ -4,6 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 
 import ApplicationTable from './table';
 
@@ -44,7 +45,9 @@ export default function ProjectDetail() {
     <>
       <CssBaseline />
       <Container className={classes.container}>
-        <h2 className={classes.subtitle}>Applications</h2>
+        <Typography variant="h4" className={classes.subtitle}>
+          Applications
+        </Typography>
         <ApplicationTable />
       </Container>
     </>

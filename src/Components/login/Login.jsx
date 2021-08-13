@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '10px',
     backgroundColor: 'green',
   },
+  noAccount: {
+    textAlign: 'center',
+    marginTop: '20px',
+  },
   paper: {
     width: '50vw',
     margin: 'auto',
@@ -131,12 +135,12 @@ export default function Login() {
           Login
         </Button>
       </form>
-      <h5 style={{ textAlign: 'center', marginTop: '20px' }}>
+      <Typography variant="h6" className={classes.noAccount}>
         Don't have an account?
         <span>
           <Link to="/signup">Signup</Link>
         </span>
-      </h5>
+      </Typography>
     </Paper>
   );
 }

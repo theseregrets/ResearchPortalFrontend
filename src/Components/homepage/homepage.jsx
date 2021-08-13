@@ -114,15 +114,14 @@ const useStyles = makeStyles((theme) => ({
     // margin: '1em 1em',
   },
   title: {
-    color: '#ef5350',
-    textDecoration: 'underline',
+    color: theme.palette.text.secondary,
     marginBottom: '2rem',
     // textAlign: 'center',
   },
   card: {
     display: 'flex',
     flexDirection: 'row',
-    margin: '1.1rem',
+    margin: '1rem',
     width: '19.3rem',
     height: '14rem',
     backgroundImage: 'linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)',
@@ -172,7 +171,7 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <Typography variant="h2" className={classes.rp} component="div">
+      <Typography variant="h4" className={classes.rp} component="div">
         Research Portal
       </Typography>
       <p className={classes.desc}>
@@ -350,7 +349,7 @@ export default function Homepage() {
               className={classes.paragraph}
             >
               <CardContent className={classes.content}>
-                <Typography component="h2" variant="h2" gutterBottom>
+                <Typography component="h2" variant="h4" gutterBottom>
                   Director&apos;s Message
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">

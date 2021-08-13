@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 import UpdateIcon from '@material-ui/icons/Update';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -194,7 +195,9 @@ export default function Profile() {
 
   return (
     <div className={classes.root}>
-      <h2 className={classes.title}>Profile</h2>
+      <Typography variant="h4" className={classes.title}>
+        Profile
+      </Typography>
       <div className={classes.profile}>
         <div className={classes.photo}>
           <div className={classes.pic}>
@@ -249,7 +252,9 @@ export default function Profile() {
 
         <div className={classes.info}>
           <div className={classes.infoContainer}>
-            <h4>Basic details</h4>
+            <Typography variant="h5" gutterBottom>
+              Basic details
+            </Typography>
             <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
@@ -289,7 +294,9 @@ export default function Profile() {
           </div>
 
           <div className={classes.infoContainer}>
-            <h4>Academic details</h4>
+            <Typography variant="h5" gutterBottom>
+              Academic details
+            </Typography>
             <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
@@ -354,7 +361,7 @@ export default function Profile() {
         </div>
 
         <div className={classes.infoContainer}>
-          <h4>Resume</h4>
+          <Typography variant="h5">Resume</Typography>
           <FileDropzone
             setFile={(file) => {
               setfile(file);

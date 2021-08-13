@@ -171,12 +171,12 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <Typography variant="h2" className={classes.rp} component="div">
+      <Typography variant="h2" className={classes.rp} component="p">
         Research Portal
       </Typography>
-      <p className={classes.desc}>
+      <Typography className={classes.desc}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      </p>
+      </Typography>
       <div className={classes.grid}>
         <div className={classes.firstbox}>
           <Button

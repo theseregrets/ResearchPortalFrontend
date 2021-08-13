@@ -171,7 +171,7 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <Typography variant="h4" className={classes.rp} component="div">
+      <Typography variant="h2" className={classes.rp} component="div">
         Research Portal
       </Typography>
       <p className={classes.desc}>

@@ -5,6 +5,7 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -81,7 +82,9 @@ export default function ProjectCard({ project, desc, slug }) {
   return (
     <div className={classes.card}>
       <div className={classes.cardText}>
-        <h4 className={classes.cardTextTitle}>{project}</h4>
+        <Typography variant="h5" className={classes.cardTextTitle}>
+          {project}
+        </Typography>
         <p className={classes.cardTextContent}>{desc}</p>
         <div className={classes.txt}>
           <Link to={`${url}/project-detail/${slug}`}>

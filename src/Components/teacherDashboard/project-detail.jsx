@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     minWidth: 120,
   },
+  descTitle: {
+    margin: '30px 0px',
+  },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
@@ -126,17 +129,22 @@ export default function ProjectDetail() {
           {data.title}
         </Typography>
         <hr />
-        <h4>Summary</h4>
-
+        <Typography variant="h4" gutterBottom>
+          Summary
+        </Typography>
         <p className={classes.summary}>{data.project}</p>
         <hr />
-        <h4 style={{ margin: '30px 0px' }}>Description</h4>
+        <Typography variant="h4" gutterBottom className={classes.descTitle}>
+          Description
+        </Typography>
         <p>{data.desc}</p>
         <hr />
-        <h2 className={classes.subtitle}>Applications</h2>
-        <h4 className={classes.numApp}>
+        <Typography variant="h4" gutterBottom className={classes.subtitle}>
+          Applications
+        </Typography>
+        <Typography variant="h4" className={classes.numApp}>
           {projects.length} students have applied
-        </h4>
+        </Typography>
         <ApplicationTable />
       </Container>
     </>

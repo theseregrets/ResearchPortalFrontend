@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: '100%',
     alignItems: 'center',
-    marginTop: '10%',
+    marginTop: '5%',
   },
   paper: {
     height: '100%',
@@ -114,18 +114,20 @@ const useStyles = makeStyles((theme) => ({
     // margin: '1em 1em',
   },
   title: {
-    color: '#ef5350',
-    textDecoration: 'underline',
+    color: theme.palette.text.secondary,
     marginBottom: '2rem',
     // textAlign: 'center',
   },
   card: {
     display: 'flex',
     flexDirection: 'row',
-    margin: '1.1rem',
-    width: '19.3rem',
+    margin: '1rem',
+    width: '17rem',
     height: '14rem',
     backgroundImage: 'linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)',
+    [theme.breakpoints.down('sm')]: {
+      width: '70vw',
+    },
   },
   contents: {
     margin: '1rem auto',
@@ -172,12 +174,12 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <Typography variant="h2" className={classes.rp} component="div">
+      <Typography variant="h2" className={classes.rp} component="p">
         Research Portal
       </Typography>
-      <p className={classes.desc}>
+      <Typography className={classes.desc}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      </p>
+      </Typography>
       <div className={classes.grid}>
         <div className={classes.firstbox}>
           <Button
@@ -215,8 +217,8 @@ export default function Homepage() {
         >
           Our Objectives
         </Typography>
-        <Grid container align="center " className={classes.container}>
-          <Grid item>
+        <Grid container align="center" className={classes.container}>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography
@@ -245,7 +247,7 @@ export default function Homepage() {
               />
             </Card>
           </Grid>
-          <Grid item>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography
@@ -274,7 +276,7 @@ export default function Homepage() {
               />
             </Card>
           </Grid>
-          <Grid item>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography
@@ -303,7 +305,7 @@ export default function Homepage() {
               />
             </Card>
           </Grid>
-          <Grid item>
+          <Grid item lg={3}>
             <Card elevation={5} className={classes.card}>
               <CardContent>
                 <Typography
@@ -350,7 +352,7 @@ export default function Homepage() {
               className={classes.paragraph}
             >
               <CardContent className={classes.content}>
-                <Typography component="h2" variant="h2" gutterBottom>
+                <Typography component="h2" variant="h4" gutterBottom>
                   Director&apos;s Message
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">

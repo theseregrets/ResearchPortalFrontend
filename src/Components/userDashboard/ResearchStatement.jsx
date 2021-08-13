@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector, useDispatch } from 'react-redux';
+import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
 import Statement from './Statement';
@@ -112,7 +113,9 @@ export default function ResearchStatement() {
 
   return (
     <div className={classes.root}>
-      <h2 className={classes.title}>Research Statement</h2>
+      <Typography variant="h4" className={classes.title}>
+        Research Statement
+      </Typography>
       <div className={classes.btnContainer}>
         {!isEditing ? (
           <Button

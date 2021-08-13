@@ -4,6 +4,7 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import NewPost from './new-post';
@@ -77,7 +78,9 @@ export default function Overview() {
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.orange, classes.large)}>R</Avatar>
-        <h4 className={classes.txt}>Welcome back!</h4>
+        <Typography variant="p" className={classes.txt}>
+          Welcome back!
+        </Typography>
       </div>
       <Button
         onClick={handleClick}

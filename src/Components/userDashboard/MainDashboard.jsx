@@ -102,9 +102,11 @@ export default function MainDashboard() {
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
-        <h4 className={classes.txt}>Welcome back {state.first_name}</h4>
+        <Typography> Welcome back {state.first_name}</Typography>
       </div>
-      <h2 className={classes.title}>Projects Applied</h2>
+      <Typography variant="h4" gutterBottom className={classes.title}>
+        Projects Applied
+      </Typography>
       <Button
         component={Link}
         to="/projects"

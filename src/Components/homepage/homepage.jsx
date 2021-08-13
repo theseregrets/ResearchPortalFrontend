@@ -89,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     width: '100%',
     alignItems: 'center',
-    marginTop: '10%',
+    marginTop: '5%',
   },
   paper: {
     height: '100%',

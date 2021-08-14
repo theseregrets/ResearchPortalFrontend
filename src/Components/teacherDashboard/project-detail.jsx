@@ -10,6 +10,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import { projects } from '../../Data/projects';
 import { data } from '../../Data/project-data';
 import ApplicationTable from './table';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: '34px',
     textAlign: 'center',
-    color: '#0047ab',
+    color: colors.projectHeading,
     fontStyle: 'italic',
     margin: '30px',
   },

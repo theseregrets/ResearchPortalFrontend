@@ -13,6 +13,7 @@ import cv from '../../Redux/Actions/cv';
 import cont from '../../Redux/Actions/updateContacts';
 import dept from '../../Redux/Actions/updateDept';
 import cg from '../../Redux/Actions/cgpa';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,18 +23,19 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
-    color: 'white',
+    color: colors.headingLight,
   },
   profile: {
     width: '80%',
     margin: '20px auto',
-    backgroundColor: 'white',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
     padding: '20px',
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.profile],
   },
   photo: {
     display: 'flex',

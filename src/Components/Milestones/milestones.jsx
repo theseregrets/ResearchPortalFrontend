@@ -4,6 +4,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import MilestonesTimeline from './MilestonesTimeline';
 import Carousel from './Carousel';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heading: {
-    color: 'white',
+    color: colors.headingLight,
   },
 }));
 

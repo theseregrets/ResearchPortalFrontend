@@ -11,6 +11,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,12 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
   inner: {
     padding: '2rem 3rem',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: colors.bgLight,
     backdropFilter: 'blur(10px)',
     borderRadius: '10px',
     width: 'fit-content',
     margin: '0 auto',
-    boxShadow: theme.shadows[10],
+    boxShadow: theme.shadows[colors.shadows.createProject],
     textAlign: 'center',
     [theme.breakpoints.down('sm')]: {
       padding: '0.5rem 1rem',

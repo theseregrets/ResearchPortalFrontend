@@ -8,6 +8,7 @@ import {
 } from '@material-ui/core';
 import { FaGithub, FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { TEAM_INFO } from '../../Data/team';
+import { colors } from '../theme/Theme';
 
 const bg = require('../../Assets/teamBg.png').default;
 
@@ -18,7 +19,7 @@ const useStyles = makeStyles(() => ({
     // margin: '1em 1em',
   },
   heading: {
-    color: 'white',
+    color: colors.headingLight,
   },
   card: {
     display: 'flex',
@@ -39,7 +40,7 @@ const useStyles = makeStyles(() => ({
   },
   icons: {
     cursor: 'pointer',
-    color: '#4499fe',
+    color: colors.teamIcon,
     margin: '8px',
     '&:hover': {
       color: 'black',

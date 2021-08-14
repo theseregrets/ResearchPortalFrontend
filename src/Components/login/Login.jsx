@@ -12,6 +12,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import login from '../../Redux/Actions/login';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '2rem',
     display: 'flex',
     flexDirection: 'column',
-    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backgroundColor: colors.bgLight,
     backdropFilter: 'blur(10px)',
     [theme.breakpoints.down('sm')]: {
       width: '90vw',

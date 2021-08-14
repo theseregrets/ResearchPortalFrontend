@@ -8,6 +8,7 @@ import {
   makeStyles,
 } from '@material-ui/core';
 import { FaPhoneAlt } from 'react-icons/fa';
+import { colors } from '../theme/Theme';
 
 const logo = require('../../Assets/research_portal_cropped.png').default;
 
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Footer() {
   const classes = useStyles();
   return (
-    <AppBar position="static" color="primary">
+    <AppBar position="static" color={colors.footerBg}>
       <Box py={{ xs: 3 }}>
         <Container maxWidth="lg">
           <Grid container>

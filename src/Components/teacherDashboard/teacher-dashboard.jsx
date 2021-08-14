@@ -27,6 +27,7 @@ import ProjectDetail from './project-detail';
 import BottomNav from './BottomNav';
 import BottomNavFix from './BottomNavFix';
 import NewPost from './new-post';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: '100vh',
     // for sidenav
     '& .MuiDrawer-docked': {
-      backgroundColor: 'white',
+      backgroundColor: colors.drawerBg,
       borderRight: '1px solid rgba(0, 0, 0, 0.12)',
     },
   },

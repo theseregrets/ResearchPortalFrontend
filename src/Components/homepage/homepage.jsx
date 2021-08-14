@@ -14,6 +14,7 @@ import objective1 from '../../Assets/objective1.png';
 import objective2 from '../../Assets/objective2.png';
 import objective3 from '../../Assets/objective3.png';
 import objective4 from '../../Assets/objective4.png';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   desc: {
@@ -98,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   rp: {
-    color: '#ef5350', // #ff00c8
+    color: colors.homepageHeading, // #ff00c8
     // textAlign: 'center',
     padding: '20px',
     fontFamily: 'Playfair Display',
@@ -124,7 +125,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '1rem',
     width: '17rem',
     height: '14rem',
-    backgroundImage: 'linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)',
+    backgroundImage: colors.gradients.homepageCardBg,
     [theme.breakpoints.down('sm')]: {
       width: '70vw',
     },
@@ -135,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   },
   number: {
     width: '100%',
-    backgroundImage: 'linear-gradient(315deg, #ffffff 0%, #d7e1ec 100%)',
+    backgroundImage: colors.gradients.homepageCardNumBg,
     margin: '0',
     borderRadius: '8px',
     textAlign: 'center',
@@ -152,7 +153,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     padding: '20px',
     margin: '2rem 2rem',
-    backgroundColor: 'rgba(255,255,255,0.9)',
+    backgroundColor: colors.bgLight,
     backdropFilter: 'blur(5px)',
     boxShadow: theme.shadows[4],
     borderRadius: '10px',

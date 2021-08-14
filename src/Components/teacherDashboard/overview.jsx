@@ -9,6 +9,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import NewPost from './new-post';
 import ProjectCard from './cards';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fefefe',
+    backgroundColor: colors.msgBg,
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.msg],
   },
 
   large: {

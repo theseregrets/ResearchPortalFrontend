@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import UpdateIcon from '@material-ui/icons/Update';
 import Statement from './Statement';
 import rstatement from '../../Redux/Actions/statement';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
-    color: 'white',
+    color: colors.headingLight,
   },
   btnContainer: {
     display: 'flex',

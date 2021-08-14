@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import rstatement from '../../Redux/Actions/statement';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   txt: {
@@ -12,10 +13,11 @@ const useStyles = makeStyles((theme) => ({
     width: '65%',
     minHeight: '90vh',
     fontFamily: 'sans-serif',
-    backgroundColor: 'white',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     padding: '10px',
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+    boxShadow: theme.shadows[colors.shadows.researchStatement],
     whiteSpace: 'pre-line',
   },
   txtArea: {

@@ -13,6 +13,7 @@ import aos from 'aos';
 import 'aos/dist/aos.css';
 import chatHead from '../../Assets/triangle_timeline.png';
 import { TIMELINE_CONTENTS } from '../../Data/timeline';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   timeline: {
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   time: {
-    color: '#fff',
+    color: colors.textLight,
     fontWeight: 'bold',
   },
   left: {

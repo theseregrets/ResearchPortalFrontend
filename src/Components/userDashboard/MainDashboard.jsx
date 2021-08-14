@@ -11,10 +11,11 @@ import AddIcon from '@material-ui/icons/Add';
 import { Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectCard from './ProjectCard';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
+    minHeight: '60vh',
     flex: '1',
     '& a': {
       '&:hover': {
@@ -29,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fefefe',
+    backgroundColor: colors.msgBg,
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.msg],
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginTop: '50px',
     textAlign: 'center',
-    color: 'white',
+    color: colors.headingLight,
   },
   btn: {
     display: 'block',

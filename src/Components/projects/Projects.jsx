@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FilterProject from './filterProject';
 import File from '../../Data/test.pdf';
+import { colors } from '../theme/Theme';
 
 // import { projects } from '../../Data/proj';
 
@@ -92,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: '-2',
   },
   accord_sum: {
-    backgroundColor: 'rgba(217, 243, 247, 0.05)',
+    backgroundColor: colors.accordSumBg,
 
     '& .MuiAccordionSummary-content': {
       flexWrap: 'wrap',

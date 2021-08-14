@@ -6,16 +6,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   card: {
     padding: '25px',
     display: 'block',
-    backgroundColor: 'white',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     width: '80%',
     margin: '20px auto',
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.projectCard],
   },
   img: {
     maxHeight: '200px',
@@ -28,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   cardTextTitle: {
-    color: '#1414b0',
+    color: colors.projectHeading,
   },
   cardTextContent: {
     padding: '5px 0',
@@ -41,6 +43,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
 
+    '& > a': {
+      textDecoration: 'none',
+    },
+
     '& > Button': {
       alignSelf: 'flex-end',
       margin: '0',
@@ -48,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
     '& > div > p': {
       margin: '0',
-      color: '#606060',
+      color: colors.cardFaculty,
     },
   },
   delButton: {

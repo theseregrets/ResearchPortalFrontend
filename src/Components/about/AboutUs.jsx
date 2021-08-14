@@ -11,22 +11,24 @@ import {
   useMediaQuery,
 } from '@material-ui/core';
 import AnimatedNumber from 'react-animated-number';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   heading: {
-    color: 'white',
+    color: colors.headingLight,
   },
   paragraph: {
     padding: '20px',
     margin: '2rem 2rem',
-    backgroundColor: 'rgba(255,255,255,0.9)',
-    backdropFilter: 'blur(5px)',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     boxShadow: theme.shadows[4],
     borderRadius: '10px',
   },
   animatedNumber: {
     transition: '0.8s ease-out',
-    color: 'rgb(91, 117, 202)',
+    color: colors.primary,
+    fontWeight: '600',
     fontSize: '3rem',
     textAlign: 'center',
     alignItems: 'center',
@@ -34,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: '20px 1rem',
     margin: '4rem auto',
-    background: 'linear-gradient(to top right , white 20%, whitesmoke)',
+    background: colors.gradients.contactCard,
     width: '50vw',
     display: 'flex',
     flexDirection: 'column',
@@ -50,6 +52,11 @@ const useStyles = makeStyles((theme) => ({
   desc: {
     padding: '10px',
   },
+  [theme.breakpoints.down('xs')]: {
+    counter: {
+      border: '0',
+    },
+  },
 }));
 
 export default function AboutUs() {
@@ -58,13 +65,7 @@ export default function AboutUs() {
   const smallScreen = useMediaQuery(theme.breakpoints.down('xs'));
   return (
     <Grid container>
-      <Grid
-        container
-        spacing={1}
-        justify="center"
-        alignItems="center"
-        margin="auto"
-      >
+      <Grid container justify="center" alignItems="center" margin="auto">
         <Grid item xs={12}>
           <Typography
             className={classes.heading}

@@ -21,7 +21,7 @@ import FlagIcon from '@material-ui/icons/Flag';
 import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import InfoIcon from '@material-ui/icons/Info';
-import rp from '../../Assets/rplogo.svg';
+import rp from '../../Assets/research_portal_cropped.png';
 import Logow from '../../Assets/ieeesb_logowhite.png';
 import Logob from '../../Assets/ieeesb_logoblue.png';
 import { colors } from '../theme/Theme';
@@ -71,7 +71,7 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   logo1: {
-    filter: 'invert(1)',
+    // filter: 'invert(1)',
     padding: '5px 0',
     width: '35%',
     minWidth: '100px',

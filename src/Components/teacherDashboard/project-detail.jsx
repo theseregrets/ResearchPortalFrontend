@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -7,8 +7,6 @@ import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { useHistory, useParams } from 'react-router-dom';
-import { projects } from '../../Data/projects';
-import { data } from '../../Data/project-data';
 import ApplicationTable from './table';
 import { colors } from '../theme/Theme';
 
@@ -68,6 +66,7 @@ export default function ProjectDetail() {
   const { slug } = useParams();
   const state = useSelector((state) => state.profile);
   const history = useHistory();
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -81,8 +80,8 @@ export default function ProjectDetail() {
     )
       .then((res) => res.json())
       .then((data) => {
-        // store the user detail in redux.
         console.log(data);
+        setData(data);
       })
       .catch((err) => {
         console.log(err);
@@ -126,27 +125,10 @@ export default function ProjectDetail() {
         >
           Delete Project
         </Button>
-        <Typography variant="h3" gutterBottom className={classes.title}>
-          {data.title}
-        </Typography>
-        <hr />
-        <Typography variant="h4" gutterBottom>
-          Summary
-        </Typography>
-        <p className={classes.summary}>{data.project}</p>
-        <hr />
-        <Typography variant="h4" gutterBottom className={classes.descTitle}>
-          Description
-        </Typography>
-        <p>{data.desc}</p>
-        <hr />
         <Typography variant="h4" gutterBottom className={classes.subtitle}>
           Applications
         </Typography>
-        <Typography variant="h4" className={classes.numApp}>
-          {projects.length} students have applied
-        </Typography>
-        <ApplicationTable />
+        <ApplicationTable data={data} />
       </Container>
     </>
   );

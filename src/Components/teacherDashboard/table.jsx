@@ -1,3 +1,5 @@
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,7 +18,7 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { projects } from '../../Data/projects';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useRowStyles = makeStyles({
   root: {
@@ -35,11 +37,10 @@ function Row(props) {
     <>
       <TableRow className={classes.root}>
         <TableCell component="th" scope="row">
-          {row.name}
+          {`${row.student.user.first_name} ${row.student.user.last_name}`}
         </TableCell>
-        <TableCell align="right">{row.dept}</TableCell>
-        <TableCell align="right">{row.year}</TableCell>
-        <TableCell align="right">{row.cgpa}</TableCell>
+        <TableCell align="right">{row.student.branch}</TableCell>
+        <TableCell align="right">{row.student.cgpa}</TableCell>
         <TableCell align="right">
           <Button
             variant="contained"
@@ -64,29 +65,9 @@ function Row(props) {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box margin={1}>
               <Typography variant="h6" gutterBottom component="div">
-                Statement of Purpose
+                Research Statement
               </Typography>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-                itaque sunt voluptatum facere, ratione ut quod nulla
-                reprehenderit suscipit? Sit laboriosam quaerat esse perferendis
-                vero est? Magni incidunt inventore eius?Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Quibusdam impedit illo natus
-                inventore? Esse numquam cum, inventore rerum obcaecati unde quae
-                cupiditate modi eos error quis, assumenda exercitationem animi
-                enim. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                Distinctio, quo voluptas nihil, quia nisi enim eveniet veniam
-                molestiae odit, est laboriosam! Dolores eum nam officia minus
-                velit autem dolor nostrum. Lorem, ipsum dolor sit amet
-                consectetur adipisicing elit. Cupiditate exercitationem quisquam
-                eos explicabo perspiciatis porro autem nihil nam, placeat
-                obcaecati sapiente mollitia magni aliquid quia id unde
-                reprehenderit minima doloribus. Lorem ipsum dolor sit amet,
-                consectetur adipisicing elit. Cumque dolores corporis esse
-                doloremque exercitationem sapiente, voluptatibus cum quas nisi
-                veniam officiis maxime voluptate sunt assumenda in deserunt
-                autem quod soluta?
-              </p>
+              <p>{row.student.rs}</p>
             </Box>
           </Collapse>
         </TableCell>
@@ -94,36 +75,53 @@ function Row(props) {
     </>
   );
 }
-Row.propTypes = {
-  row: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    dept: PropTypes.string.isRequired,
-    year: PropTypes.string.isRequired,
-    cgpa: PropTypes.number.isRequired,
-  }).isRequired,
-};
-const rows = projects;
+// Row.propTypes = {
+//   row: PropTypes.shape({
+//     name: PropTypes.string.isRequired,
+//     dept: PropTypes.string.isRequired,
+//     year: PropTypes.string.isRequired,
+//     cgpa: PropTypes.number.isRequired,
+//   }).isRequired,
+// };
 
-export default function ApplicationTable() {
+export default function ApplicationTable(props) {
+  const { data } = props;
+
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Dept</TableCell>
-            <TableCell align="right">Year</TableCell>
-            <TableCell align="right">CGPA</TableCell>
-            <TableCell align="right">Reject</TableCell>
-            <TableCell>SOP</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.id} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    <>
+      {!data ? (
+        <CircularProgress disableShrink />
+      ) : (
+        <>
+          {data.count ? (
+            <>
+              <Typography variant="h4">
+                {data.count} students have applied
+              </Typography>
+              <TableContainer component={Paper}>
+                <Table aria-label="collapsible table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Name</TableCell>
+                      <TableCell align="right">Dept</TableCell>
+                      <TableCell align="right">CGPA</TableCell>
+                      <TableCell align="right">Reject</TableCell>
+                      <TableCell>research Statement</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {data.results.map((row) => (
+                      <Row key={row.id} row={row} />
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </>
+          ) : (
+            <Typography variant="h3">0 students have applied</Typography>
+          )}
+        </>
+      )}
+    </>
   );
 }

@@ -10,10 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 import Divider from '@material-ui/core/Divider';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FilterProject from './filterProject';
+import FileDropzone from './Dropzone';
 import File from '../../Data/test.pdf';
 import { colors } from '../theme/Theme';
 
@@ -44,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   },
   details: {
     alignItems: 'center',
+  },
+  detailsInner: {
+    width: '100%',
   },
   column: {
     flex: '1 1 0',
@@ -100,6 +105,9 @@ const useStyles = makeStyles((theme) => ({
       gap: '10px',
     },
   },
+  sop: {
+    padding: '8px 16px 16px',
+  },
   project_chip: {
     marginRight: '3px',
   },
@@ -110,6 +118,8 @@ export default function Projects() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
   const [project, setProject] = useState([]);
+  const [sopFile, setSopFile] = useState([]);
+  const [openSnack, setOpenSnack] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -129,38 +139,43 @@ export default function Projects() {
       });
   }, []);
 
-  function applyforProject(slug) {
+  function applyforProject(slug, i) {
     if (state.isLogged) {
-      const fileReader = new FileReader();
-      let base = '';
-      // Onload of file read the file content
-      fileReader.onload = function (fileLoadedEvent) {
-        base = fileLoadedEvent.target.result;
-        // Print data in console
-        console.log(base64);
-      };
-      // Convert data to base64
-      fileReader.readAsDataURL(fileToLoad);
-      fetch(
-        `https://ieeenitdgp.pythonanywhere.com//api/projects/apply/${slug}/`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${state.jwt}`,
-          },
-          body: {
-            document,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          // this is console.log but the student cannot apply if CV is not downloaded.
-          console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (!sopFile[i]) {
+        setOpenSnack(true);
+      } else {
+        alert('Project applied');
+        //   const fileReader = new FileReader();
+        //   let base = '';
+        //   // Onload of file read the file content
+        //   fileReader.onload = function (fileLoadedEvent) {
+        //     base = fileLoadedEvent.target.result;
+        //     // Print data in console
+        //     console.log(base64);
+        //   };
+        //   // Convert data to base64
+        //   fileReader.readAsDataURL(fileToLoad);
+        //   fetch(
+        //     `https://ieeenitdgp.pythonanywhere.com//api/projects/apply/${slug}/`,
+        //     {
+        //       method: 'POST',
+        //       headers: {
+        //         Authorization: `Bearer ${state.jwt}`,
+        //       },
+        //       body: {
+        //         document,
+        //       },
+        //     }
+        //   )
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //       // this is console.log but the student cannot apply if CV is not downloaded.
+        //       console.log(data);
+        //     })
+        //     .catch((err) => {
+        //       console.log(err);
+        //     });
+      }
     } else {
       history.push('/login');
     }
@@ -174,7 +189,7 @@ export default function Projects() {
         allProjects={projs}
       />
       {project.length ? (
-        project.map((proj) => (
+        project.map((proj, i) => (
           <Accordion className={classes.accord} elevation={3}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -206,7 +221,7 @@ export default function Projects() {
               </div>
             </AccordionSummary>
             <AccordionDetails className={classes.details}>
-              <div>
+              <div className={classes.detailsInner}>
                 <Typography className={classes.secondaryHeading}>
                   {proj.title}
                 </Typography>
@@ -216,6 +231,10 @@ export default function Projects() {
                 </div>
               </div>
             </AccordionDetails>
+            <div className={classes.sop}>
+              <Typography variant="h5">SOP</Typography>
+              <FileDropzone sopFile={sopFile} setSopFile={setSopFile} i={i} />
+            </div>
             <Divider />
             <AccordionActions>
               <Button
@@ -223,7 +242,7 @@ export default function Projects() {
                 variant="contained"
                 color="primary"
                 onClick={(event) => {
-                  applyforProject(proj.slug);
+                  applyforProject(proj.slug, i);
                 }}
               >
                 Apply
@@ -240,6 +259,16 @@ export default function Projects() {
           )}
         </>
       )}
+      <Snackbar
+        open={openSnack}
+        autoHideDuration={2000}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        onClose={() => setOpenSnack(false)}
+        message="Please upload SOP to apply"
+      />
     </div>
   );
 }

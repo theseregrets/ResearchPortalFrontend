@@ -113,6 +113,7 @@ export default function Login() {
         />
         <TextField
           required
+          type="password"
           className={classes.field}
           id="outlined-required"
           label="Password"

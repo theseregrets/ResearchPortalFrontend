@@ -16,7 +16,7 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import DoneIcon from '@material-ui/icons/Done';
 import { makeStyles } from '@material-ui/styles';
 
-const department = ['CS', 'ECE', 'EE', 'CE', 'CH', 'MM', 'BT'];
+const department = ['CS', 'ECE', 'EE', 'ME', 'CE', 'CH', 'MM', 'BT'];
 const prof = [
   'Dr ABCD',
   'Dr EFGH',

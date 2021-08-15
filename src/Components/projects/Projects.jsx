@@ -120,6 +120,7 @@ export default function Projects() {
   const [project, setProject] = useState([]);
   const [sopFile, setSopFile] = useState([]);
   const [openSnack, setOpenSnack] = useState(false);
+  const [applied, setApplied] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -144,37 +145,37 @@ export default function Projects() {
       if (!sopFile[i]) {
         setOpenSnack(true);
       } else {
-        alert('Project applied');
-        //   const fileReader = new FileReader();
-        //   let base = '';
-        //   // Onload of file read the file content
-        //   fileReader.onload = function (fileLoadedEvent) {
-        //     base = fileLoadedEvent.target.result;
-        //     // Print data in console
-        //     console.log(base64);
-        //   };
-        //   // Convert data to base64
-        //   fileReader.readAsDataURL(fileToLoad);
-        //   fetch(
-        //     `https://ieeenitdgp.pythonanywhere.com//api/projects/apply/${slug}/`,
-        //     {
-        //       method: 'POST',
-        //       headers: {
-        //         Authorization: `Bearer ${state.jwt}`,
-        //       },
-        //       body: {
-        //         document,
-        //       },
-        //     }
-        //   )
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //       // this is console.log but the student cannot apply if CV is not downloaded.
-        //       console.log(data);
-        //     })
-        //     .catch((err) => {
-        //       console.log(err);
-        //     });
+        const fileToLoad = sopFile[i][0];
+        // FileReader function for read the file.
+        console.log(sopFile[i][0]);
+        const fileReader = new FileReader();
+        let base64;
+        // Onload of file read the file content
+        fileReader.onload = function (fileLoadedEvent) {
+          base64 = fileLoadedEvent.target.result;
+        };
+        // Convert data to base64
+        fileReader.readAsDataURL(fileToLoad);
+        const formdata = new FormData();
+        formdata.append('document', fileToLoad);
+        fetch(
+          `https://ieeenitdgp.pythonanywhere.com//api/projects/apply/${slug}/`,
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${state.jwt}`,
+              // 'Content-Type': 'multipart/form-data',
+            },
+            body: formdata,
+          }
+        )
+          .then((res) => res.json())
+          .then((data) => {
+            setApplied(true);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       }
     } else {
       history.push('/login');
@@ -260,14 +261,17 @@ export default function Projects() {
         </>
       )}
       <Snackbar
-        open={openSnack}
+        open={openSnack || applied}
         autoHideDuration={2000}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
         }}
-        onClose={() => setOpenSnack(false)}
-        message="Please upload SOP to apply"
+        onClose={() => {
+          setOpenSnack(false);
+          setApplied(false);
+        }}
+        message={applied ? 'project applied' : 'Please upload SOP to apply'}
       />
     </div>
   );

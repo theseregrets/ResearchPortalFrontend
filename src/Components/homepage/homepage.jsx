@@ -8,10 +8,13 @@ import './homepage.css';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import Paper from '@material-ui/core/Paper';
 import introsvg from '../../Assets/rp_homepage.svg';
-import Profile from '../team/profile.png';
+import Profile from '../../Assets/director.png';
+import objective1 from '../../Assets/objective1.png';
+import objective2 from '../../Assets/objective2.png';
+import objective3 from '../../Assets/objective3.png';
+import objective4 from '../../Assets/objective4.png';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   desc: {
@@ -72,21 +75,22 @@ const useStyles = makeStyles((theme) => ({
     alignContent: 'center',
     minWidth: '200px',
   },
-  details: {
-    display: 'flex',
-  },
+
   content: {
     flex: '1 0 auto',
   },
+
   cover: {
     width: '300px',
     height: '300px',
     padding: '20px',
+    margin: '2rem 2rem',
   },
   root: {
     flexGrow: 1,
     width: '100%',
     alignItems: 'center',
+    marginTop: '5%',
   },
   paper: {
     height: '100%',
@@ -95,7 +99,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.secondary,
   },
   rp: {
-    color: '#ef5350', // #ff00c8
+    color: colors.homepageHeading, // #ff00c8
     // textAlign: 'center',
     padding: '20px',
     fontFamily: 'Playfair Display',
@@ -104,6 +108,55 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'center',
       padding: '5px',
     },
+  },
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    // margin: '1em 1em',
+  },
+  title: {
+    color: theme.palette.text.secondary,
+    marginBottom: '2rem',
+    // textAlign: 'center',
+  },
+  card: {
+    display: 'flex',
+    flexDirection: 'row',
+    margin: '1rem',
+    width: '17rem',
+    height: '14rem',
+    backgroundImage: colors.gradients.homepageCardBg,
+    [theme.breakpoints.down('sm')]: {
+      width: '70vw',
+    },
+  },
+  contents: {
+    margin: '1rem auto',
+    textAlign: 'center',
+  },
+  number: {
+    width: '100%',
+    backgroundImage: colors.gradients.homepageCardNumBg,
+    margin: '0',
+    borderRadius: '8px',
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
+  covers: {
+    width: '7.5rem',
+    height: '7.5rem',
+    marginTop: '30%',
+    padding: '10px',
+    filter: 'drop-shadow(7px 7px 7px #666666)',
+  },
+  paragraph: {
+    textAlign: 'center',
+    padding: '20px',
+    margin: '2rem 2rem',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(5px)',
+    boxShadow: theme.shadows[4],
+    borderRadius: '10px',
   },
 }));
 
@@ -122,12 +175,12 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <Typography variant="h2" className={classes.rp} component="div">
+      <Typography variant="h2" className={classes.rp} component="p">
         Research Portal
       </Typography>
-      <p className={classes.desc}>
+      <Typography className={classes.desc}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      </p>
+      </Typography>
       <div className={classes.grid}>
         <div className={classes.firstbox}>
           <Button
@@ -157,93 +210,132 @@ export default function Homepage() {
       </div>
       {/* objectives */}
       <div className="main-container">
-        <h1 align="center" style={{ marginBottom: '50px' }}>
+        <Typography
+          gutterBottom
+          variant="h3"
+          component="h2"
+          className={classes.title}
+        >
           Our Objectives
-        </h1>
-        <div className={classes.root}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>
-                <CardActionArea>
-                  <img alt="" src={Profile} style={{ width: '100%' }} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      #1
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      To encourage Research and Development and let them explore
-                      the vast field of their interst.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>
-                <CardActionArea>
-                  <img alt="" src={Profile} style={{ width: '100%' }} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      #2
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      To let students accross the country gain rich experience
-                      and exposure in research field.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>
-                <CardActionArea>
-                  <img alt="" src={Profile} style={{ width: '100%' }} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      #3
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      To enhance your Management Skills and interpretation of
-                      results accurately.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.paper}>
-                <CardActionArea>
-                  <img alt="" src={Profile} style={{ width: '100%' }} />
-                  <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      #4
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                    >
-                      Gives you an exposure and an oppurtunity to understand the
-                      research process, to integrate theory into practice.
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Paper>
-            </Grid>
+        </Typography>
+        <Grid container align="center" className={classes.container}>
+          <Grid item lg={3}>
+            <Card elevation={5} className={classes.card}>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.number}
+                >
+                  #1
+                </Typography>
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  align="center"
+                  className={classes.contents}
+                >
+                  To encourage Research and Development and let them explore the
+                  vast field of their interst.
+                </Typography>
+              </CardContent>
+              <img
+                src={objective1}
+                alt="profile pic"
+                className={classes.covers}
+              />
+            </Card>
           </Grid>
-        </div>
+          <Grid item lg={3}>
+            <Card elevation={5} className={classes.card}>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.number}
+                >
+                  #2
+                </Typography>
+                <Typography
+                  align="center"
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  className={classes.contents}
+                >
+                  To let students accross the country gain rich experience and
+                  exposure in research field.
+                </Typography>
+              </CardContent>
+              <img
+                src={objective2}
+                alt="profile pic"
+                className={classes.covers}
+              />
+            </Card>
+          </Grid>
+          <Grid item lg={3}>
+            <Card elevation={5} className={classes.card}>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.number}
+                >
+                  #3
+                </Typography>
+                <Typography
+                  align="center"
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  className={classes.contents}
+                >
+                  To enhance your Management Skills and interpretation of
+                  results accurately.
+                </Typography>
+              </CardContent>
+              <img
+                src={objective3}
+                alt="profile pic"
+                className={classes.covers}
+              />
+            </Card>
+          </Grid>
+          <Grid item lg={3}>
+            <Card elevation={5} className={classes.card}>
+              <CardContent>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                  className={classes.number}
+                >
+                  #4
+                </Typography>
+                <Typography
+                  align="center"
+                  variant="body2"
+                  color="textSecondary"
+                  component="p"
+                  className={classes.contents}
+                >
+                  Gives you an exposure and an oppurtunity to understand the
+                  research process, to integrate theory into practice.
+                </Typography>
+              </CardContent>
+              <img
+                src={objective4}
+                alt="profile pic"
+                className={classes.covers}
+              />
+            </Card>
+          </Grid>
+        </Grid>
       </div>
       <div>
         <div className={classes.root}>
@@ -253,9 +345,15 @@ export default function Homepage() {
                 <img alt="" className={classes.cover} src={Profile} />
               </div>
             </Grid>
-            <Grid align="center" item xs={12} md={8}>
+            <Grid
+              align="center"
+              item
+              xs={12}
+              md={6}
+              className={classes.paragraph}
+            >
               <CardContent className={classes.content}>
-                <Typography component="h2" variant="h2">
+                <Typography component="h2" variant="h4" gutterBottom>
                   Director&apos;s Message
                 </Typography>
                 <Typography variant="subtitle1" color="textSecondary">

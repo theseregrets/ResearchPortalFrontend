@@ -11,45 +11,61 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginLeft: theme.spacing(10),
+    width: '100%',
+    padding: '20px',
     '& .MuiTextField-root': {
-      margin: theme.spacing(3),
-      width: '100ch',
+      width: '100%',
+      maxWidth: '800px',
+      margin: '24px auto',
     },
     '& > *': {
       margin: theme.spacing(3),
+      textAlign: 'center',
+    },
+  },
+  inner: {
+    padding: '2rem 3rem',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
+    borderRadius: '10px',
+    width: 'fit-content',
+    margin: '0 auto',
+    boxShadow: theme.shadows[colors.shadows.createProject],
+    textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      padding: '0.5rem 1rem',
     },
   },
   input: {
     display: 'none',
   },
-  [theme.breakpoints.down('sm')]: {
-    root: {
-      '& .MuiTextField-root': {
-        margin: theme.spacing(3),
-        width: '30ch',
-      },
-      '& > *': {
-        margin: theme.spacing(3),
-      },
-    },
-    group: {
-      width: '30ch',
-    },
-  },
   group: {
     display: 'flex',
-    width: '100ch',
+    flexWrap: 'wrap',
+    gap: '20px',
+    width: '100%',
+    maxWidth: '800px',
+    margin: 'auto',
     padding: theme.spacing(3),
     '& > p': {
       flexGrow: '1',
     },
     '& .MuiTextField-root': {
-      margin: theme.spacing(3),
-      width: '25ch',
+      maxWidth: '25ch',
+      margin: '24px auto',
+    },
+    '& > *': {
+      marginLeft: 'auto',
+      marginRight: 'auto',
+    },
+  },
+  [theme.breakpoints.down('xs')]: {
+    inner: {
+      margin: '0',
     },
   },
 }));
@@ -116,7 +132,7 @@ export default function NewPost() {
         >
           Cancel
         </Button>
-        <div>
+        <div className={classes.inner}>
           <TextField
             id="outline-basic"
             label="Title"
@@ -156,7 +172,6 @@ export default function NewPost() {
               }
               label="is-Active"
             />
-            <p />
             <TextField
               select
               label="status"

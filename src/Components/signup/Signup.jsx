@@ -10,23 +10,23 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
-    marginTop: '10px',
+    margin: '10px auto',
     backgroundColor: 'green',
   },
   paper: {
     width: '50vw',
-    margin: 'auto',
-    marginBottom: '3rem',
-    height: '100vh',
+    margin: '1rem auto 3rem auto',
+    padding: '2rem',
     display: 'flex',
     flexDirection: 'column',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     [theme.breakpoints.down('sm')]: {
       width: '90vw',
-      margin: 'auto',
-      height: '90vh',
     },
   },
   align: {
@@ -34,21 +34,19 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 'auto',
   },
   field: {
-    width: '40vw',
+    width: '100%',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '15px',
-    [theme.breakpoints.down('sm')]: {
-      width: '80vw',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: '40px',
-    },
   },
   form: {
-    width: '40vw',
-    marginLeft: 'auto',
-    marginRight: 'auto',
+    width: '80%',
+    display: 'flex',
+    flexDirection: 'column',
+    margin: '1rem auto',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
 }));
 
@@ -89,7 +87,7 @@ export default function Signup() {
   };
 
   return (
-    <Paper className={classes.paper} elevation={2}>
+    <Paper className={classes.paper} elevation={5}>
       <Avatar className={clsx(classes.align, classes.avatar)}>
         <LockOpenIcon />
       </Avatar>

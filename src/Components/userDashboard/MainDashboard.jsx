@@ -8,12 +8,14 @@ import Avatar from '@material-ui/core/Avatar';
 import { deepPurple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import { Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectCard from './ProjectCard';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    minHeight: '100vh',
+    minHeight: '60vh',
     flex: '1',
     '& a': {
       '&:hover': {
@@ -28,9 +30,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fefefe',
+    backgroundColor: colors.msgBg,
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.msg],
   },
   purple: {
     color: theme.palette.getContrastText(deepPurple[500]),
@@ -46,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginTop: '50px',
     textAlign: 'center',
-    color: 'white',
+    color: colors.headingLight,
   },
   btn: {
     display: 'block',
@@ -65,6 +67,11 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(5),
       height: theme.spacing(5),
     },
+  },
+  placeholderText: {
+    color: 'white',
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 
@@ -96,9 +103,11 @@ export default function MainDashboard() {
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
-        <h4 className={classes.txt}>Welcome back {state.first_name}</h4>
+        <Typography> Welcome back {state.first_name}</Typography>
       </div>
-      <h2 className={classes.title}>Projects Applied</h2>
+      <Typography variant="h4" gutterBottom className={classes.title}>
+        Projects Applied
+      </Typography>
       <Button
         component={Link}
         to="/projects"
@@ -110,23 +119,29 @@ export default function MainDashboard() {
         Apply for more
       </Button>
       {projects ? (
-        <>
+        <div>
           {projects.length ? (
             projects.map((ele) => (
               <ProjectCard
-                project={ele.post.title}
-                desc={ele.post.description}
-                faculty={ele.post.teacher}
-                identity={ele.post.slug}
+                project={ele.title}
+                desc={ele.description}
+                faculty={
+                  ele.teacher.user.first_name + ele.teacher.user.last_name
+                }
+                identity={ele.slug}
                 setProjects={setProjects}
               />
             ))
           ) : (
-            <p>Apply for project</p>
+            <Typography className={classes.placeholderText}>
+              Apply for project
+            </Typography>
           )}
-        </>
+        </div>
       ) : (
-        <CircularProgress disableShrink />
+        <div className={classes.placeholderText}>
+          <CircularProgress color="white" disableShrink />
+        </div>
       )}
     </div>
   );

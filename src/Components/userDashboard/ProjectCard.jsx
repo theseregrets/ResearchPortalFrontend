@@ -4,20 +4,23 @@
 /* eslint-disable react/no-this-in-sfc */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   card: {
     padding: '25px',
     display: 'block',
-    backgroundColor: 'white',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     width: '80%',
     margin: '20px auto',
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.projectCard],
   },
   cardText: {
     display: 'flex',
@@ -25,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
   },
   cardTextTitle: {
-    color: '#1414b0',
+    color: colors.projectHeading,
   },
   cardTextContent: {
     padding: '5px 0',
@@ -45,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
     '& > div > p': {
       margin: '0',
-      color: '#606060',
+      color: colors.cardFaculty,
     },
   },
   delButton: {
@@ -108,7 +111,9 @@ export default function ProjectCard({
   return (
     <div className={classes.card}>
       <div className={classes.cardText}>
-        <h4 className={classes.cardTextTitle}>{project}</h4>
+        <Typography variant="h5" className={classes.cardTextTitle}>
+          {project}
+        </Typography>
         <p className={classes.cardTextContent}>{desc}</p>
         <div className={classes.txt}>
           <div>

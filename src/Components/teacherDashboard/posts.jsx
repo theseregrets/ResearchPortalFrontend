@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, Typography } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ProjectCard from './cards';
 
@@ -10,11 +10,17 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(3),
     },
     textAlign: 'center',
+    width: '100%',
   },
   projects: {
     display: 'block',
     width: '100%',
     margin: '0px auto',
+  },
+  loading: {
+    textColor: 'white',
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 
@@ -42,29 +48,31 @@ const Posts = () => {
   }, []);
 
   return (
-    <>
-      <div className={classes.root}>
-        <div className={classes.projects}>
-          {projects ? (
-            <>
-              {projects.length ? (
-                projects.map((ele) => (
-                  <ProjectCard
-                    project={ele.title}
-                    desc={ele.description}
-                    slug={ele.slug}
-                  />
-                ))
-              ) : (
-                <p>create Project</p>
-              )}
-            </>
-          ) : (
+    <div className={classes.root}>
+      <div className={classes.projects}>
+        {projects ? (
+          <div>
+            {projects.length ? (
+              projects.map((ele) => (
+                <ProjectCard
+                  project={ele.title}
+                  desc={ele.description}
+                  slug={ele.slug}
+                />
+              ))
+            ) : (
+              <Typography className={classes.loading}>
+                create Project
+              </Typography>
+            )}
+          </div>
+        ) : (
+          <div className={classes.loading}>
             <CircularProgress disableShrink />
-          )}
-        </div>
+          </div>
+        )}
       </div>
-    </>
+    </div>
   );
 };
 

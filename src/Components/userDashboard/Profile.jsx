@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 import UpdateIcon from '@material-ui/icons/Update';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -12,6 +13,7 @@ import cv from '../../Redux/Actions/cv';
 import cont from '../../Redux/Actions/updateContacts';
 import dept from '../../Redux/Actions/updateDept';
 import cg from '../../Redux/Actions/cgpa';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,18 +23,19 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
-    color: 'white',
+    color: colors.headingLight,
   },
   profile: {
     width: '80%',
     margin: '20px auto',
-    backgroundColor: 'white',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
     padding: '20px',
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.profile],
   },
   photo: {
     display: 'flex',
@@ -194,7 +197,9 @@ export default function Profile() {
 
   return (
     <div className={classes.root}>
-      <h2 className={classes.title}>Profile</h2>
+      <Typography variant="h4" className={classes.title}>
+        Profile
+      </Typography>
       <div className={classes.profile}>
         <div className={classes.photo}>
           <div className={classes.pic}>
@@ -249,7 +254,9 @@ export default function Profile() {
 
         <div className={classes.info}>
           <div className={classes.infoContainer}>
-            <h4>Basic details</h4>
+            <Typography variant="h5" gutterBottom>
+              Basic details
+            </Typography>
             <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
@@ -289,7 +296,9 @@ export default function Profile() {
           </div>
 
           <div className={classes.infoContainer}>
-            <h4>Academic details</h4>
+            <Typography variant="h5" gutterBottom>
+              Academic details
+            </Typography>
             <TextField
               required
               id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
@@ -354,7 +363,7 @@ export default function Profile() {
         </div>
 
         <div className={classes.infoContainer}>
-          <h4>Resume</h4>
+          <Typography variant="h5">Resume</Typography>
           <FileDropzone
             setFile={(file) => {
               setfile(file);

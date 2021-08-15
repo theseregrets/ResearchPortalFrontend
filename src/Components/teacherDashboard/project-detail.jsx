@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
-
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { useSelector } from 'react-redux';
+import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { useParams } from 'react-router-dom';
-import { projects } from '../../Data/projects';
-import { data } from '../../Data/project-data';
+import { useHistory, useParams } from 'react-router-dom';
 import ApplicationTable from './table';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -18,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: '34px',
     textAlign: 'center',
-    color: '#0047ab',
+    color: colors.projectHeading,
     fontStyle: 'italic',
     margin: '30px',
   },
@@ -34,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
   formControl: {
     margin: theme.spacing(1),
     minWidth: 120,
+  },
+  descTitle: {
+    margin: '30px 0px',
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -63,6 +65,8 @@ export default function ProjectDetail() {
   const classes = useStyles();
   const { slug } = useParams();
   const state = useSelector((state) => state.profile);
+  const history = useHistory();
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -76,13 +80,36 @@ export default function ProjectDetail() {
     )
       .then((res) => res.json())
       .then((data) => {
-        // store the user detail in redux.
         console.log(data);
+        setData(data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
+
+  function deleteProject() {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/projects/details/${slug}/`,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => {
+        if (res.status === 204) {
+          history.replace('/dashboard');
+        } else {
+          alert('some error');
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('some error');
+      });
+  }
 
   return (
     <>
@@ -92,23 +119,16 @@ export default function ProjectDetail() {
           variant="contained"
           color="secondary"
           startIcon={<DeleteIcon />}
+          onClick={() => {
+            deleteProject();
+          }}
         >
           Delete Project
         </Button>
-        <h1 className={classes.title}>{data.title}</h1>
-        <hr />
-        <h4>Summary</h4>
-
-        <p className={classes.summary}>{data.project}</p>
-        <hr />
-        <h4 style={{ margin: '30px 0px' }}>Description</h4>
-        <p>{data.desc}</p>
-        <hr />
-        <h2 className={classes.subtitle}>Applications</h2>
-        <h4 className={classes.numApp}>
-          {projects.length} students have applied
-        </h4>
-        <ApplicationTable />
+        <Typography variant="h4" gutterBottom className={classes.subtitle}>
+          Applications
+        </Typography>
+        <ApplicationTable data={data} />
       </Container>
     </>
   );

@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import { Typography } from '@material-ui/core';
 import UpdateIcon from '@material-ui/icons/Update';
 import EditDetails from './EditAcadDetails';
 import Details from './AcadDetails';
 import cont from '../../Redux/Actions/updateContacts';
 import dept from '../../Redux/Actions/updateDept';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,17 +19,19 @@ const useStyles = makeStyles((theme) => ({
   title: {
     textAlign: 'center',
     padding: '10px',
+    color: colors.headingLight,
   },
   profile: {
     width: '80%',
     margin: '20px auto',
-    backgroundColor: 'white',
+    backgroundColor: colors.bgLight,
+    backdropFilter: 'blur(10px)',
     display: 'flex',
     flexDirection: 'column',
     gap: '20px',
     padding: '20px',
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[4],
   },
   photo: {
     display: 'flex',
@@ -99,9 +103,32 @@ export default function Profile() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
   const dispatch = useDispatch();
+
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState(null);
   const [contact, setcontact] = useState(null);
+
+  useEffect(() => {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/user/teacher/details/${state.username}/`,
+      {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        // store the user detail in redux.
+        dispatch(cont(data.contact));
+        dispatch(dept(data.branch));
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   function update() {
     const formdata = new FormData();
@@ -142,31 +169,11 @@ export default function Profile() {
     }
   }
 
-  useEffect(() => {
-    fetch(
-      `https://ieeenitdgp.pythonanywhere.com/api/user/teacher/details/${state.username}/`,
-      {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${state.jwt}`,
-        },
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        // store the user detail in redux.
-        dispatch(cont(data.contact));
-        dispatch(dept(data.branch));
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
   return (
     <div className={classes.root}>
-      <h2 className={classes.title}>Profile</h2>
+      <Typography variant="h4" className={classes.title}>
+        Profile
+      </Typography>
       <div className={classes.profile}>
         <div className={classes.photo}>
           <div className={classes.pic}>
@@ -180,7 +187,7 @@ export default function Profile() {
           </div>
           <div className={classes.editBtn}>
             {!isEditing ? (
-              <>
+              <div>
                 <p />
                 <Button
                   size="small"
@@ -191,7 +198,7 @@ export default function Profile() {
                   <UpdateIcon />
                   Edit
                 </Button>
-              </>
+              </div>
             ) : (
               <div className={classes.editBtnContainer}>
                 <Button
@@ -217,14 +224,54 @@ export default function Profile() {
 
         <div className={classes.info}>
           <div className={classes.infoContainer}>
-            <h1>Basic details</h1>
-            <h4>Username: {state.username}</h4>
-            <h4>First Name: {state.first_name}</h4>
-            <h4>Last Name: {state.last_name}</h4>
-            <h4>Email: {state.email}</h4>
+            <Typography variant="h5" gutterBottom>
+              Basic details
+            </Typography>
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Username"
+              value={state.username}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Firstname"
+              value={state.first_name}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Lastname"
+              value={state.last_name}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
+            <TextField
+              required
+              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
+              label="Email"
+              value={state.email}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
           </div>
           <div className={classes.infoContainer}>
-            <h1>Academic details</h1>
+            <Typography variant="h5" gutterBottom>
+              Academic details
+            </Typography>
             {isEditing ? (
               <EditDetails setBranch={setbranch} setContact={setcontact} />
             ) : (

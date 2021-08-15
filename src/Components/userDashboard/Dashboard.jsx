@@ -8,6 +8,7 @@ import Profile from './Profile';
 import SideNav from './Sidenav';
 import BottomNav from './BottomNav';
 import BottomNavFix from './BottomNavFix';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles(() => ({
 
     // for sidenav
     '& .MuiDrawer-docked': {
-      backgroundColor: 'white',
+      backgroundColor: colors.drawerBg,
       borderRight: '1px solid rgba(0, 0, 0, 0.12)',
     },
   },

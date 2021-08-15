@@ -4,10 +4,12 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
+import { Typography } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import NewPost from './new-post';
 import ProjectCard from './cards';
+import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +27,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '15px',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fefefe',
+    backgroundColor: colors.msgBg,
     borderRadius: '10px',
-    boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+    boxShadow: theme.shadows[colors.shadows.msg],
   },
 
   large: {
@@ -77,7 +79,9 @@ export default function Overview() {
     <div className={classes.root}>
       <div className={classes.msg}>
         <Avatar className={clsx(classes.orange, classes.large)}>R</Avatar>
-        <h4 className={classes.txt}>Welcome back!</h4>
+        <Typography variant="p" className={classes.txt}>
+          Welcome back!
+        </Typography>
       </div>
       <Button
         onClick={handleClick}

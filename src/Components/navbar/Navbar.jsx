@@ -24,6 +24,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import rp from '../../Assets/rplogo.svg';
 import Logow from '../../Assets/ieeesb_logowhite.png';
 import Logob from '../../Assets/ieeesb_logoblue.png';
+import { colors } from '../theme/Theme';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -35,7 +36,7 @@ const useStyle = makeStyles((theme) => ({
     transition: 'all 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   },
   bg: {
-    backgroundColor: '#5b75ca',
+    backgroundColor: colors.navBg,
     boxShadow:
       '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
   },
@@ -70,7 +71,10 @@ const useStyle = makeStyles((theme) => ({
     },
   },
   logo1: {
-    width: '40%',
+    filter: 'invert(1)',
+    padding: '5px 0',
+    width: '35%',
+    minWidth: '100px',
     [theme.breakpoints.down('xs')]: {
       width: '60%',
     },
@@ -83,11 +87,11 @@ const useStyle = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       marginLeft: theme.spacing(1),
     },
-    color: 'white',
+    color: colors.navText,
     fontSize: '15px',
 
     '&:hover': {
-      color: 'white',
+      color: colors.navText,
     },
   }),
   menu_container: {
@@ -223,18 +227,20 @@ export default function Navbar() {
               Team
             </ListItemText>
           </ListItem>
-          <ListItem style={{ paddingTop: '10px' }} divider button>
-            <ListItemIcon>
-              <DashboardIcon color="primary" />
-            </ListItemIcon>
-            <ListItemText
-              onClick={() => {
-                pushTo('/dashboard');
-              }}
-            >
-              Dashboard
-            </ListItemText>
-          </ListItem>
+          {state.isLogged && (
+            <ListItem style={{ paddingTop: '10px' }} divider button>
+              <ListItemIcon>
+                <DashboardIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                onClick={() => {
+                  pushTo('/dashboard');
+                }}
+              >
+                Dashboard
+              </ListItemText>
+            </ListItem>
+          )}
           <ListItem style={{ paddingTop: '10px' }} divider button>
             <ListItemIcon>
               <InfoIcon color="primary" />

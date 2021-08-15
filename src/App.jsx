@@ -15,6 +15,7 @@ import Projects from './Components/projects/Projects';
 import Signup from './Components/signup/Signup';
 import UserDashboard from './Components/userDashboard/Dashboard';
 import DashboardTeacher from './Components/teacherDashboard/teacher-dashboard';
+import ScrollToTop from './Components/scrollToTop/ScrollToTop';
 
 function App() {
   const state = useSelector((state) => state.profile);
@@ -22,6 +23,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
+          <ScrollToTop />
           <Navbar />
           <Switch>
             <Route exact path="/">

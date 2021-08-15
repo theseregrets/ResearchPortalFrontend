@@ -125,6 +125,10 @@ export default function ProjectDetail() {
         >
           Delete Project
         </Button>
+        <Typography variant="h5">
+          {data.count ? data.results[0].post.title : null}
+        </Typography>
+        <p>{data.count ? data.results[0].post.description : null}</p>
         <Typography variant="h4" gutterBottom className={classes.subtitle}>
           Applications
         </Typography>

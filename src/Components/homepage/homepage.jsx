@@ -30,8 +30,10 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   buttons: {
+    width: '11rem',
+    height: '3rem',
     borderRadius: '30px',
-    marginLeft: '2rem',
+    marginLeft: '4rem',
   },
   grid: {
     padding: '20px',
@@ -43,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   firstbox: {
     margin: '-10vh 10vw 20vh 4vw',
     display: 'flex',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     alignSelf: 'center',
 
     '& a': {
@@ -58,7 +60,6 @@ const useStyles = makeStyles((theme) => ({
   },
   secondbox: {
     width: '100%',
-
     '& img': {
       transform: 'translate(0px, -100px)',
       width: '100%',
@@ -192,16 +193,6 @@ export default function Homepage() {
             variant="contained"
           >
             Projects
-          </Button>
-          <Button
-            size="large"
-            className={classes.buttons}
-            component={Link}
-            to="/login"
-            color="primary"
-            variant="contained"
-          >
-            Login
           </Button>
         </div>
         <div className={classes.secondbox}>

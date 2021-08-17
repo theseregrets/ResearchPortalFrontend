@@ -94,6 +94,40 @@ const useStyle = makeStyles((theme) => ({
       color: colors.navText,
     },
   }),
+  logout: (props) => ({
+    marginLeft: theme.spacing(4),
+    [theme.breakpoints.down('md')]: {
+      marginLeft: theme.spacing(2),
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(1),
+    },
+    color: colors.navText,
+    backgroundColor: '#ff4837',
+    fontSize: '15px',
+
+    '&:hover': {
+      color: colors.navText,
+      backgroundColor: '#fb0000',
+    },
+  }),
+  login: (props) => ({
+    marginLeft: theme.spacing(4),
+    [theme.breakpoints.down('md')]: {
+      marginLeft: theme.spacing(2),
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(1),
+    },
+    color: colors.navText,
+    backgroundColor: '#009900',
+    fontSize: '15px',
+
+    '&:hover': {
+      color: colors.navText,
+      backgroundColor: '#007f00',
+    },
+  }),
   menu_container: {
     display: 'none',
 
@@ -175,6 +209,15 @@ export default function Navbar() {
             <Button component={Link} to="/about-us" className={classes.button}>
               About us
             </Button>
+            {state.isLogged ? (
+              <Button component={Link} to="/" className={classes.logout}>
+                LOGOUT
+              </Button>
+            ) : (
+              <Button component={Link} to="/login" className={classes.login}>
+                LOGIN
+              </Button>
+            )}
           </div>
           <div className={classes.logo_container}>
             <a href="https://www.ieeesbnitdgp.com/">

@@ -1,11 +1,6 @@
 import React from 'react';
-import {
-  Card,
-  CardContent,
-  Grid,
-  Typography,
-  makeStyles,
-} from '@material-ui/core';
+import { Card, CardContent, Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import { FaGithub, FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { TEAM_INFO } from '../../Data/team';
 import { colors } from '../theme/Theme';

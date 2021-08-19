@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Grid,
-  makeStyles,
   TextField,
   Button,
   Paper,
@@ -10,6 +9,7 @@ import {
   useTheme,
   useMediaQuery,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import AnimatedNumber from 'react-animated-number';
 import { colors } from '../theme/Theme';
 

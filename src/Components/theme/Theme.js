@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 
 export const colors = {
   primary: '#5b75ca',
@@ -34,7 +34,7 @@ export const colors = {
   },
 };
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     h1: {
       fontFamily: 'Lato',

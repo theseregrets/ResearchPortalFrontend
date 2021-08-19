@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Slide, makeStyles } from '@material-ui/core';
+import { Grid, Slide } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import Arrow from './CarouselNavArrow';
 import CarouselSlide from './CarouselSlider';
 import { SLIDE_INFO } from '../../Data/carousel';

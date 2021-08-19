@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  AppBar,
-  Grid,
-  Link,
-  Container,
-  Box,
-  makeStyles,
-} from '@material-ui/core';
+import { AppBar, Grid, Link, Container, Box } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { colors } from '../theme/Theme';
 

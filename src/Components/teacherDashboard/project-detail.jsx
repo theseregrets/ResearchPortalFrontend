@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import ApplicationTable from './table';
 import { colors } from '../theme/Theme';

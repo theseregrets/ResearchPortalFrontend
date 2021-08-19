@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { makeStyles, useTheme, useMediaQuery } from '@material-ui/core';
+import { useTheme, useMediaQuery } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineItem from '@material-ui/lab/TimelineItem';
 import TimelineSeparator from '@material-ui/lab/TimelineSeparator';

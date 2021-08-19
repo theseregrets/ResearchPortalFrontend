@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepPurple } from '@material-ui/core/colors';
 import Button from '@material-ui/core/Button';

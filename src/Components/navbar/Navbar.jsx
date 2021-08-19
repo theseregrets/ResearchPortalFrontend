@@ -12,11 +12,13 @@ import {
   AppBar,
   IconButton,
   ListItem,
-  makeStyles,
   List,
   ListItemText,
   ListItemIcon,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import LoginIcon from '@material-ui/icons/Login';
+import LogoutIcon from '@material-ui/icons/Logout';
 import MenuIcon from '@material-ui/icons/Menu';
 import FlagIcon from '@material-ui/icons/Flag';
 import PeopleIcon from '@material-ui/icons/People';
@@ -27,8 +29,6 @@ import Logow from '../../Assets/ieeesb_logowhite.png';
 import Logob from '../../Assets/ieeesb_logoblue.png';
 import { colors } from '../theme/Theme';
 import logout from '../../Redux/Actions/logout';
-// import LoginIcon from '@material-ui/icons/Login';
-// import LogoutIcon from '@material-ui/icons/Logout';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -308,9 +308,9 @@ export default function Navbar() {
           </ListItem>
           {state.isLogged ? (
             <ListItem style={{ paddingTop: '10px' }} divider button>
-              {/* <ListItemIcon>
+              <ListItemIcon>
                 <LoginIcon color="primary" />
-              </ListItemIcon> */}
+              </ListItemIcon>
               <ListItemText
                 onClick={() => {
                   dispatch(logout());
@@ -321,9 +321,9 @@ export default function Navbar() {
             </ListItem>
           ) : (
             <ListItem style={{ paddingTop: '10px' }} divider button>
-              {/* <ListItemIcon>
+              <ListItemIcon>
                 <LogoutIcon color="primary" />
-              </ListItemIcon> */}
+              </ListItemIcon>
               <ListItemText
                 onClick={() => {
                   history.push('/login');

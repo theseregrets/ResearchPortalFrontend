@@ -15,10 +15,7 @@ const Profile = (initialState = state, action) => {
         email: action.email,
       };
     case 'LOGOUT':
-      return {
-        ...initialState,
-        isLogged: false,
-      };
+      return state;
     case 'SIGNUP':
       return {
         ...initialState,

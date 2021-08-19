@@ -1,7 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
@@ -25,6 +26,9 @@ import rp from '../../Assets/research_portal_cropped.png';
 import Logow from '../../Assets/ieeesb_logowhite.png';
 import Logob from '../../Assets/ieeesb_logoblue.png';
 import { colors } from '../theme/Theme';
+import logout from '../../Redux/Actions/logout';
+// import LoginIcon from '@material-ui/icons/Login';
+// import LogoutIcon from '@material-ui/icons/Logout';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -159,6 +163,7 @@ export default function Navbar() {
   const [isOpen, toggle] = useState(false);
   const [scroll, setScroll] = useState(false);
   const state = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.onscroll = () => {
@@ -210,7 +215,12 @@ export default function Navbar() {
               About us
             </Button>
             {state.isLogged ? (
-              <Button component={Link} to="/" className={classes.logout}>
+              <Button
+                onClick={() => {
+                  dispatch(logout());
+                }}
+                className={classes.logout}
+              >
                 LOGOUT
               </Button>
             ) : (
@@ -296,6 +306,33 @@ export default function Navbar() {
               About Us
             </ListItemText>
           </ListItem>
+          {state.isLogged ? (
+            <ListItem style={{ paddingTop: '10px' }} divider button>
+              {/* <ListItemIcon>
+                <LoginIcon color="primary" />
+              </ListItemIcon> */}
+              <ListItemText
+                onClick={() => {
+                  dispatch(logout());
+                }}
+              >
+                Logout
+              </ListItemText>
+            </ListItem>
+          ) : (
+            <ListItem style={{ paddingTop: '10px' }} divider button>
+              {/* <ListItemIcon>
+                <LogoutIcon color="primary" />
+              </ListItemIcon> */}
+              <ListItemText
+                onClick={() => {
+                  history.push('/login');
+                }}
+              >
+                Login
+              </ListItemText>
+            </ListItem>
+          )}
         </List>
       </Drawer>
     </div>

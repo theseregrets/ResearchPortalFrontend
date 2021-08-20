@@ -14,7 +14,7 @@ export const Branches = [
   },
   {
     value: 'CE',
-    label: 'Civil Engineerign',
+    label: 'Civil Engineering',
   },
   {
     value: 'default',

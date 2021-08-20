@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -10,7 +10,12 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/core/Alert';
 import { colors } from '../theme/Theme';
+import feedback from '../../Redux/Actions/feedback';
 
 const useStyles = makeStyles((theme) => ({
   avatar: {
@@ -53,7 +58,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Signup() {
   const classes = useStyles();
   const history = useHistory();
-  const [value, setValue] = React.useState();
+  const [error, setError] = useState('');
+  const [alert, setAlert] = useState(false);
+  const [backDrop, setBackDrop] = useState(false);
   const dispatch = useDispatch();
   const data = {};
   function setData(event, key) {
@@ -64,26 +71,46 @@ export default function Signup() {
     setValue(newValue);
     console.log(newValue);
   };
+  const validator = () => {
+    const exp = RegExp('w+@btech.nitdgp.ac.in|nitdgp.ac.in').test(data.email);
+    if (!exp) {
+      setError('Email Not Valid! Please use Institute Email ID');
+    } else {
+      setError('');
+    }
+    if (data.password !== data.password2) {
+      setError('Password Does Not Match!');
+    } else {
+      setError('');
+    }
+  };
 
   const onSignup = () => {
-    fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.username) {
-          history.push('/login');
-        } else {
-          alert('registration failed');
-        }
+    if (error === '') {
+      validator();
+      dispatch(feedback('backdrop'));
+      fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.username) {
+            dispatch(feedback(''));
+            history.push('/login');
+          } else {
+            console.log(data);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      setAlert(true);
+    }
   };
 
   return (
@@ -94,6 +121,13 @@ export default function Signup() {
       <Typography variant="h3" align="center">
         Sign Up
       </Typography>
+      {alert && <Alert severity="error">{error}</Alert>}
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={backDrop}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
         <TextField
           required
@@ -110,7 +144,9 @@ export default function Signup() {
           id="outlined-required"
           label="Email"
           variant="outlined"
-          onChange={(event) => setData(event, 'email')}
+          onChange={(event) => {
+            setData(event, 'email');
+          }}
         />
         <TextField
           required
@@ -144,7 +180,9 @@ export default function Signup() {
           id="outlined-required"
           label="Confirm Password"
           variant="outlined"
-          onChange={(event) => setData(event, 'password2')}
+          onChange={(event) => {
+            setData(event, 'password2');
+          }}
         />
         <Button
           type="submit"

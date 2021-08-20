@@ -16,7 +16,6 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FilterProject from './filterProject';
 import FileDropzone from './Dropzone';
-import File from '../../Data/test.pdf';
 import { colors } from '../theme/Theme';
 
 // import { projects } from '../../Data/proj';

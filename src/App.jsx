@@ -2,6 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import Backdrop from '@material-ui/core/Backdrop';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import theme from './Components/theme/Theme';
 import Navbar from './Components/navbar/Navbar';
 import Footer from './Components/footer/Footer';
@@ -21,6 +23,12 @@ function App() {
   const state = useSelector((state) => state.profile);
   return (
     <div className="App">
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={state.feedback === 'backdrop'}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
       <ThemeProvider theme={theme}>
         <Router>
           <ScrollToTop />

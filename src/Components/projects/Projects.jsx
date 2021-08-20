@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/core/Alert';
 import Snackbar from '@material-ui/core/Snackbar';
 import Divider from '@material-ui/core/Divider';
 import { useSelector } from 'react-redux';
@@ -118,8 +119,9 @@ export default function Projects() {
   const state = useSelector((state) => state.profile);
   const [project, setProject] = useState([]);
   const [sopFile, setSopFile] = useState([]);
-  const [openSnack, setOpenSnack] = useState(false);
+  const [snackMessage, setSnackMessage] = useState('');
   const [applied, setApplied] = useState(false);
+  const [resType, setResType] = useState(200);
   const history = useHistory();
 
   useEffect(() => {
@@ -142,15 +144,17 @@ export default function Projects() {
   function applyforProject(slug, i) {
     if (state.isLogged) {
       if (!sopFile[i]) {
-        setOpenSnack(true);
+        setApplied(true);
+        setSnackMessage('Please Upload SOP!');
+        setResType(400);
       } else {
         const fileToLoad = sopFile[i][0];
         // FileReader function for read the file.
         console.log(sopFile[i][0]);
         const fileReader = new FileReader();
-        let base64;
         // Onload of file read the file content
-        fileReader.onload = function (fileLoadedEvent) {
+        let base64;
+        fileReader.onload = (fileLoadedEvent) => {
           base64 = fileLoadedEvent.target.result;
         };
         // Convert data to base64
@@ -168,8 +172,15 @@ export default function Projects() {
             body: formdata,
           }
         )
-          .then((res) => res.json())
+          .then((res) => {
+            setResType(res.status);
+            res.json();
+          })
           .then((data) => {
+            console.log(resType);
+            if (resType === 400)
+              setSnackMessage('You have already applied this project!!');
+            else if (resType === 200) setSnackMessage('Project Applied');
             setApplied(true);
           })
           .catch((err) => {
@@ -260,18 +271,26 @@ export default function Projects() {
         </>
       )}
       <Snackbar
-        open={openSnack || applied}
+        open={applied}
         autoHideDuration={2000}
         anchorOrigin={{
           vertical: 'bottom',
           horizontal: 'right',
         }}
         onClose={() => {
-          setOpenSnack(false);
           setApplied(false);
         }}
-        message={applied ? 'project applied' : 'Please upload SOP to apply'}
-      />
+        message={snackMessage}
+      >
+        <Alert
+          variant="filled"
+          onClose={() => setApplied(false)}
+          severity={resType === 200 ? 'success' : 'error'}
+          sx={{ width: '100%' }}
+        >
+          {snackMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

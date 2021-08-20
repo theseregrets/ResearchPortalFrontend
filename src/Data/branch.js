@@ -5,6 +5,10 @@ export const Branches = [
     label: 'Computer Science and Engineering',
   },
   {
+    value: 'ECE',
+    label: 'Electronics and Communication Engineering',
+  },
+  {
     value: 'EE',
     label: 'Electrical Engineering',
   },
@@ -15,6 +19,18 @@ export const Branches = [
   {
     value: 'CE',
     label: 'Civil Engineering',
+  },
+  {
+    value: 'CH',
+    label: 'Chemical Engineering',
+  },
+  {
+    value: 'MME',
+    label: 'Metallurgy and Material Engineering',
+  },
+  {
+    value: 'ME',
+    label: 'Mechanical Engineering',
   },
   {
     value: 'default',

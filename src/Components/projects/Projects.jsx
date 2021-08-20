@@ -253,7 +253,7 @@ export default function Projects() {
       ) : (
         <>
           {!projs.length ? (
-            <CircularProgress disableShrink />
+            <CircularProgress color="inherit" />
           ) : (
             <Typography variant="h4">No match found</Typography>
           )}

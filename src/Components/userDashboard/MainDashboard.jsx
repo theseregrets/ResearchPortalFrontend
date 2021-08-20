@@ -140,7 +140,7 @@ export default function MainDashboard() {
         </div>
       ) : (
         <div className={classes.placeholderText}>
-          <CircularProgress color="white" disableShrink />
+          <CircularProgress color="inherit" />
         </div>
       )}
     </div>

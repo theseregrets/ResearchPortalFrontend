@@ -69,7 +69,7 @@ const Posts = () => {
           </div>
         ) : (
           <div className={classes.loading}>
-            <CircularProgress disableShrink />
+            <CircularProgress color="inherit" />
           </div>
         )}
       </div>

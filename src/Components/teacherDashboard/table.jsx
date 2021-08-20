@@ -90,7 +90,7 @@ export default function ApplicationTable(props) {
   return (
     <>
       {!data ? (
-        <CircularProgress disableShrink />
+        <CircularProgress color="inherit" />
       ) : (
         <>
           {data.count ? (

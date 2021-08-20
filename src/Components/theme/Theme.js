@@ -2,11 +2,12 @@ import { createTheme } from '@material-ui/core/styles';
 
 export const colors = {
   primary: '#5b75ca',
-  secomdary: '#ffb016',
+  secomdary: '#ffb01690',
   textLight: 'white',
   textDark: 'black',
   navBg: '#5b75ca',
   navText: '#ffffff',
+  navTextHover: 'rgba(255, 255, 255, 0.2)',
   homepageHeading: '#ef5350',
   headingLight: 'white',
   headingDark: 'black',

@@ -50,9 +50,14 @@ const useStyle = makeStyles((theme) => ({
   },
   accord: {
     // backgroundColor: 'transparent',
-    margin: '1rem auto',
+    // margin: '1rem auto',
+  },
+  btn: {
+    width: 'fit-content',
+    marginBottom: '1rem',
   },
   accord_detail: {
+    display: 'flex',
     flexWrap: 'wrap',
     gap: '10px',
     // width: '500px',
@@ -200,9 +205,9 @@ export default function FilterProject(props) {
   return (
     <div className={classes.root}>
       <Button
+        className={classes.btn}
         variant="contained"
         color="primary"
-        style={{ width: 'fit-content' }}
         onClick={() => {
           setFilterParameter({ dept: [], prof: [], tag: [] });
         }}

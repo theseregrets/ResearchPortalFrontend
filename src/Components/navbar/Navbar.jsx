@@ -24,7 +24,7 @@ import FlagIcon from '@material-ui/icons/Flag';
 import PeopleIcon from '@material-ui/icons/People';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import InfoIcon from '@material-ui/icons/Info';
-import rp from '../../Assets/research_portal_cropped.png';
+import rp from '../../Assets/rplogo.svg';
 import Logow from '../../Assets/ieeesb_logowhite.png';
 import Logob from '../../Assets/ieeesb_logoblue.png';
 import { colors } from '../theme/Theme';
@@ -46,7 +46,7 @@ const useStyle = makeStyles((theme) => ({
   },
   logo_container: {
     width: '25%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '30%',
     },
     position: 'relative',
@@ -56,7 +56,7 @@ const useStyle = makeStyles((theme) => ({
   },
   button_container: {
     display: 'flex',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
     justifyContent: 'flex-end',
@@ -70,7 +70,7 @@ const useStyle = makeStyles((theme) => ({
     position: 'absolute',
     right: '0',
     top: '-25px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },
@@ -96,6 +96,7 @@ const useStyle = makeStyles((theme) => ({
 
     '&:hover': {
       color: colors.navText,
+      backgroundColor: colors.navTextHover,
     },
   }),
   logout: (props) => ({
@@ -135,7 +136,7 @@ const useStyle = makeStyles((theme) => ({
   menu_container: {
     display: 'none',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'flex',
       flexGrow: '1',
       justifyContent: 'flex-end',

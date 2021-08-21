@@ -19,11 +19,11 @@ import { colors } from '../theme/Theme';
 const useStyles = makeStyles((theme) => ({
   desc: {
     maxWidth: '350px',
-    marginLeft: '100px',
-    marginBottom: '0',
+    // marginLeft: '100px',
+    margin: '0 auto',
     padding: '10px',
     fontSize: '20px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       color: 'white',
       margin: '0px auto',
       textAlign: 'center',
@@ -33,44 +33,111 @@ const useStyles = makeStyles((theme) => ({
     width: '11rem',
     height: '3rem',
     borderRadius: '30px',
-    marginLeft: '4rem',
+    margin: '2rem auto 0 auto',
+    '&:hover': {
+      color: 'white',
+    },
+    [theme.breakpoints.down('md')]: {
+      margin: '10vh auto 0 auto',
+    },
   },
   grid: {
     padding: '20px',
-    display: 'flex',
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column-reverse',
-    },
-  },
-  firstbox: {
-    margin: '-10vh 10vw 20vh 4vw',
-    display: 'flex',
+    // display: 'flex',
     justifyContent: 'center',
-    alignSelf: 'center',
-
-    '& a': {
-      '&:hover': {
-        color: 'white',
-      },
+    alignItems: 'center',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    gridTemplateRows: 'repeat(5, 1fr)',
+    // gridColumnGap: '0px',
+    // gridRowGap: '0px',
+    height: '80vh',
+    '& > p:nth-of-type(1)': {
+      gridRow: '1',
+      gridColumn: '1',
     },
-
-    [theme.breakpoints.down('sm')]: {
-      margin: '6vh 10vw 0vh 0vw',
+    '& > p:nth-of-type(2)': {
+      gridRow: '2',
+      gridColumn: '1',
     },
-  },
-  secondbox: {
-    width: '100%',
-    '& img': {
-      transform: 'translate(0px, -100px)',
-      width: '100%',
+    '& > a': {
+      gridRow: '3',
+      gridColumn: '1',
+    },
+    '& > img': {
+      width: '65vw',
       maxHeight: '400px',
-
-      [theme.breakpoints.down('sm')]: {
+      margin: 'auto',
+      gridRow: '1/6',
+      gridColumn: '2',
+    },
+    [theme.breakpoints.down('md')]: {
+      // flexDirection: 'column-reverse',
+      gridTemplateColumns: 'repeat(1, 1fr)',
+      gridRowGap: '10px',
+      '& > a': {
+        gridRow: '4',
+        gridColumn: '1',
+      },
+      '& > img': {
         maxHeight: '350px',
-        transform: 'none',
+        gridRow: '3',
+        gridColumn: '1',
+        // transform: 'none',
       },
     },
   },
+  // firstbox: {
+  //   display: 'flex',
+  //   flexDirection: 'column',
+  //   justifyContent: 'flex-start',
+  //   alignItems: 'center',
+  //   gap: '20px',
+  //   textAlign: 'center',
+
+  //   '& a': {
+  //     '&:hover': {
+  //       color: 'white',
+  //     },
+  //   },
+
+  //   [theme.breakpoints.down('sm')]: {
+  //     // margin: '6vh 10vw 0vh 0vw',
+  //   },
+  // },
+  // secondbox: {
+  //   width: '100%',
+  //   // display: 'flex',
+  //   // alignItems: 'center',
+  //   // justifyContent: 'center',
+  //   maxWidth: '60vw',
+  //   '& img': {
+  //     // transform: 'translate(0px, -100px)',
+  //     width: '100%',
+  //     maxHeight: '400px',
+  //     gridRow: '1/6',
+  //     gridColumn: '2',
+
+  //     [theme.breakpoints.down('sm')]: {
+  //       maxHeight: '350px',
+  //       // transform: 'none',
+  //     },
+  //   },
+  // },
+  // img: {
+  //   // transform: 'translate(0px, -100px)',
+  //   width: '65vw',
+  //   maxHeight: '400px',
+  //   gridRow: '1/6',
+  //   gridColumn: '2',
+
+  //   [theme.breakpoints.down('sm')]: {
+  //     maxHeight: '350px',
+  //     gridRow: '3',
+  //     gridColumn: '1',
+  //     // transform: 'none',
+  //   },
+  // },
   main: {
     minHeight: '100%',
     alignContent: 'center',
@@ -105,7 +172,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '20px',
     fontFamily: 'Playfair Display',
     // textShadow: '10px 10px 20px black',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       textAlign: 'center',
       padding: '5px',
     },
@@ -176,28 +243,29 @@ export default function Homepage() {
           <div className="inner-ring3" />
         </div>
       </section>
-      <Typography variant="h2" className={classes.rp} component="p">
-        Research Portal
-      </Typography>
-      <Typography className={classes.desc}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-      </Typography>
+      {}
       <div className={classes.grid}>
-        <div className={classes.firstbox}>
-          <Button
-            size="large"
-            className={classes.buttons}
-            component={Link}
-            to="/projects"
-            color="primary"
-            variant="contained"
-          >
-            Projects
-          </Button>
-        </div>
-        <div className={classes.secondbox}>
-          <img src={introsvg} alt="Intro" />
-        </div>
+        {/* <div className={classes.firstbox}> */}
+        <Typography variant="h2" className={classes.rp} component="p">
+          Research Portal
+        </Typography>
+        <Typography className={classes.desc}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        </Typography>
+        <Button
+          size="large"
+          className={classes.buttons}
+          component={Link}
+          to="/projects"
+          color="primary"
+          variant="contained"
+        >
+          Projects
+        </Button>
+        {/* </div> */}
+        {/* <div className={classes.secondbox}> */}
+        <img src={introsvg} alt="Intro" className={classes.img} />
+        {/* </div> */}
       </div>
       {/* objectives */}
       <div className="main-container">

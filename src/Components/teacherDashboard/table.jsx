@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-param-reassign */
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
@@ -20,6 +20,8 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/core/Alert';
 import { useSelector } from 'react-redux';
 
 const useRowStyles = makeStyles({
@@ -32,7 +34,8 @@ const useRowStyles = makeStyles({
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [rejected, setRejected] = useState(false);
   const classes = useRowStyles();
   const state = useSelector((state) => state.profile);
   function rejectApplication(event, slug, username) {
@@ -50,9 +53,10 @@ function Row(props) {
         }),
       }
     )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+      .then((res) => {
+        if (res.status === 200) {
+          setRejected(true);
+        }
       })
       .catch((err) => {
         console.log(err);
@@ -104,6 +108,26 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      <Snackbar
+        open={rejected}
+        autoHideDuration={2000}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        onClose={() => {
+          setRejected(false);
+        }}
+      >
+        <Alert
+          variant="filled"
+          onClose={() => setRejected(false)}
+          severity="success"
+          sx={{ width: '100%' }}
+        >
+          Application rejected
+        </Alert>
+      </Snackbar>
     </>
   );
 }

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/styles';
@@ -11,7 +11,9 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Alert from '@material-ui/core/Alert';
 import login from '../../Redux/Actions/login';
+import feedback from '../../Redux/Actions/feedback';
 import { colors } from '../theme/Theme';
 
 const useStyles = makeStyles((theme) => ({
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
   noAccount: {
     textAlign: 'center',
-    marginTop: '20px',
+    marginTop: '1px',
   },
   forgetpass: {
     textAlign: 'center',
@@ -60,11 +62,18 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
+  alert: {
+    width: '80%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: '10px',
+  },
 }));
 
 export default function Login() {
   const history = useHistory();
-  const [value, setValue] = React.useState();
+  const [error, setError] = useState('');
+  const [alert, setAlert] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
   const data = {};
@@ -72,12 +81,8 @@ export default function Login() {
     data[key] = event.target.value;
   }
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    console.log(newValue);
-  };
-
   const onLogin = () => {
+    dispatch(feedback('backdrop'));
     fetch('https://ieeenitdgp.pythonanywhere.com/api/token/', {
       method: 'POST',
       headers: {
@@ -87,12 +92,14 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
+        dispatch(feedback(''));
         if (data.access) {
           console.log(data);
           dispatch(login(data));
           history.push('/');
         } else {
-          alert(data.detail);
+          console.log(data);
+          setError(data.detail);
         }
       })
       .catch((error) => {
@@ -108,7 +115,18 @@ export default function Login() {
       <Typography variant="h3" align="center">
         Login
       </Typography>
-      <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
+      {error !== '' && (
+        <Alert className={classes.alert} variant="filled" severity="error">
+          {error}
+        </Alert>
+      )}
+      <form
+        className={classes.form}
+        onSubmit={(e) => {
+          e.preventDefault();
+          onLogin();
+        }}
+      >
         <TextField
           required
           className={classes.field}
@@ -135,7 +153,6 @@ export default function Login() {
           className={classes.field}
           color="secondary"
           variant="contained"
-          onClick={() => onLogin()}
         >
           Login
         </Button>
@@ -148,7 +165,7 @@ export default function Login() {
       </Typography>
       <Typography variant="h6" color="primary" className={classes.noAccount}>
         <a href="https://ieeenitdgp.pythonanywhere.com/reset_password/">
-          forget password
+          Forgot password ?
         </a>
       </Typography>
     </Paper>

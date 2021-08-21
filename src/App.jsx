@@ -1,8 +1,10 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Backdrop from '@material-ui/core/Backdrop';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/core/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import theme from './Components/theme/Theme';
 import Navbar from './Components/navbar/Navbar';
@@ -18,9 +20,11 @@ import Signup from './Components/signup/Signup';
 import UserDashboard from './Components/userDashboard/Dashboard';
 import DashboardTeacher from './Components/teacherDashboard/teacher-dashboard';
 import ScrollToTop from './Components/scrollToTop/ScrollToTop';
+import feedback from './Redux/Actions/feedback';
 
 function App() {
   const state = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
   return (
     <div className="App">
       <Backdrop
@@ -29,6 +33,15 @@ function App() {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
+      {/* <Snackbar
+        open={state.feedback === 'snackbar'}
+        autoHideDuration={2000}
+        onClose={dispatch(feedback(''))}
+      >
+        <Alert onClose={dispatch(feedback(''))} severity="success">
+          You have successfully logged in!!
+        </Alert>
+      </Snackbar> */}
       <ThemeProvider theme={theme}>
         <Router>
           <ScrollToTop />

@@ -1,5 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
+/* eslint-disable no-param-reassign */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
@@ -19,6 +20,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { useSelector } from 'react-redux';
 
 const useRowStyles = makeStyles({
   root: {
@@ -32,7 +34,30 @@ function Row(props) {
   const { row } = props;
   const [open, setOpen] = React.useState(false);
   const classes = useRowStyles();
-
+  const state = useSelector((state) => state.profile);
+  function rejectApplication(event, slug, username) {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/projects/shortlist/${slug}/`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          stud_username: username,
+          accepted: -1,
+        }),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <>
       <TableRow className={classes.root}>
@@ -46,6 +71,13 @@ function Row(props) {
             variant="contained"
             color="secondary"
             startIcon={<DeleteIcon />}
+            onClick={(event) => {
+              rejectApplication(
+                event,
+                row.post.slug,
+                row.student.user.username
+              );
+            }}
           >
             Reject
           </Button>

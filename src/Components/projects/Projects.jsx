@@ -172,13 +172,18 @@ export default function Projects() {
             body: formdata,
           }
         )
-          .then((res) => {
+          .then(async (res) => {
             setResType(res.status);
             if (res.status === 200) setSnackMessage('Project applied');
-            else if (res.status === 400) {
-              setSnackMessage('Already applied');
-            }
             setApplied(true);
+            return { status: res.status, data: await res.json() };
+          })
+          .then(({ status, data }) => {
+            console.log(status);
+            console.log(data[0]);
+            if (status === 400) {
+              setSnackMessage(data[0]);
+            }
           })
           .catch((err) => {
             console.log(err);

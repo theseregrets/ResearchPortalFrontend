@@ -92,10 +92,10 @@ export default function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        dispatch(feedback(''));
         if (data.access) {
           console.log(data);
           dispatch(login(data));
+          dispatch(feedback('snackbar'));
           history.push('/');
         } else {
           console.log(data);

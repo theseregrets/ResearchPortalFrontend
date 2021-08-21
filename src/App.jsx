@@ -33,15 +33,26 @@ function App() {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      {/* <Snackbar
+      <Snackbar
         open={state.feedback === 'snackbar'}
         autoHideDuration={2000}
-        onClose={dispatch(feedback(''))}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        onClose={() => {
+          dispatch(feedback(''));
+        }}
       >
-        <Alert onClose={dispatch(feedback(''))} severity="success">
+        <Alert
+          onClose={() => {
+            dispatch(feedback(''));
+          }}
+          severity="success"
+        >
           You have successfully logged in!!
         </Alert>
-      </Snackbar> */}
+      </Snackbar>
       <ThemeProvider theme={theme}>
         <Router>
           <ScrollToTop />

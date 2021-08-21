@@ -146,8 +146,10 @@ export default function Login() {
           <Link to="/signup"> Signup</Link>
         </span>
       </Typography>
-      <Typography variant="h6" color="primary" className={classes.forgetpass}>
-        forget password
+      <Typography variant="h6" color="primary" className={classes.noAccount}>
+        <a href="https://ieeenitdgp.pythonanywhere.com/reset_password/">
+          forget password
+        </a>
       </Typography>
     </Paper>
   );

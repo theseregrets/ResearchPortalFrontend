@@ -5,7 +5,7 @@ export const colors = {
   secomdary: '#ffb01690',
   textLight: 'white',
   textDark: 'black',
-  navBg: '#5b75ca',
+  navBg: '#68c0f7',
   navText: '#ffffff',
   navTextHover: 'rgba(255, 255, 255, 0.2)',
   homepageHeading: '#ef5350',

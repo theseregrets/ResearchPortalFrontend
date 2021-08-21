@@ -315,6 +315,7 @@ export default function Navbar() {
               <ListItemText
                 onClick={() => {
                   dispatch(logout());
+                  toggle(false);
                 }}
               >
                 Logout
@@ -327,7 +328,7 @@ export default function Navbar() {
               </ListItemIcon>
               <ListItemText
                 onClick={() => {
-                  history.push('/login');
+                  pushTo('/login');
                 }}
               >
                 Login

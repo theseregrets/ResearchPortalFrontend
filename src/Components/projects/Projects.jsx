@@ -174,13 +174,10 @@ export default function Projects() {
         )
           .then((res) => {
             setResType(res.status);
-            res.json();
-          })
-          .then((data) => {
-            console.log(resType);
-            if (resType === 400)
-              setSnackMessage('You have already applied this project!!');
-            else if (resType === 200) setSnackMessage('Project Applied');
+            if (res.status === 200) setSnackMessage('Project applied');
+            else if (res.status === 400) {
+              setSnackMessage('Already applied');
+            }
             setApplied(true);
           })
           .catch((err) => {

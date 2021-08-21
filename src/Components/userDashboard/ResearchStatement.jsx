@@ -98,13 +98,15 @@ export default function ResearchStatement() {
               method: 'POST',
               headers: {
                 Authorization: `Bearer ${state.jwt}`,
-              },
-              body: {
-                research_statement: '',
-                status: 'published',
+                'Content-Type': 'application/json',
               },
             }
-          ).catch((err) => console.log(err));
+          )
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+            })
+            .catch((err) => console.log(err));
         }
       })
       .catch((err) => {

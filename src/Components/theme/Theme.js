@@ -8,7 +8,7 @@ export const colors = {
   navBg: '#68c0f7',
   navText: '#ffffff',
   navTextHover: 'rgba(255, 255, 255, 0.2)',
-  homepageHeading: '#ef5350',
+  homepageHeading: '#0b5b99',
   headingLight: 'white',
   headingDark: 'black',
   projectHeading: '#1414b0',

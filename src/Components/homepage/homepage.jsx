@@ -37,8 +37,9 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       color: 'white',
     },
-    [theme.breakpoints.down('md')]: {
-      margin: '10vh auto 0 auto',
+    [theme.breakpoints.down('sm')]: {
+      width: '70vw',
+      margin: '5vh auto 0 auto',
     },
   },
   grid: {

@@ -23,6 +23,14 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     marginTop: '20px',
   },
+  forgetpass: {
+    textAlign: 'center',
+    marginTop: '20px',
+    cursor: 'pointer',
+    '&:hover': {
+      textDecoration: 'underline',
+    },
+  },
   paper: {
     width: '50vw',
     margin: '1rem auto 3rem auto',
@@ -135,8 +143,11 @@ export default function Login() {
       <Typography variant="h6" className={classes.noAccount}>
         Don't have an account?
         <span>
-          <Link to="/signup">Signup</Link>
+          <Link to="/signup"> Signup</Link>
         </span>
+      </Typography>
+      <Typography variant="h6" color="primary" className={classes.forgetpass}>
+        forget password
       </Typography>
     </Paper>
   );

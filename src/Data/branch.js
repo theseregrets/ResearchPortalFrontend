@@ -26,18 +26,14 @@ export const Branches = [
   },
   {
     value: 'MME',
-    label: 'Metallurgy and Material Engineering',
+    label: 'Metallurgical and Materials Engineering',
   },
   {
     value: 'ME',
     label: 'Mechanical Engineering',
   },
   {
-    value: 'default',
-    label: null,
-  },
-  {
-    value: '',
-    label: null,
+    value: 'CY',
+    label: 'Chemistry',
   },
 ];

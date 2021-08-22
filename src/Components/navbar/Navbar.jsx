@@ -198,7 +198,7 @@ export default function Navbar() {
               to="/milestones"
               className={classes.button}
             >
-              Milestone
+              Milestones
             </Button>
             <Button component={Link} to="/team" className={classes.button}>
               Team

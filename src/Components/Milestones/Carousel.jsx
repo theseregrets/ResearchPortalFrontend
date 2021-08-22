@@ -8,7 +8,7 @@ import { SLIDE_INFO } from '../../Data/carousel';
 const useStyles = makeStyles(() => ({
   arrows: {
     height: '30px',
-    margin: '0',
+    margin: '0px',
     cursor: 'pointer',
     position: 'relative',
     transform: 'translateY(32vh)',
@@ -72,16 +72,16 @@ export default function Carousel() {
 
   return (
     <Grid container justify="center" align="center" spacing={2}>
-      <Grid item className={classes.arrows}>
+      <Grid item className={classes.arrows} xs={2}>
         <Arrow direction="left" clickFunction={() => onArrowClick('left')} />
       </Grid>
 
       <Slide in={slideIn} direction={slideDirection}>
-        <div>
+        <Grid item xs={8}>
           <CarouselSlide content={content} />
-        </div>
+        </Grid>
       </Slide>
-      <Grid item id="rightArrow" className={classes.arrows}>
+      <Grid item id="rightArrow" className={classes.arrows} xs={2}>
         <Arrow direction="right" clickFunction={() => onArrowClick('right')} />
       </Grid>
       <Grid container xs={12} align="center" className={classes.slideshowDots}>

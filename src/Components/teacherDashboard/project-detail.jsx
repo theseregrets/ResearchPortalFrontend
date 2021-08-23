@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { useSelector } from 'react-redux';
 import { Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { useHistory, useParams } from 'react-router-dom';
 import ApplicationTable from './table';
 import { colors } from '../theme/Theme';
@@ -125,6 +125,14 @@ export default function ProjectDetail() {
         >
           Delete Project
         </Button>
+        <Typography variant="h5">
+          {data ? <>{data.count ? data.results[0].post.title : null}</> : null}
+        </Typography>
+        <p>
+          {data ? (
+            <>{data.count ? data.results[0].post.description : null}</>
+          ) : null}
+        </p>
         <Typography variant="h4" gutterBottom className={classes.subtitle}>
           Applications
         </Typography>

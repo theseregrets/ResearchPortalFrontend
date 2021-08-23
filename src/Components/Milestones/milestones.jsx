@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaDotCircle } from 'react-icons/fa';
 import { Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import MilestonesTimeline from './MilestonesTimeline';
 import Carousel from './Carousel';
 import { colors } from '../theme/Theme';

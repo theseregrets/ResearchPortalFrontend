@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import PropTypes from 'prop-types';
 import rstatement from '../../Redux/Actions/statement';
 import { colors } from '../theme/Theme';

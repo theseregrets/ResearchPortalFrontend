@@ -1,13 +1,14 @@
-import { createMuiTheme } from '@material-ui/core';
+import { createTheme } from '@material-ui/core/styles';
 
 export const colors = {
   primary: '#5b75ca',
-  secomdary: '#ffb016',
+  secomdary: '#ffb01690',
   textLight: 'white',
   textDark: 'black',
-  navBg: '#5b75ca',
+  navBg: '#68c0f7',
   navText: '#ffffff',
-  homepageHeading: '#ef5350',
+  navTextHover: 'rgba(255, 255, 255, 0.2)',
+  homepageHeading: '#0b5b99',
   headingLight: 'white',
   headingDark: 'black',
   projectHeading: '#1414b0',
@@ -34,7 +35,7 @@ export const colors = {
   },
 };
 
-const theme = createMuiTheme({
+const theme = createTheme({
   typography: {
     h1: {
       fontFamily: 'Lato',

@@ -3,7 +3,7 @@
 /* eslint-disable react/no-unused-prop-types */
 /* eslint-disable react/no-this-in-sfc */
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';

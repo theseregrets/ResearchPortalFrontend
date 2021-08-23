@@ -15,30 +15,10 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import DoneIcon from '@material-ui/icons/Done';
 import { makeStyles } from '@material-ui/styles';
+import { Branches } from '../../Data/branch';
 
-const department = ['CS', 'ECE', 'EE', 'CE', 'CH', 'MM', 'BT'];
-const prof = [
-  'Dr ABCD',
-  'Dr EFGH',
-  'Dr IJKLMN',
-  'Dr OPQRST',
-  'Dr UVWXYZ',
-  'Dr ABC',
-  'Dr DEFGHIJK',
-  'Dr LMNOP',
-];
-const projTag = [
-  'Arduino',
-  'Artificial intelligence',
-  'Blockchain',
-  'C++',
-  'Data science',
-  'Ethical hacking',
-  'Machine learning',
-  'React',
-  'Transformer',
-  'Web development',
-];
+const department = Branches.map((item) => item.value);
+
 const useStyle = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -50,9 +30,14 @@ const useStyle = makeStyles((theme) => ({
   },
   accord: {
     // backgroundColor: 'transparent',
-    margin: '1rem auto',
+    // margin: '1rem auto',
+  },
+  btn: {
+    width: 'fit-content',
+    marginBottom: '1rem',
   },
   accord_detail: {
+    display: 'flex',
     flexWrap: 'wrap',
     gap: '10px',
     // width: '500px',
@@ -200,9 +185,9 @@ export default function FilterProject(props) {
   return (
     <div className={classes.root}>
       <Button
+        className={classes.btn}
         variant="contained"
         color="primary"
-        style={{ width: 'fit-content' }}
         onClick={() => {
           setFilterParameter({ dept: [], prof: [], tag: [] });
         }}
@@ -234,7 +219,7 @@ export default function FilterProject(props) {
             ))}
           </div>
 
-          <div>
+          {/* <div>
             <Typography>Professor :</Typography>
             {prof.map((ele) => (
               <Chip
@@ -246,9 +231,9 @@ export default function FilterProject(props) {
                 }}
               />
             ))}
-          </div>
+          </div> */}
 
-          <div>
+          {/* <div>
             <Typography>Project Tag :</Typography>
             {projTag.map((ele) => (
               <Chip
@@ -260,7 +245,7 @@ export default function FilterProject(props) {
                 }}
               />
             ))}
-          </div>
+          </div> */}
         </AccordionDetails>
       </Accordion>
 

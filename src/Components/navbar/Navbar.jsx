@@ -1,7 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable import/no-unresolved */
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 import Button from '@material-ui/core/Button';
@@ -11,11 +12,13 @@ import {
   AppBar,
   IconButton,
   ListItem,
-  makeStyles,
   List,
   ListItemText,
   ListItemIcon,
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/styles';
+import LoginIcon from '@material-ui/icons/Login';
+import LogoutIcon from '@material-ui/icons/Logout';
 import MenuIcon from '@material-ui/icons/Menu';
 import FlagIcon from '@material-ui/icons/Flag';
 import PeopleIcon from '@material-ui/icons/People';
@@ -25,6 +28,7 @@ import rp from '../../Assets/rplogo.svg';
 import Logow from '../../Assets/ieeesb_logowhite.png';
 import Logob from '../../Assets/ieeesb_logoblue.png';
 import { colors } from '../theme/Theme';
+import logout from '../../Redux/Actions/logout';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -42,7 +46,7 @@ const useStyle = makeStyles((theme) => ({
   },
   logo_container: {
     width: '25%',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '30%',
     },
     position: 'relative',
@@ -52,7 +56,7 @@ const useStyle = makeStyles((theme) => ({
   },
   button_container: {
     display: 'flex',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
     justifyContent: 'flex-end',
@@ -66,12 +70,12 @@ const useStyle = makeStyles((theme) => ({
     position: 'absolute',
     right: '0',
     top: '-25px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },
   logo1: {
-    filter: 'invert(1)',
+    // filter: 'invert(1)',
     padding: '5px 0',
     width: '35%',
     minWidth: '100px',
@@ -92,12 +96,47 @@ const useStyle = makeStyles((theme) => ({
 
     '&:hover': {
       color: colors.navText,
+      backgroundColor: colors.navTextHover,
+    },
+  }),
+  logout: (props) => ({
+    marginLeft: theme.spacing(4),
+    [theme.breakpoints.down('md')]: {
+      marginLeft: theme.spacing(2),
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(1),
+    },
+    color: colors.navText,
+    backgroundColor: '#ff4837',
+    fontSize: '15px',
+
+    '&:hover': {
+      color: colors.navText,
+      backgroundColor: '#fb0000',
+    },
+  }),
+  login: (props) => ({
+    marginLeft: theme.spacing(4),
+    [theme.breakpoints.down('md')]: {
+      marginLeft: theme.spacing(2),
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(1),
+    },
+    color: colors.navText,
+    backgroundColor: '#009900',
+    fontSize: '15px',
+
+    '&:hover': {
+      color: colors.navText,
+      backgroundColor: '#007f00',
     },
   }),
   menu_container: {
     display: 'none',
 
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       display: 'flex',
       flexGrow: '1',
       justifyContent: 'flex-end',
@@ -125,6 +164,7 @@ export default function Navbar() {
   const [isOpen, toggle] = useState(false);
   const [scroll, setScroll] = useState(false);
   const state = useSelector((state) => state.profile);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     window.onscroll = () => {
@@ -175,6 +215,20 @@ export default function Navbar() {
             <Button component={Link} to="/about-us" className={classes.button}>
               About us
             </Button>
+            {state.isLogged ? (
+              <Button
+                onClick={() => {
+                  dispatch(logout());
+                }}
+                className={classes.logout}
+              >
+                LOGOUT
+              </Button>
+            ) : (
+              <Button component={Link} to="/login" className={classes.login}>
+                LOGIN
+              </Button>
+            )}
           </div>
           <div className={classes.logo_container}>
             <a href="https://www.ieeesbnitdgp.com/">
@@ -253,6 +307,34 @@ export default function Navbar() {
               About Us
             </ListItemText>
           </ListItem>
+          {state.isLogged ? (
+            <ListItem style={{ paddingTop: '10px' }} divider button>
+              <ListItemIcon>
+                <LoginIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                onClick={() => {
+                  dispatch(logout());
+                  toggle(false);
+                }}
+              >
+                Logout
+              </ListItemText>
+            </ListItem>
+          ) : (
+            <ListItem style={{ paddingTop: '10px' }} divider button>
+              <ListItemIcon>
+                <LogoutIcon color="primary" />
+              </ListItemIcon>
+              <ListItemText
+                onClick={() => {
+                  pushTo('/login');
+                }}
+              >
+                Login
+              </ListItemText>
+            </ListItem>
+          )}
         </List>
       </Drawer>
     </div>

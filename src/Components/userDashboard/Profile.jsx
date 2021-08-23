@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import { Typography } from '@material-ui/core';
 import UpdateIcon from '@material-ui/icons/Update';

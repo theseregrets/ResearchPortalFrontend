@@ -1,8 +1,9 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prop-types */
-import React from 'react';
+/* eslint-disable no-param-reassign */
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
@@ -19,6 +20,9 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import Button from '@material-ui/core/Button';
 import DeleteIcon from '@material-ui/icons/Delete';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Snackbar from '@material-ui/core/Snackbar';
+import Alert from '@material-ui/core/Alert';
+import { useSelector } from 'react-redux';
 
 const useRowStyles = makeStyles({
   root: {
@@ -30,9 +34,34 @@ const useRowStyles = makeStyles({
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [rejected, setRejected] = useState(false);
   const classes = useRowStyles();
-
+  const state = useSelector((state) => state.profile);
+  function rejectApplication(event, slug, username) {
+    fetch(
+      `https://ieeenitdgp.pythonanywhere.com/api/projects/shortlist/${slug}/`,
+      {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${state.jwt}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          stud_username: username,
+          accepted: -1,
+        }),
+      }
+    )
+      .then((res) => {
+        if (res.status === 200) {
+          setRejected(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
   return (
     <>
       <TableRow className={classes.root}>
@@ -46,6 +75,13 @@ function Row(props) {
             variant="contained"
             color="secondary"
             startIcon={<DeleteIcon />}
+            onClick={(event) => {
+              rejectApplication(
+                event,
+                row.post.slug,
+                row.student.user.username
+              );
+            }}
           >
             Reject
           </Button>
@@ -72,6 +108,26 @@ function Row(props) {
           </Collapse>
         </TableCell>
       </TableRow>
+      <Snackbar
+        open={rejected}
+        autoHideDuration={2000}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        onClose={() => {
+          setRejected(false);
+        }}
+      >
+        <Alert
+          variant="filled"
+          onClose={() => setRejected(false)}
+          severity="success"
+          sx={{ width: '100%' }}
+        >
+          Application rejected
+        </Alert>
+      </Snackbar>
     </>
   );
 }
@@ -90,7 +146,7 @@ export default function ApplicationTable(props) {
   return (
     <>
       {!data ? (
-        <CircularProgress disableShrink />
+        <CircularProgress color="inherit" />
       ) : (
         <>
           {data.count ? (

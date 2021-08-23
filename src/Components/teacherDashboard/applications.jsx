@@ -3,7 +3,7 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import { Typography } from '@material-ui/core';
 
 import ApplicationTable from './table';

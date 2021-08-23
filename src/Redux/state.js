@@ -12,6 +12,7 @@ const state = {
   cv: '',
   cgpa: 0,
   research_statement: '',
+  feedback: '',
 };
 
 export default state;

@@ -1,6 +1,6 @@
 /* eslint-disable react/button-has-type */
 import React, { useState, useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
@@ -10,11 +10,13 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Chip from '@material-ui/core/Chip';
 import Button from '@material-ui/core/Button';
+import Alert from '@material-ui/core/Alert';
+import Snackbar from '@material-ui/core/Snackbar';
 import Divider from '@material-ui/core/Divider';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import FilterProject from './filterProject';
-import File from '../../Data/test.pdf';
+import FileDropzone from './Dropzone';
 import { colors } from '../theme/Theme';
 
 // import { projects } from '../../Data/proj';
@@ -44,6 +46,9 @@ const useStyles = makeStyles((theme) => ({
   },
   details: {
     alignItems: 'center',
+  },
+  detailsInner: {
+    width: '100%',
   },
   column: {
     flex: '1 1 0',
@@ -100,6 +105,9 @@ const useStyles = makeStyles((theme) => ({
       gap: '10px',
     },
   },
+  sop: {
+    padding: '8px 16px 16px',
+  },
   project_chip: {
     marginRight: '3px',
   },
@@ -110,6 +118,10 @@ export default function Projects() {
   const classes = useStyles();
   const state = useSelector((state) => state.profile);
   const [project, setProject] = useState([]);
+  const [sopFile, setSopFile] = useState([]);
+  const [snackMessage, setSnackMessage] = useState('');
+  const [applied, setApplied] = useState(false);
+  const [resType, setResType] = useState(200);
   const history = useHistory();
 
   useEffect(() => {
@@ -129,38 +141,54 @@ export default function Projects() {
       });
   }, []);
 
-  function applyforProject(slug) {
+  function applyforProject(slug, i) {
     if (state.isLogged) {
-      const fileReader = new FileReader();
-      let base = '';
-      // Onload of file read the file content
-      fileReader.onload = function (fileLoadedEvent) {
-        base = fileLoadedEvent.target.result;
-        // Print data in console
-        console.log(base64);
-      };
-      // Convert data to base64
-      fileReader.readAsDataURL(fileToLoad);
-      fetch(
-        `https://ieeenitdgp.pythonanywhere.com//api/projects/apply/${slug}/`,
-        {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${state.jwt}`,
-          },
-          body: {
-            document,
-          },
-        }
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          // this is console.log but the student cannot apply if CV is not downloaded.
-          console.log(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      if (!sopFile[i]) {
+        setApplied(true);
+        setSnackMessage('Please Upload SOP!');
+        setResType(400);
+      } else {
+        const fileToLoad = sopFile[i][0];
+        // FileReader function for read the file.
+        console.log(sopFile[i][0]);
+        const fileReader = new FileReader();
+        // Onload of file read the file content
+        let base64;
+        fileReader.onload = (fileLoadedEvent) => {
+          base64 = fileLoadedEvent.target.result;
+        };
+        // Convert data to base64
+        fileReader.readAsDataURL(fileToLoad);
+        const formdata = new FormData();
+        formdata.append('document', fileToLoad);
+        fetch(
+          `https://ieeenitdgp.pythonanywhere.com//api/projects/apply/${slug}/`,
+          {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${state.jwt}`,
+              // 'Content-Type': 'multipart/form-data',
+            },
+            body: formdata,
+          }
+        )
+          .then(async (res) => {
+            setResType(res.status);
+            if (res.status === 200) setSnackMessage('Project applied');
+            setApplied(true);
+            return { status: res.status, data: await res.json() };
+          })
+          .then(({ status, data }) => {
+            console.log(status);
+            console.log(data[0]);
+            if (status === 400) {
+              setSnackMessage(data[0]);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
     } else {
       history.push('/login');
     }
@@ -174,7 +202,7 @@ export default function Projects() {
         allProjects={projs}
       />
       {project.length ? (
-        project.map((proj) => (
+        project.map((proj, i) => (
           <Accordion className={classes.accord} elevation={3}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
@@ -206,7 +234,7 @@ export default function Projects() {
               </div>
             </AccordionSummary>
             <AccordionDetails className={classes.details}>
-              <div>
+              <div className={classes.detailsInner}>
                 <Typography className={classes.secondaryHeading}>
                   {proj.title}
                 </Typography>
@@ -216,6 +244,10 @@ export default function Projects() {
                 </div>
               </div>
             </AccordionDetails>
+            <div className={classes.sop}>
+              <Typography variant="h5">SOP</Typography>
+              <FileDropzone sopFile={sopFile} setSopFile={setSopFile} i={i} />
+            </div>
             <Divider />
             <AccordionActions>
               <Button
@@ -223,7 +255,7 @@ export default function Projects() {
                 variant="contained"
                 color="primary"
                 onClick={(event) => {
-                  applyforProject(proj.slug);
+                  applyforProject(proj.slug, i);
                 }}
               >
                 Apply
@@ -234,12 +266,33 @@ export default function Projects() {
       ) : (
         <>
           {!projs.length ? (
-            <CircularProgress disableShrink />
+            <CircularProgress color="inherit" />
           ) : (
             <Typography variant="h4">No match found</Typography>
           )}
         </>
       )}
+      <Snackbar
+        open={applied}
+        autoHideDuration={2000}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        onClose={() => {
+          setApplied(false);
+        }}
+        message={snackMessage}
+      >
+        <Alert
+          variant="filled"
+          onClose={() => setApplied(false)}
+          severity={resType === 200 ? 'success' : 'error'}
+          sx={{ width: '100%' }}
+        >
+          {snackMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

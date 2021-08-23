@@ -218,6 +218,7 @@ export default function Navbar() {
             {state.isLogged ? (
               <Button
                 onClick={() => {
+                  pushTo('/login');
                   dispatch(logout());
                 }}
                 className={classes.logout}
@@ -314,6 +315,7 @@ export default function Navbar() {
               </ListItemIcon>
               <ListItemText
                 onClick={() => {
+                  pushTo('/login');
                   dispatch(logout());
                   toggle(false);
                 }}

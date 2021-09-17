@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 
 const useStyles = makeStyles(() => ({
   box: {
+    width: '100vw',
     position: 'fixed',
     left: '0',
     right: '0',

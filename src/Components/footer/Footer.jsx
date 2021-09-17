@@ -1,5 +1,12 @@
 import React from 'react';
-import { AppBar, Grid, Link, Container, Box } from '@material-ui/core';
+import {
+  AppBar,
+  Grid,
+  Link,
+  Container,
+  Box,
+  Typography,
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/styles';
 import { FaPhoneAlt } from 'react-icons/fa';
 import { colors } from '../theme/Theme';
@@ -22,11 +29,11 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '1rem',
   },
   logo: {
-    width: '20vw',
+    width: '15vw',
+    margin: '10px',
     filter: 'invert(1)',
-    [theme.breakpoints.down('xs')]: {
-      height: '50%',
-      width: '50%',
+    [theme.breakpoints.down('sm')]: {
+      width: '20vw',
     },
   },
 }));
@@ -62,8 +69,10 @@ export default function Footer() {
               </Box>
             </Grid>
           </Grid>
-          <Box align="center" mt={3}>
-            © 2021 Copyright: nitdgp.ac.in
+          <Box mt={1}>
+            <Typography align="center">
+              © 2021 Copyright: nitdgp.ac.in
+            </Typography>
           </Box>
         </Container>
       </Box>

@@ -154,7 +154,7 @@ export default function MilestonesTimeline() {
     );
   }
   return (
-    <Timeline align="alternate" className={classes.timeline}>
+    <Timeline position="alternate" className={classes.timeline}>
       {TIMELINE_CONTENTS.map((slide, index) => (
         <TimelineItem>
           <TimelineOppositeContent

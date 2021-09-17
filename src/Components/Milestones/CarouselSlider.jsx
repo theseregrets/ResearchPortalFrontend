@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const useStyles = makeStyles(() => ({
   card: {
     borderRadius: 5,
-    margin: '15px 25px',
+    margin: '15px auto',
     height: '65vh',
     width: '65vw',
     boxShadow: '20px 20px 20px black',

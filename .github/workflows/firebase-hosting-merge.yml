@@ -2,21 +2,36 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on merge
-'on':
+on:
   push:
     branches:
       - master
 jobs:
-  build_and_deploy:
+  build:
+    runs-on: ubuntu-latest
+  steps: 
+  - uses: actions/checkout@v2
+  - name: Build React App
+    run: npm run build
+  - name: Archive Build
+    uses: actions/upload-artifact@v2
+    with:
+      name: build
+      path: build
+
+  deploy: 
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: npm ci && npm install && npm run test --if-present
-        env:
-          CI: false
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_RESEARCHPORTAL_DD91A }}'
-          channelId: live
-          projectId: researchportal-dd91a
+    - uses: actions/checkout@v2
+    - name: Download Build
+      uses: actions/download-artifact@v2
+      with: 
+        name: build
+        path: build
+    - name: Deploy to Firebase Hosting
+      uses: w9jds/firebase-action@master
+      with: 
+        args: deploy --only hosting
+      env: 
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

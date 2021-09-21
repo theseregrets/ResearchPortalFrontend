@@ -263,6 +263,15 @@ export default function Profile() {
         </Typography>
         <div className={classes.info}>
           <div className={classes.infoContainer}>
+            <TextField
+              required
+              label="Username"
+              value={state.username}
+              InputProps={{
+                readOnly: true,
+              }}
+              variant="filled"
+            />
             <div style={{ display: 'flex' }}>
               <AccountCircleIcon fontSize="large" />
               <Typography

@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable prefer-const */
+/* eslint-disable prefer-promise-reject-errors */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -62,10 +63,14 @@ export default function Signup() {
   let [alert, setAlert] = useState(false);
   let [backDrop, setBackDrop] = useState(false);
   let dispatch = useDispatch();
-  let data = {};
-  function setData(event, key) {
-    data[key] = event.target.value;
-  }
+  const [data, setData] = useState({
+    username: '',
+    email: '',
+    first_name: '',
+    last_name: '',
+    password: '',
+    password2: '',
+  });
 
   function validator() {
     console.log(data);
@@ -73,16 +78,12 @@ export default function Signup() {
       const exp = RegExp('w+@btech.nitdgp.ac.in|nitdgp.ac.in').test(data.email);
       console.log(exp);
       if (!exp) {
-        setError('Email Not Valid! Please use Institute Email ID');
-      }
-      if (data.password !== data.password2) {
-        setError('Password Does Not Match!');
-      }
-      console.log(error);
-      if (error !== '') {
-        reject(error);
+        reject('Email Not Valid! Please use Institute Email ID');
+      } else if (data.password === '' || data.password !== data.password2) {
+        reject('Password Does Not Match!');
       } else {
-        resolve('ok');
+        setAlert(false);
+        resolve();
       }
     });
   }
@@ -91,30 +92,32 @@ export default function Signup() {
     e.preventDefault();
     validator()
       .then(() => {
-        console.log('API Request Sent');
-        // dispatch(feedback('backdrop'));
-        // fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json',
-        //   },
-        //   body: JSON.stringify(data),
-        // })
-        //   .then((res) => res.json())
-        //   .then((data) => {
-        //     console.log(data);
-        //     dispatch(feedback(''));
-        //     if (data.username) {
-        //       history.push('/login');
-        //     } else {
-        //       console.log(data);
-        //     }
-        //   })
-        //   .catch((error) => {
-        //     console.log(error);
-        //   });
+        // console.log('API Request Sent');
+        dispatch(feedback('backdrop'));
+        fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            dispatch(feedback(''));
+            if (data.username) {
+              history.push('/login');
+            } else {
+              console.log(data);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
+        setError(error);
         setAlert(true);
       });
   };
@@ -141,7 +144,9 @@ export default function Signup() {
           id="outlined-required"
           label="User Name"
           variant="outlined"
-          onChange={(event) => setData(event, 'username')}
+          onChange={(event) =>
+            setData((prev) => ({ ...prev, username: event.target.value }))
+          }
         />
         <TextField
           required
@@ -150,9 +155,9 @@ export default function Signup() {
           id="outlined-required"
           label="Email"
           variant="outlined"
-          onChange={(event) => {
-            setData(event, 'email');
-          }}
+          onChange={(event) =>
+            setData((prev) => ({ ...prev, email: event.target.value }))
+          }
         />
         <TextField
           required
@@ -160,7 +165,9 @@ export default function Signup() {
           id="outlined-required"
           label="First Name"
           variant="outlined"
-          onChange={(event) => setData(event, 'first_name')}
+          onChange={(event) =>
+            setData((prev) => ({ ...prev, first_name: event.target.value }))
+          }
         />
         <TextField
           required
@@ -168,7 +175,9 @@ export default function Signup() {
           id="outlined-required"
           label="Last Name"
           variant="outlined"
-          onChange={(event) => setData(event, 'last_name')}
+          onChange={(event) =>
+            setData((prev) => ({ ...prev, last_name: event.target.value }))
+          }
         />
         <TextField
           required
@@ -177,7 +186,9 @@ export default function Signup() {
           id="outlined-required"
           label="Password"
           variant="outlined"
-          onChange={(event) => setData(event, 'password')}
+          onChange={(event) =>
+            setData((prev) => ({ ...prev, password: event.target.value }))
+          }
         />
         <TextField
           required
@@ -186,9 +197,9 @@ export default function Signup() {
           id="outlined-required"
           label="Confirm Password"
           variant="outlined"
-          onChange={(event) => {
-            setData(event, 'password2');
-          }}
+          onChange={(event) =>
+            setData((prev) => ({ ...prev, password2: event.target.value }))
+          }
         />
         <Button
           className={classes.field}

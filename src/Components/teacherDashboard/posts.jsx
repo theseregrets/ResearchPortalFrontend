@@ -62,8 +62,8 @@ const Posts = () => {
                 />
               ))
             ) : (
-              <Typography className={classes.loading}>
-                create Project
+              <Typography style={{ color: 'white' }} variant="h5">
+                You have not published any projects
               </Typography>
             )}
           </div>

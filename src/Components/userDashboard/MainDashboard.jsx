@@ -134,7 +134,7 @@ export default function MainDashboard() {
             ))
           ) : (
             <Typography className={classes.placeholderText}>
-              Apply for project
+              You have not applied to any project
             </Typography>
           )}
         </div>

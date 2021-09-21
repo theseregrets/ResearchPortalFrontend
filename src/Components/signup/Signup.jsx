@@ -73,10 +73,8 @@ export default function Signup() {
   });
 
   function validator() {
-    console.log(data);
     return new Promise((resolve, reject) => {
       const exp = RegExp('w+@btech.nitdgp.ac.in|nitdgp.ac.in').test(data.email);
-      console.log(exp);
       if (!exp) {
         reject('Email Not Valid! Please use Institute Email ID');
       } else if (data.password === '' || data.password !== data.password2) {
@@ -101,9 +99,16 @@ export default function Signup() {
           },
           body: JSON.stringify(data),
         })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
+          .then(async (res) => ({ data: await res.json(), status: res.status }))
+          .then(({ data, status }) => {
+            // console.log(data);
+            // console.log(status);
+            if (status === 400) {
+              if (data.email) {
+                setAlert(true);
+                setError(data.email[0]);
+              }
+            }
             dispatch(feedback(''));
             if (data.username) {
               history.push('/login');

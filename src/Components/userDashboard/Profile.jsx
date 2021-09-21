@@ -6,6 +6,9 @@ import { Typography } from '@material-ui/core';
 import UpdateIcon from '@material-ui/icons/Update';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import SchoolIcon from '@material-ui/icons/School';
+import EmailIcon from '@material-ui/icons/Email';
 import { useSelector, useDispatch } from 'react-redux';
 import { Branches } from '../../Data/branch';
 import FileDropzone from './Dropzone';
@@ -78,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: '',
     gap: '20px',
-    marginTop: '50px',
+    marginTop: '5px',
   },
   infoContainer: {
     display: 'flex',
@@ -110,8 +113,9 @@ export default function Profile() {
 
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState('default');
-  const [cgpa, setcgpa] = useState(null);
-  const [contact, setContact] = useState(null);
+  const [cgpa, setcgpa] = useState(state.cgpa);
+  const [semester, setSemester] = useState(state.semester);
+  const [contact, setContact] = useState(state.contacts);
   const [file, setfile] = useState(null);
 
   useEffect(() => {
@@ -251,64 +255,36 @@ export default function Profile() {
             )}
           </div>
         </div>
-
+        <Typography
+          style={{ marginLeft: 'auto', marginRight: 'auto' }}
+          variant="h5"
+        >
+          DETAILS
+        </Typography>
         <div className={classes.info}>
           <div className={classes.infoContainer}>
-            <Typography variant="h5" gutterBottom>
-              Basic details
-            </Typography>
-            <TextField
-              required
-              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
-              label="Name"
-              value={state.first_name + state.last_name}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="filled"
-            />
-            <TextField
-              required
-              id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
-              label="Phone Number"
-              value={state.contacts}
-              InputLabelProps={{
-                shrink: true,
-              }}
-              InputProps={{
-                readOnly: !isEditing,
-              }}
-              variant="outlined"
-              onChange={(event) => {
-                setContact(event.target.value);
-              }}
-            />
-            <TextField
-              required
-              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
-              label="Email"
-              value={state.email}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="filled"
-            />
+            <div style={{ display: 'flex' }}>
+              <AccountCircleIcon fontSize="large" />
+              <Typography
+                variant="h5"
+                style={{ marginLeft: '1vw' }}
+              >{`${state.first_name} ${state.last_name}`}</Typography>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <EmailIcon fontSize="large" />
+              <Typography style={{ marginLeft: '1vw' }} variant="h5">
+                {state.email}
+              </Typography>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <SchoolIcon fontSize="large" />
+              <Typography style={{ marginLeft: '1vw' }} variant="h6">
+                National Institute of Technology Durgapur
+              </Typography>
+            </div>
           </div>
 
           <div className={classes.infoContainer}>
-            <Typography variant="h5" gutterBottom>
-              Academic details
-            </Typography>
-            <TextField
-              required
-              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
-              label="College"
-              value="NIT Durgapur"
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="filled"
-            />
             {/* <TextField
               required
               id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
@@ -325,16 +301,34 @@ export default function Profile() {
             /> */}
             <TextField
               required
-              id={isEditing ? 'outlined-number' : 'outlined-read-only-input'}
-              label="CGPA"
-              type="number"
-              value={state.cgpa}
+              label="Phone Number"
+              value={contact}
               InputLabelProps={{
                 shrink: true,
               }}
-              InputProps={{
-                readOnly: !isEditing,
+              variant="outlined"
+              onChange={(event) => {
+                setContact(event.target.value);
               }}
+            />
+            <TextField
+              select
+              label="Semester"
+              value={semester}
+              variant="outlined"
+              onChange={(event) => {
+                setSemester(event.target.value);
+              }}
+            >
+              {[...Array(8).keys()].map((a) => (
+                <MenuItem key={a + 1} value={a + 1}>
+                  {a + 1}
+                </MenuItem>
+              ))}
+            </TextField>
+            <TextField
+              label="CGPA"
+              value={cgpa}
               variant="outlined"
               onChange={(event) => {
                 setcgpa(event.target.value);
@@ -342,15 +336,11 @@ export default function Profile() {
             />
             <TextField
               select
-              label="Select"
-              value={state.department}
-              helperText="Please select your Branch"
+              label="Branch"
+              value={branch}
               variant="outlined"
               onChange={(event) => {
                 setbranch(event.target.value);
-              }}
-              InputProps={{
-                readOnly: !isEditing,
               }}
             >
               {Branches.map((option) => (
@@ -368,7 +358,6 @@ export default function Profile() {
             setFile={(file) => {
               setfile(file);
             }}
-            Edit={isEditing}
             cv={state.cv}
           />
         </div>

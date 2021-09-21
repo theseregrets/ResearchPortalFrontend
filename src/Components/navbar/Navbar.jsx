@@ -45,7 +45,7 @@ const useStyle = makeStyles((theme) => ({
       '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
   },
   logo_container: {
-    width: '25%',
+    width: '14%',
     [theme.breakpoints.down('md')]: {
       width: '30%',
     },
@@ -77,10 +77,10 @@ const useStyle = makeStyles((theme) => ({
   logo1: {
     // filter: 'invert(1)',
     padding: '5px 0',
-    width: '35%',
+    height: '6vw',
     minWidth: '100px',
-    [theme.breakpoints.down('xs')]: {
-      width: '60%',
+    [theme.breakpoints.down('sm')]: {
+      height: '18vw',
     },
   },
   button: () => ({
@@ -153,9 +153,9 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: '50px',
   },
   drawer_logo: {
-    width: '80%',
+    width: '30vw',
     position: 'absolute',
-    left: '0',
+    left: '30px',
     top: '0',
   },
 }));
@@ -258,7 +258,7 @@ export default function Navbar() {
               </a>
             </div>
           </ListItem>
-          <ListItem style={{ paddingTop: '10px' }} divider button>
+          <ListItem style={{ paddingTop: '2px' }} divider button>
             <ListItemIcon>
               <FlagIcon color="primary" />
             </ListItemIcon>

@@ -83,7 +83,7 @@ const useStyle = makeStyles((theme) => ({
       width: '60%',
     },
   },
-  button: (props) => ({
+  button: () => ({
     marginLeft: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(2),
@@ -99,7 +99,7 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: colors.navTextHover,
     },
   }),
-  logout: (props) => ({
+  logout: () => ({
     marginLeft: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(2),
@@ -116,7 +116,7 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: '#fb0000',
     },
   }),
-  login: (props) => ({
+  login: () => ({
     marginLeft: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(2),
@@ -142,7 +142,7 @@ const useStyle = makeStyles((theme) => ({
       justifyContent: 'flex-end',
     },
   },
-  menu_icon: (props) => ({
+  menu_icon: () => ({
     color: 'white',
     fontSize: '3rem',
   }),

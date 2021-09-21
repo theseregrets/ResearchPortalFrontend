@@ -15,7 +15,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import SubjectIcon from '@material-ui/icons/Subject';
 import PeopleIcon from '@material-ui/icons/People';
-import LayersIcon from '@material-ui/icons/Layers';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({

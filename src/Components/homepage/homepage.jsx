@@ -248,7 +248,7 @@ export default function Homepage() {
       <div className={classes.grid}>
         {/* <div className={classes.firstbox}> */}
         <Typography variant="h2" className={classes.rp} component="p">
-          Research Portal(Testing)
+          Research Portal
         </Typography>
         <Typography className={classes.desc}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

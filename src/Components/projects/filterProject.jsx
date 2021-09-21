@@ -13,13 +13,12 @@ import {
 import RestoreIcon from '@material-ui/icons/Restore';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import DoneIcon from '@material-ui/icons/Done';
 import { makeStyles } from '@material-ui/styles';
 import { Branches } from '../../Data/branch';
 
 const department = Branches.map((item) => item.value);
 
-const useStyle = makeStyles((theme) => ({
+const useStyle = makeStyles(() => ({
   root: {
     display: 'flex',
     flexDirection: 'column',

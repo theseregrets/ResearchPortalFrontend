@@ -3,7 +3,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useSelector } from 'react-redux';
 
 const baseStyle = {
   flex: 1,
@@ -35,12 +34,10 @@ const rejectStyle = {
 };
 
 export default function FileDropzone({ setFile, Edit, cv }) {
-  const state = useSelector((state) => state.profile);
   const {
     getRootProps,
     getInputProps,
     acceptedFiles,
-    isDragActive,
     isDragAccept,
     isDragReject,
   } = useDropzone({

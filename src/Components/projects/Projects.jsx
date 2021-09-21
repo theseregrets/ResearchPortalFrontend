@@ -254,7 +254,7 @@ export default function Projects() {
                 size="medium"
                 variant="contained"
                 color="primary"
-                onClick={(event) => {
+                onClick={() => {
                   applyforProject(proj.slug, i);
                 }}
               >

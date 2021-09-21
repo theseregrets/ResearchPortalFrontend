@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  useRouteMatch,
-  Link,
-} from 'react-router-dom';
+import { Route, Switch, useRouteMatch, Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';

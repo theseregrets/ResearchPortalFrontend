@@ -1,4 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable prefer-const */
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -12,7 +13,6 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import Backdrop from '@material-ui/core/Backdrop';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/core/Alert';
 import { colors } from '../theme/Theme';
 import feedback from '../../Redux/Actions/feedback';
@@ -58,59 +58,65 @@ const useStyles = makeStyles((theme) => ({
 export default function Signup() {
   const classes = useStyles();
   const history = useHistory();
-  const [error, setError] = useState('');
-  const [alert, setAlert] = useState(false);
-  const [backDrop, setBackDrop] = useState(false);
-  const dispatch = useDispatch();
-  const data = {};
+  let [error, setError] = useState('');
+  let [alert, setAlert] = useState(false);
+  let [backDrop, setBackDrop] = useState(false);
+  let dispatch = useDispatch();
+  let data = {};
   function setData(event, key) {
     data[key] = event.target.value;
   }
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-    console.log(newValue);
-  };
-  const validator = () => {
-    const exp = RegExp('w+@btech.nitdgp.ac.in|nitdgp.ac.in').test(data.email);
-    if (!exp) {
-      setError('Email Not Valid! Please use Institute Email ID');
-    } else {
-      setError('');
-    }
-    if (data.password !== data.password2) {
-      setError('Password Does Not Match!');
-    } else {
-      setError('');
-    }
-  };
+  function validator() {
+    console.log(data);
+    return new Promise((resolve, reject) => {
+      const exp = RegExp('w+@btech.nitdgp.ac.in|nitdgp.ac.in').test(data.email);
+      console.log(exp);
+      if (!exp) {
+        setError('Email Not Valid! Please use Institute Email ID');
+      }
+      if (data.password !== data.password2) {
+        setError('Password Does Not Match!');
+      }
+      console.log(error);
+      if (error !== '') {
+        reject(error);
+      } else {
+        resolve('ok');
+      }
+    });
+  }
 
-  const onSignup = () => {
-    if (error === '') {
-      validator();
-      dispatch(feedback('backdrop'));
-      fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+  const onSignup = (e) => {
+    e.preventDefault();
+    validator()
+      .then(() => {
+        console.log('API Request Sent');
+        // dispatch(feedback('backdrop'));
+        // fetch('https://ieeenitdgp.pythonanywhere.com/api/user/register/', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify(data),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     console.log(data);
+        //     dispatch(feedback(''));
+        //     if (data.username) {
+        //       history.push('/login');
+        //     } else {
+        //       console.log(data);
+        //     }
+        //   })
+        //   .catch((error) => {
+        //     console.log(error);
+        //   });
       })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.username) {
-            dispatch(feedback(''));
-            history.push('/login');
-          } else {
-            console.log(data);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } else {
-      setAlert(true);
-    }
+      .catch(() => {
+        setAlert(true);
+      });
   };
 
   return (
@@ -128,7 +134,7 @@ export default function Signup() {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
-      <form className={classes.form} onSubmit={(e) => e.preventDefault()}>
+      <form className={classes.form}>
         <TextField
           required
           className={classes.field}
@@ -185,13 +191,10 @@ export default function Signup() {
           }}
         />
         <Button
-          type="submit"
           className={classes.field}
           color="primary"
           variant="contained"
-          onClick={() => {
-            onSignup();
-          }}
+          onClick={(e) => onSignup(e)}
         >
           Sign Up
         </Button>

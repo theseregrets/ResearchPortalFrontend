@@ -109,6 +109,7 @@ export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [branch, setbranch] = useState(null);
   const [contact, setcontact] = useState(null);
+  // eslint-disable-next-line
   const [username, setUsername] = useState(state.username);
 
   useEffect(() => {

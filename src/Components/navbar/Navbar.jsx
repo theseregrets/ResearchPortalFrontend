@@ -184,7 +184,7 @@ export default function Navbar() {
 
   return (
     <div className={clsx(classes.root, { [classes.bg]: scroll })}>
-      <AppBar position="none" color="transparent" elevation="0">
+      <AppBar position="relative" color="transparent" elevation={0}>
         <Toolbar>
           <div className={classes.logo_container}>
             <Link to="/">

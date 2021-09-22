@@ -153,7 +153,7 @@ export default function Projects() {
         console.log(sopFile[i][0]);
         const fileReader = new FileReader();
         // Onload of file read the file content
-        let base64;
+        // let base64;
         fileReader.onload = (fileLoadedEvent) => {
           base64 = fileLoadedEvent.target.result;
         };

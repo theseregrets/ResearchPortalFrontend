@@ -61,6 +61,7 @@ export default function Signup() {
   const history = useHistory();
   let [error, setError] = useState('');
   let [alert, setAlert] = useState(false);
+  // eslint-disable-next-line
   let [backDrop, setBackDrop] = useState(false);
   let dispatch = useDispatch();
   const [data, setData] = useState({

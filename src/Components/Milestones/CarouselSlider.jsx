@@ -22,12 +22,12 @@ const useStyles = makeStyles(() => ({
 
 export default function CarouselSlider(props) {
   CarouselSlider.propTypes = {
-    content: PropTypes.arrayOf,
+    content: PropTypes.objectOf(PropTypes.any),
     title: PropTypes.string,
-    image: PropTypes.objectOf,
+    image: PropTypes.objectOf(PropTypes.any),
   };
   CarouselSlider.defaultProps = {
-    content: [],
+    content: null,
     title: 'Test',
     image: null,
   };

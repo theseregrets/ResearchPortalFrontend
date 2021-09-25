@@ -89,7 +89,7 @@ export default function AboutUs() {
             </Typography>
           </Grid>
           <Grid container>
-            <Grid item xs={12} sm={4} spacing={1} align="center">
+            <Grid item xs={12} sm={4} align="center">
               <Box borderRight={smallScreen ? 0 : 0.1}>
                 <AnimatedNumber
                   className={classes.animatedNumber}
@@ -103,7 +103,7 @@ export default function AboutUs() {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} sm={4} spacing={1} align="center">
+            <Grid item xs={12} sm={4} align="center">
               <Box borderRight={smallScreen ? 0 : 0.1}>
                 <AnimatedNumber
                   className={classes.animatedNumber}
@@ -118,7 +118,7 @@ export default function AboutUs() {
                 </Typography>
               </Box>
             </Grid>
-            <Grid item xs={12} sm={4} spacing={1} align="center">
+            <Grid item xs={12} sm={4} align="center">
               <Box>
                 <AnimatedNumber
                   className={classes.animatedNumber}

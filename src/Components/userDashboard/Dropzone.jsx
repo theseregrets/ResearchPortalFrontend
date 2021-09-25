@@ -55,6 +55,7 @@ export default function FileDropzone({ setFile, cv }) {
     [true, isDragReject, isDragAccept]
   );
 
+  // eslint-disable-next-line
   const files = acceptedFiles.map((file) => (
     <li key={file.path}>
       {file.path} - {file.size} bytes

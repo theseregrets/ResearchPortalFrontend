@@ -58,13 +58,13 @@ export default function Team() {
   const classes = useStyles();
   return (
     <Grid container align="center " className={classes.container}>
-      <Grid item xs={12} align="center" spacing={1}>
+      <Grid item xs={12} align="center">
         <Typography variant="h3" gutterBottom className={classes.heading}>
           Our Team
         </Typography>
       </Grid>
       {TEAM_INFO.map((team) => (
-        <Grid item>
+        <Grid item key={team.id}>
           <Card elevation={5} className={classes.card}>
             <CardContent className={classes.content}>
               <Typography component="h5" variant="h5">

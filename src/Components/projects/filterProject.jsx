@@ -208,6 +208,7 @@ export default function FilterProject(props) {
             <Typography>Department :</Typography>
             {department.map((ele) => (
               <Chip
+                key={ele}
                 label={ele}
                 style={{ marginRight: '3px', marginBottom: '5px' }}
                 size="small"
@@ -252,6 +253,7 @@ export default function FilterProject(props) {
         <div>
           {filterParameter.dept.map((ele) => (
             <Chip
+              key={ele}
               label={ele}
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"
@@ -268,6 +270,7 @@ export default function FilterProject(props) {
         <div>
           {filterParameter.prof.map((ele) => (
             <Chip
+              key={ele}
               label={ele}
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"
@@ -284,6 +287,7 @@ export default function FilterProject(props) {
         <div>
           {filterParameter.tag.map((ele) => (
             <Chip
+              key={ele}
               label={ele}
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"

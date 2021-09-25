@@ -84,13 +84,12 @@ export default function Carousel() {
       <Grid item id="rightArrow" className={classes.arrows} xs={2}>
         <Arrow direction="right" clickFunction={() => onArrowClick('right')} />
       </Grid>
-      <Grid container xs={12} align="center" className={classes.slideshowDots}>
+      <Grid container align="center" className={classes.slideshowDots}>
         {SLIDE_INFO.map((slide, idx) => (
           <Grid
             item
             key={slide.id}
             xs={12 / numSlides}
-            spacing={1}
             className={
               idx === index ? classes.slideshowDotActive : classes.slideshowDot
             }

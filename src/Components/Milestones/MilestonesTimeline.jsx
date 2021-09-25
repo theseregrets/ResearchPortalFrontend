@@ -103,7 +103,7 @@ export default function MilestonesTimeline() {
     return (
       <Timeline className={classes.timeline}>
         {TIMELINE_CONTENTS.map((slide, index) => (
-          <TimelineItem>
+          <TimelineItem key={slide.id}>
             <TimelineOppositeContent
               className={
                 index % 2 === 0
@@ -142,7 +142,7 @@ export default function MilestonesTimeline() {
                   align="center"
                   className={classes.body}
                   variant="body"
-                  component="body"
+                  component="p"
                 >
                   {slide.body}
                 </Typography>
@@ -156,7 +156,7 @@ export default function MilestonesTimeline() {
   return (
     <Timeline position="alternate" className={classes.timeline}>
       {TIMELINE_CONTENTS.map((slide, index) => (
-        <TimelineItem>
+        <TimelineItem key={slide.id}>
           <TimelineOppositeContent
             data-aos={animationDirection(index)}
             className={
@@ -195,7 +195,7 @@ export default function MilestonesTimeline() {
                 align="center"
                 className={classes.body}
                 variant="body"
-                component="body"
+                component="p"
               >
                 {slide.body}
               </Typography>

@@ -1,5 +1,11 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import Backdrop from '@material-ui/core/Backdrop';
@@ -80,7 +86,15 @@ function App() {
               <Signup />
             </Route>
             <Route path="/dashboard">
-              {state.isStudent ? <UserDashboard /> : <DashboardTeacher />}
+              {state.isLogged ? (
+                state.isStudent ? (
+                  <UserDashboard />
+                ) : (
+                  <DashboardTeacher />
+                )
+              ) : (
+                <Redirect to="/login" />
+              )}
             </Route>
           </Switch>
           <Footer />

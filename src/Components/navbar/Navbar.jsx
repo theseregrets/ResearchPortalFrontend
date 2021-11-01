@@ -175,8 +175,8 @@ export default function Navbar() {
   }, []);
 
   const classes = useStyle();
-
   const history = useHistory();
+
   function pushTo(path) {
     history.push(path);
     toggle(false);
@@ -218,7 +218,7 @@ export default function Navbar() {
             {state.isLogged ? (
               <Button
                 onClick={() => {
-                  pushTo('/login');
+                  pushTo('/');
                   dispatch(logout());
                 }}
                 className={classes.logout}
@@ -315,7 +315,7 @@ export default function Navbar() {
               </ListItemIcon>
               <ListItemText
                 onClick={() => {
-                  pushTo('/login');
+                  pushTo('/');
                   dispatch(logout());
                   toggle(false);
                 }}

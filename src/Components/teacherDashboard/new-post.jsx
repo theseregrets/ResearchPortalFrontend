@@ -89,20 +89,20 @@ export default function NewPost() {
 
     if (state.department === '') {
       console.log('Please update your profile first');
-      setOpen(true);
-      <Snackbar
-        open={open}
-        autoHideDuration={2000}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        onClose={setOpen(false)}
-      >
-        <Alert severity="error" onClose={setOpen(false)} sx={{ width: '100%' }}>
-          Please update your profile first.
-        </Alert>
-      </Snackbar>;
+      alert('Please update your profile first');
+      // <Snackbar
+      //   open={true}
+      //   autoHideDuration={2000}
+      //   anchorOrigin={{
+      //     vertical: 'bottom',
+      //     horizontal: 'right',
+      //   }}
+      //   onClose={setOpen(false)}
+      // >
+      // <Alert severity="error" onClose={setOpen(false)} sx={{ width: '100%' }}>
+      //   Please update your profile first.
+      // </Alert>
+      // </Snackbar>;
     } else {
       fetch(`https://ieeenitdgp.pythonanywhere.com/api/projects/create/`, {
         method: 'POST',

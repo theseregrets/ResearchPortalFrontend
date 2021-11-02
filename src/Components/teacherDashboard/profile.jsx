@@ -107,8 +107,8 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
-  const [branch, setbranch] = useState('');
-  const [contact, setcontact] = useState('');
+  const [branch, setbranch] = useState(state.department);
+  const [contact, setcontact] = useState(state.contacts);
   // eslint-disable-next-line
   const [username, setUsername] = useState(state.username);
 
@@ -136,10 +136,10 @@ export default function Profile() {
 
   useEffect(() => {
     if (branch !== state.department) setIsEditing(true);
-    else setIsEditing(false);
-
     if (contact !== state.contacts) setIsEditing(true);
-    else setIsEditing(false);
+
+    if (contact === state.contacts && branch === state.department)
+      setIsEditing(false);
   });
 
   function update() {
@@ -155,6 +155,7 @@ export default function Profile() {
       isSomethingEdited = true;
     }
     if (isSomethingEdited) {
+      alert('sending');
       fetch(
         `https://ieeenitdgp.pythonanywhere.com/api/user/teacher/details/${state.username}/`,
         {
@@ -169,8 +170,8 @@ export default function Profile() {
         .then((data) => {
           // new changed data is comming store it in redux;
           // console.log(data);
-          setbranch(null);
-          setcontact(null);
+          // setbranch(null);
+          // setcontact(null);
           setIsEditing(false);
         })
         .catch((err) => {
@@ -244,17 +245,12 @@ export default function Profile() {
           </div>
           <div className={classes.infoContainer}>
             <TextField
-              required
-              id="outlined-number"
               label="Phone Number"
-              value={state.contacts}
-              InputLabelProps={{
-                shrink: true,
+              color="primary"
+              value={contact}
+              onChange={(event) => {
+                setcontact(event.target.value);
               }}
-              InputProps={{
-                readOnly: false,
-              }}
-              variant="outlined"
             />
             <TextField
               select

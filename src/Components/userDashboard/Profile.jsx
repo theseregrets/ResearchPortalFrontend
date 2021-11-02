@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
   editBtn: {
     alignSelf: 'flex-start',
-    width: '75px',
+    width: '100px',
     // margin: '0 auto',
   },
   editBtnContainer: {
@@ -112,7 +112,7 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
-  const [branch, setbranch] = useState('default');
+  const [branch, setbranch] = useState(state.department);
   const [cgpa, setcgpa] = useState(state.cgpa);
   const [semester, setSemester] = useState(state.semester);
   const [contact, setContact] = useState(state.contacts);
@@ -155,10 +155,6 @@ export default function Profile() {
     )
       setIsEditing(false);
   });
-
-  function handleClick() {
-    setIsEditing(!isEditing);
-  }
 
   function update() {
     const formdata = new FormData();
@@ -210,10 +206,6 @@ export default function Profile() {
     }
   }
 
-  function cancel() {
-    setIsEditing(false);
-  }
-
   return (
     <div className={classes.root}>
       <Typography variant="h4" className={classes.title}>
@@ -243,7 +235,7 @@ export default function Profile() {
                 size="small"
                 variant="contained"
                 color="primary"
-                onClick={handleClick}
+                onClick={update}
               >
                 <UpdateIcon />
                 Update

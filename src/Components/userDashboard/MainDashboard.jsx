@@ -102,8 +102,8 @@ export default function MainDashboard() {
   return (
     <div className={classes.root}>
       <div className={classes.msg}>
-        <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar>
-        <Typography> Welcome back {state.first_name}</Typography>
+        {/* <Avatar className={clsx(classes.purple, classes.large)}>NK</Avatar> */}
+        <Typography variant="h5">Welcome Back {state.first_name}</Typography>
       </div>
       <Typography variant="h4" gutterBottom className={classes.title}>
         Projects Applied

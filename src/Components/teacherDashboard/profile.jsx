@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   editBtn: {
     alignSelf: 'flex-start',
-    width: '75px',
+    width: '100px',
     // margin: '0 auto',
   },
   editBtnContainer: {
@@ -107,8 +107,8 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
-  const [branch, setbranch] = useState(null);
-  const [contact, setcontact] = useState(null);
+  const [branch, setbranch] = useState('');
+  const [contact, setcontact] = useState('');
   // eslint-disable-next-line
   const [username, setUsername] = useState(state.username);
 
@@ -133,6 +133,14 @@ export default function Profile() {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    if (branch !== state.department) setIsEditing(true);
+    else setIsEditing(false);
+
+    if (contact !== state.contacts) setIsEditing(true);
+    else setIsEditing(false);
+  });
 
   function update() {
     const formdata = new FormData();
@@ -160,7 +168,7 @@ export default function Profile() {
         .then((res) => res.json())
         .then((data) => {
           // new changed data is comming store it in redux;
-          console.log(data);
+          // console.log(data);
           setbranch(null);
           setcontact(null);
           setIsEditing(false);
@@ -185,43 +193,21 @@ export default function Profile() {
               src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-512.png"
               alt="profile"
             />
-            <Button size="small" variant="contained" color="primary" onClick="">
+            <Button size="small" variant="contained" color="primary">
               Upload
             </Button>
           </div>
           <div className={classes.editBtn}>
-            {!isEditing ? (
-              <div>
-                <p />
-                <Button
-                  size="small"
-                  variant="contained"
-                  onClick={() => setIsEditing(true)}
-                  color="primary"
-                >
-                  <UpdateIcon />
-                  Edit
-                </Button>
-              </div>
-            ) : (
-              <div className={classes.editBtnContainer}>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  onClick={update}
-                >
-                  Update
-                </Button>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  onClick={() => setIsEditing(false)}
-                >
-                  Cancel
-                </Button>
-              </div>
+            {isEditing && (
+              <Button
+                size="small"
+                variant="contained"
+                onClick={update}
+                color="primary"
+              >
+                <UpdateIcon />
+                Update
+              </Button>
             )}
           </div>
         </div>

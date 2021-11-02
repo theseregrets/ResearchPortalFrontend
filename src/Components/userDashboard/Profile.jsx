@@ -141,6 +141,21 @@ export default function Profile() {
       });
   }, []);
 
+  useEffect(() => {
+    if (cgpa !== state.cgpa) setIsEditing(true);
+    if (branch !== state.department) setIsEditing(true);
+    if (semester !== state.semester) setIsEditing(true);
+    if (contact !== state.contacts) setIsEditing(true);
+
+    if (
+      cgpa === state.cgpa &&
+      branch === state.branch &&
+      semester === state.semester &&
+      contact === state.contacts
+    )
+      setIsEditing(false);
+  });
+
   function handleClick() {
     setIsEditing(!isEditing);
   }
@@ -223,7 +238,7 @@ export default function Profile() {
             </Button>
           </div>
           <div className={classes.editBtn}>
-            {!isEditing ? (
+            {isEditing && (
               <Button
                 size="small"
                 variant="contained"
@@ -231,27 +246,8 @@ export default function Profile() {
                 onClick={handleClick}
               >
                 <UpdateIcon />
-                Edit
+                Update
               </Button>
-            ) : (
-              <div className={classes.editBtnContainer}>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  onClick={update}
-                >
-                  Update
-                </Button>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  onClick={cancel}
-                >
-                  Cancel
-                </Button>
-              </div>
             )}
           </div>
         </div>

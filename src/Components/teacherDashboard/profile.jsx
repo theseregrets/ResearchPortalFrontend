@@ -4,12 +4,14 @@ import { makeStyles } from '@material-ui/styles';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import { Typography } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import EmailIcon from '@material-ui/icons/Email';
 import UpdateIcon from '@material-ui/icons/Update';
-import EditDetails from './EditAcadDetails';
-import Details from './AcadDetails';
 import cont from '../../Redux/Actions/updateContacts';
 import dept from '../../Redux/Actions/updateDept';
 import { colors } from '../theme/Theme';
+import { Branches } from '../../Data/branch';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -57,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
   editBtn: {
     alignSelf: 'flex-start',
-    width: '75px',
+    width: '100px',
     // margin: '0 auto',
   },
   editBtnContainer: {
@@ -74,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: '',
     gap: '20px',
-    marginTop: '50px',
+    marginTop: '5px',
   },
   infoContainer: {
     display: 'flex',
@@ -105,8 +107,10 @@ export default function Profile() {
   const dispatch = useDispatch();
 
   const [isEditing, setIsEditing] = useState(false);
-  const [branch, setbranch] = useState(null);
-  const [contact, setcontact] = useState(null);
+  const [branch, setbranch] = useState(state.department);
+  const [contact, setcontact] = useState(state.contacts);
+  // eslint-disable-next-line
+  const [username, setUsername] = useState(state.username);
 
   useEffect(() => {
     fetch(
@@ -130,6 +134,14 @@ export default function Profile() {
       });
   }, []);
 
+  useEffect(() => {
+    if (branch !== state.department) setIsEditing(true);
+    if (contact !== state.contacts) setIsEditing(true);
+
+    if (contact === state.contacts && branch === state.department)
+      setIsEditing(false);
+  });
+
   function update() {
     const formdata = new FormData();
     let isSomethingEdited = false;
@@ -143,6 +155,7 @@ export default function Profile() {
       isSomethingEdited = true;
     }
     if (isSomethingEdited) {
+      alert('sending');
       fetch(
         `https://ieeenitdgp.pythonanywhere.com/api/user/teacher/details/${state.username}/`,
         {
@@ -156,9 +169,9 @@ export default function Profile() {
         .then((res) => res.json())
         .then((data) => {
           // new changed data is comming store it in redux;
-          console.log(data);
-          setbranch(null);
-          setcontact(null);
+          // console.log(data);
+          // setbranch(null);
+          // setcontact(null);
           setIsEditing(false);
         })
         .catch((err) => {
@@ -181,55 +194,34 @@ export default function Profile() {
               src="https://cdn3.iconfinder.com/data/icons/avatars-flat/33/man_5-512.png"
               alt="profile"
             />
-            <Button size="small" variant="contained" color="primary" onClick="">
+            <Button size="small" variant="contained" color="primary">
               Upload
             </Button>
           </div>
           <div className={classes.editBtn}>
-            {!isEditing ? (
-              <div>
-                <p />
-                <Button
-                  size="small"
-                  variant="contained"
-                  onClick={() => setIsEditing(true)}
-                  color="primary"
-                >
-                  <UpdateIcon />
-                  Edit
-                </Button>
-              </div>
-            ) : (
-              <div className={classes.editBtnContainer}>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  onClick={update}
-                >
-                  Update
-                </Button>
-                <Button
-                  size="small"
-                  variant="contained"
-                  color="primary"
-                  onClick={() => setIsEditing(false)}
-                >
-                  Cancel
-                </Button>
-              </div>
+            {isEditing && (
+              <Button
+                size="small"
+                variant="contained"
+                onClick={update}
+                color="primary"
+              >
+                <UpdateIcon />
+                Update
+              </Button>
             )}
           </div>
         </div>
-
+        <Typography
+          style={{ marginLeft: 'auto', marginRight: 'auto' }}
+          variant="h5"
+        >
+          DETAILS
+        </Typography>
         <div className={classes.info}>
           <div className={classes.infoContainer}>
-            <Typography variant="h5" gutterBottom>
-              Basic details
-            </Typography>
             <TextField
               required
-              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
               label="Username"
               value={state.username}
               InputProps={{
@@ -237,46 +229,44 @@ export default function Profile() {
               }}
               variant="filled"
             />
-            <TextField
-              required
-              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
-              label="Firstname"
-              value={state.first_name}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="filled"
-            />
-            <TextField
-              required
-              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
-              label="Lastname"
-              value={state.last_name}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="filled"
-            />
-            <TextField
-              required
-              id={isEditing ? 'outlined-required' : 'outlined-read-only-input'}
-              label="Email"
-              value={state.email}
-              InputProps={{
-                readOnly: true,
-              }}
-              variant="filled"
-            />
+            <div style={{ display: 'flex' }}>
+              <AccountCircleIcon fontSize="large" />
+              <Typography
+                variant="h5"
+                style={{ marginLeft: '1vw' }}
+              >{`${state.first_name} ${state.last_name}`}</Typography>
+            </div>
+            <div style={{ display: 'flex' }}>
+              <EmailIcon fontSize="large" />
+              <Typography style={{ marginLeft: '1vw' }} variant="h5">
+                {state.email}
+              </Typography>
+            </div>
           </div>
           <div className={classes.infoContainer}>
-            <Typography variant="h5" gutterBottom>
-              Academic details
-            </Typography>
-            {isEditing ? (
-              <EditDetails setBranch={setbranch} setContact={setcontact} />
-            ) : (
-              <Details />
-            )}
+            <TextField
+              label="Phone Number"
+              color="primary"
+              value={contact}
+              onChange={(event) => {
+                setcontact(event.target.value);
+              }}
+            />
+            <TextField
+              select
+              label="Branch"
+              value={branch}
+              variant="outlined"
+              onChange={(event) => {
+                setbranch(event.target.value);
+              }}
+            >
+              {Branches.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
           </div>
         </div>
       </div>

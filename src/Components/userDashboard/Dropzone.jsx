@@ -3,7 +3,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { useSelector } from 'react-redux';
 
 const baseStyle = {
   flex: 1,
@@ -34,36 +33,29 @@ const rejectStyle = {
   borderColor: '#ff1744',
 };
 
-export default function FileDropzone({ setFile, Edit, cv }) {
-  const state = useSelector((state) => state.profile);
+export default function FileDropzone({ setFile, cv }) {
   const {
     getRootProps,
     getInputProps,
     acceptedFiles,
-    isDragActive,
     isDragAccept,
     isDragReject,
   } = useDropzone({
     accept: 'application/pdf',
     onDrop: (files) => setFile(files),
-    disabled: !Edit,
-    onDragEnter: () => {
-      if (!Edit) {
-        alert('click on update button to upload CV');
-      }
-    },
   });
 
   const style = useMemo(
     () => ({
       ...baseStyle,
-      ...(Edit ? activeStyle : {}),
+      ...activeStyle,
       ...(isDragAccept ? acceptStyle : {}),
       ...(isDragReject ? rejectStyle : {}),
     }),
-    [Edit, isDragReject, isDragAccept]
+    [true, isDragReject, isDragAccept]
   );
 
+  // eslint-disable-next-line
   const files = acceptedFiles.map((file) => (
     <li key={file.path}>
       {file.path} - {file.size} bytes
@@ -73,28 +65,15 @@ export default function FileDropzone({ setFile, Edit, cv }) {
     <div>
       <div {...getRootProps({ style })}>
         <input {...getInputProps()} />
-        {Edit ? (
-          <p>Drag n drop Resume here, or click to select files (pdf)</p>
-        ) : (
-          <p>click on Edit button to upload CV</p>
-        )}
+        <p>Drag n drop Resume here, or click to select files (pdf)</p>
       </div>
-      {Edit ? (
-        <>
-          <h3>
-            <h5>Updated file-</h5>
-            <h3>{files}</h3>
-          </h3>
-        </>
-      ) : (
-        <>
-          <h3>
-            <h5>Uploaded file-</h5>
-            <a href={cv} target="_blank" rel="noreferrer">
-              Click Here
-            </a>
-          </h3>
-        </>
+      {cv != null && (
+        <div style={{ display: 'flex' }}>
+          <h4>Uploaded file-</h4>
+          <a href={cv} target="_blank" rel="noreferrer">
+            Click Here
+          </a>
+        </div>
       )}
     </div>
   );

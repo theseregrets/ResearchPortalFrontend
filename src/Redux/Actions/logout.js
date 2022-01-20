@@ -1,4 +1,4 @@
-function logout(data) {
+function logout() {
   return {
     type: 'LOGOUT',
   };

@@ -37,6 +37,7 @@
     "react/no-unescaped-entities": "off",
     "camelcase":"off",
     "no-else-return":"off",
-    "react/jsx-boolean-value": "off"
+    "react/jsx-boolean-value": "off",
+    "prefer-const":"off"
   }
 }

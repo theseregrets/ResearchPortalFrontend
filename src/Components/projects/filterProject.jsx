@@ -13,13 +13,12 @@ import {
 import RestoreIcon from '@material-ui/icons/Restore';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import FilterListIcon from '@material-ui/icons/FilterList';
-import DoneIcon from '@material-ui/icons/Done';
 import { makeStyles } from '@material-ui/styles';
 import { Branches } from '../../Data/branch';
 
 const department = Branches.map((item) => item.value);
 
-const useStyle = makeStyles((theme) => ({
+const useStyle = makeStyles(() => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
@@ -209,6 +208,7 @@ export default function FilterProject(props) {
             <Typography>Department :</Typography>
             {department.map((ele) => (
               <Chip
+                key={ele}
                 label={ele}
                 style={{ marginRight: '3px', marginBottom: '5px' }}
                 size="small"
@@ -253,6 +253,7 @@ export default function FilterProject(props) {
         <div>
           {filterParameter.dept.map((ele) => (
             <Chip
+              key={ele}
               label={ele}
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"
@@ -269,6 +270,7 @@ export default function FilterProject(props) {
         <div>
           {filterParameter.prof.map((ele) => (
             <Chip
+              key={ele}
               label={ele}
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"
@@ -285,6 +287,7 @@ export default function FilterProject(props) {
         <div>
           {filterParameter.tag.map((ele) => (
             <Chip
+              key={ele}
               label={ele}
               style={{ marginRight: '3px', marginBottom: '5px' }}
               // variant="outlined"

@@ -153,7 +153,7 @@ export default function Projects() {
         console.log(sopFile[i][0]);
         const fileReader = new FileReader();
         // Onload of file read the file content
-        let base64;
+        // let base64;
         fileReader.onload = (fileLoadedEvent) => {
           base64 = fileLoadedEvent.target.result;
         };
@@ -203,7 +203,7 @@ export default function Projects() {
       />
       {project.length ? (
         project.map((proj, i) => (
-          <Accordion className={classes.accord} elevation={3}>
+          <Accordion className={classes.accord} elevation={3} key={proj}>
             <AccordionSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls="panel1c-content"
@@ -254,7 +254,7 @@ export default function Projects() {
                 size="medium"
                 variant="contained"
                 color="primary"
-                onClick={(event) => {
+                onClick={() => {
                   applyforProject(proj.slug, i);
                 }}
               >

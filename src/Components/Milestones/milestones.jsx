@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     background: '#fff',
     border: 'solid 2px #4499fe',
-    top: '10%',
+    top: '15%',
     left: '47.5%',
     margin: '4% auto 0 auto',
     zIndex: 5,
@@ -38,7 +38,7 @@ export default function Milestones() {
 
   return (
     <Grid container className={classes.root}>
-      <Grid item align="center" spacing={1} xs={12}>
+      <Grid item align="center" xs={12}>
         <Typography variant="h3" gutterBottom className={classes.heading}>
           Milestones
         </Typography>

@@ -250,8 +250,9 @@ export default function Homepage() {
         <Typography variant="h2" className={classes.rp} component="p">
           Research Portal
         </Typography>
-        <Typography className={classes.desc}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        <Typography variant="caption" className={classes.desc}>
+          "Research is formalized curiosity. It is poking and prying with a
+          purpose."
         </Typography>
         <Button
           size="large"

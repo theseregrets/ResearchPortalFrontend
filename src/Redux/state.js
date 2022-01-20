@@ -11,6 +11,7 @@ const state = {
   contacts: '',
   cv: '',
   cgpa: 0,
+  semester: 1,
   research_statement: '',
   feedback: '',
 };

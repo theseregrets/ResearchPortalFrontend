@@ -6,7 +6,7 @@ const member2 = require('../Assets/member2.png');
 export const TEAM_INFO = [
   {
     id: 1,
-    name: 'Barry ',
+    name: 'Santam RC',
     contact: 'flash@fastmail.com',
     image: member1.default,
     fb: 'https://www.facebook.com/nitdgpieeesociety',
@@ -15,7 +15,7 @@ export const TEAM_INFO = [
   },
   {
     id: 2,
-    name: 'Allen',
+    name: 'Sayan',
     contact: 'random@fastmail.com',
     image: member2.default,
     fb: 'https://www.facebook.com/nitdgpieeesociety',
@@ -24,7 +24,7 @@ export const TEAM_INFO = [
   },
   {
     id: 3,
-    name: 'Whocares',
+    name: 'Biswajit',
     contact: 'abc@gmail.com',
     image: member1.default,
     fb: 'https://www.facebook.com/nitdgpieeesociety',
@@ -33,7 +33,7 @@ export const TEAM_INFO = [
   },
   {
     id: 4,
-    name: 'Barry ',
+    name: 'Nitin',
     contact: 'flash@fastmail.com',
     image: member2.default,
     fb: 'https://www.facebook.com/nitdgpieeesociety',
@@ -42,7 +42,7 @@ export const TEAM_INFO = [
   },
   {
     id: 5,
-    name: 'Whocares',
+    name: 'Vipin',
     contact: 'abc@gmail.com',
     image: member1.default,
     fb: 'https://www.facebook.com/nitdgpieeesociety',
@@ -51,7 +51,7 @@ export const TEAM_INFO = [
   },
   {
     id: 6,
-    name: 'Allen',
+    name: 'Moinak',
     contact: 'random@fastmail.com',
     image: member2.default,
     fb: 'https://www.facebook.com/nitdgpieeesociety',

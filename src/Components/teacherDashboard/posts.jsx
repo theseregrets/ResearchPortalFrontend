@@ -41,7 +41,7 @@ const Posts = () => {
       .then((data) => {
         // store the user detail in redux.
         setProjects(data);
-        console.log(data);
+        // console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -56,14 +56,15 @@ const Posts = () => {
             {projects.length ? (
               projects.map((ele) => (
                 <ProjectCard
+                  key={ele.id}
                   project={ele.title}
                   desc={ele.description}
                   slug={ele.slug}
                 />
               ))
             ) : (
-              <Typography className={classes.loading}>
-                create Project
+              <Typography style={{ color: 'white' }} variant="h5">
+                You have not published any projects
               </Typography>
             )}
           </div>

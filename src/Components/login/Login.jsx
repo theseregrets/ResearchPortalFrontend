@@ -76,12 +76,14 @@ export default function Login() {
   const [alert, setAlert] = useState(false);
   const classes = useStyles();
   const dispatch = useDispatch();
-  const data = {};
-  function setData(event, key) {
-    data[key] = event.target.value;
-  }
+  const [username, setUsername] = useState('');
+  const [userEvent, setUserEvent] = useState('');
+  const [passEvent, setPassEvent] = useState('');
+  const [password, setPassword] = useState('');
 
   const onLogin = () => {
+    const data = { username, password };
+
     dispatch(feedback('backdrop'));
     fetch('https://ieeenitdgp.pythonanywhere.com/api/token/', {
       method: 'POST',
@@ -99,7 +101,12 @@ export default function Login() {
           history.push('/');
         } else {
           console.log(data);
+          dispatch(feedback(''));
           setError(data.detail);
+          userEvent.value = null;
+          passEvent.value = null;
+          setPassword('');
+          setUsername('');
         }
       })
       .catch((error) => {
@@ -134,7 +141,8 @@ export default function Login() {
           label="Username"
           variant="outlined"
           onChange={(event) => {
-            setData(event, 'username');
+            setUsername(event.target.value);
+            setUserEvent(event.target);
           }}
         />
         <TextField
@@ -145,7 +153,8 @@ export default function Login() {
           label="Password"
           variant="outlined"
           onChange={(event) => {
-            setData(event, 'password');
+            setPassword(event.target.value);
+            setPassEvent(event.target);
           }}
         />
         <Button

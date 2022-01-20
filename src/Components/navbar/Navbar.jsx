@@ -45,7 +45,7 @@ const useStyle = makeStyles((theme) => ({
       '0px 2px 4px -1px rgb(0 0 0 / 20%), 0px 4px 5px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)',
   },
   logo_container: {
-    width: '25%',
+    width: '14%',
     [theme.breakpoints.down('md')]: {
       width: '30%',
     },
@@ -77,13 +77,13 @@ const useStyle = makeStyles((theme) => ({
   logo1: {
     // filter: 'invert(1)',
     padding: '5px 0',
-    width: '35%',
+    height: '6vw',
     minWidth: '100px',
-    [theme.breakpoints.down('xs')]: {
-      width: '60%',
+    [theme.breakpoints.down('sm')]: {
+      height: '18vw',
     },
   },
-  button: (props) => ({
+  button: () => ({
     marginLeft: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(2),
@@ -99,7 +99,7 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: colors.navTextHover,
     },
   }),
-  logout: (props) => ({
+  logout: () => ({
     marginLeft: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(2),
@@ -116,7 +116,7 @@ const useStyle = makeStyles((theme) => ({
       backgroundColor: '#fb0000',
     },
   }),
-  login: (props) => ({
+  login: () => ({
     marginLeft: theme.spacing(4),
     [theme.breakpoints.down('md')]: {
       marginLeft: theme.spacing(2),
@@ -142,7 +142,7 @@ const useStyle = makeStyles((theme) => ({
       justifyContent: 'flex-end',
     },
   },
-  menu_icon: (props) => ({
+  menu_icon: () => ({
     color: 'white',
     fontSize: '3rem',
   }),
@@ -153,9 +153,9 @@ const useStyle = makeStyles((theme) => ({
     marginBottom: '50px',
   },
   drawer_logo: {
-    width: '80%',
+    width: '30vw',
     position: 'absolute',
-    left: '0',
+    left: '30px',
     top: '0',
   },
 }));
@@ -175,8 +175,8 @@ export default function Navbar() {
   }, []);
 
   const classes = useStyle();
-
   const history = useHistory();
+
   function pushTo(path) {
     history.push(path);
     toggle(false);
@@ -184,7 +184,7 @@ export default function Navbar() {
 
   return (
     <div className={clsx(classes.root, { [classes.bg]: scroll })}>
-      <AppBar position="none" color="transparent" elevation="0">
+      <AppBar position="relative" color="transparent" elevation={0}>
         <Toolbar>
           <div className={classes.logo_container}>
             <Link to="/">
@@ -198,7 +198,7 @@ export default function Navbar() {
               to="/milestones"
               className={classes.button}
             >
-              Milestone
+              Milestones
             </Button>
             <Button component={Link} to="/team" className={classes.button}>
               Team
@@ -218,6 +218,7 @@ export default function Navbar() {
             {state.isLogged ? (
               <Button
                 onClick={() => {
+                  pushTo('/');
                   dispatch(logout());
                 }}
                 className={classes.logout}
@@ -257,7 +258,7 @@ export default function Navbar() {
               </a>
             </div>
           </ListItem>
-          <ListItem style={{ paddingTop: '10px' }} divider button>
+          <ListItem style={{ paddingTop: '2px' }} divider button>
             <ListItemIcon>
               <FlagIcon color="primary" />
             </ListItemIcon>
@@ -314,6 +315,7 @@ export default function Navbar() {
               </ListItemIcon>
               <ListItemText
                 onClick={() => {
+                  pushTo('/');
                   dispatch(logout());
                   toggle(false);
                 }}
